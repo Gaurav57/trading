@@ -1340,7 +1340,7 @@ select option
 
 .deals
 {
-	width: 35%;
+	width: 29%;
 	/*margin-right: 7%;*/
 	margin-left: 180px;
 	margin-top: 8px;
@@ -1559,7 +1559,7 @@ select option
 
 .featured
 {
-	width: 57%;
+	width: 55%;
 	-webkit-transform: translateY(60px);
 	-moz-transform: translateY(60px);
 	-ms-transform: translateY(60px);
