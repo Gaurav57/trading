@@ -21,10 +21,14 @@ class DashboardAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'admin/css/admin.css',
+		'/admin/css/register.css',
+		'/admin/css/bootstrap.min.css',
+		'https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap',
     ];
   public $js = [
 	   'admin/js/admin.js',
 	   'admin/js/bootstrap.min.js',
+	   '/admin/js/register.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
