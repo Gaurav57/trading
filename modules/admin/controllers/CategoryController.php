@@ -44,7 +44,7 @@ class CategoryController extends \yii\web\Controller
 		if($post->load(Yii::$app->request->post()) && $post->save(false))
 		{
 			Yii::$app->session->setFlash('success','category updated'); 
-			return $this->redirect(['admin/category','id'=>$post->category_id]);
+			return $this->redirect(['./category']);
 		}
 		else
 		{

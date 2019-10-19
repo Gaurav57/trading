@@ -79,9 +79,11 @@ DashboardAsset::register($this);
 			<!-- Main Menu -->
 			<div class="side-menu-container">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="<?php echo Yii::$app->homeUrl;?>admin/dash"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
-					<li><a href="<?php echo Yii::$app->homeUrl;?>admin/dash/category"><span class="glyphicon glyphicon-plane"></span> Category</a></li>
-					<li><a href="<?php echo Yii::$app->homeUrl;?>admin/dash/product"><span class="glyphicon glyphicon-cloud"></span>Product</a></li>
+					<li class="active"><a href="<?php echo Yii::$app->homeUrl;?>admin/dashboard"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
+					<li><a href="<?php echo Yii::$app->homeUrl;?>admin/category"><span class="glyphicon glyphicon-plane"></span> Category</a></li>
+					<li><a href="<?php echo Yii::$app->homeUrl;?>admin/product"><span class="glyphicon glyphicon-cloud"></span>Product</a></li>
+					<li><a href="<?php echo Yii::$app->homeUrl;?>admin/reward"><span class="glyphicon glyphicon-signal"></span> Reward Point</a></li>
+					<li><a href="<?php echo Yii::$app->homeUrl;?>admin/follow"><span class="glyphicon glyphicon-signal"></span> Follow</a></li>
 					<!-- Dropdown-->
 					<li class="panel panel-default" id="dropdown">
 						<a data-toggle="collapse" href="#dropdown-lvl1">
@@ -116,8 +118,8 @@ DashboardAsset::register($this);
 						</div>
 					</li>
 
-					<li><a href="#"><span class="glyphicon glyphicon-signal"></span> Link</a></li>
-						<li><a href="#"><span class="glyphicon glyphicon-signal"></span> Link</a></li>
+					
+						
 						<li><a href="#"><span class="glyphicon glyphicon-signal"></span> Link</a></li>
 						<li><a href="#"><span class="glyphicon glyphicon-signal"></span> Link</a></li>
 						<li><a href="#"><span class="glyphicon glyphicon-signal"></span> Link</a></li>

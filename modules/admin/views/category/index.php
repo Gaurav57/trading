@@ -6,9 +6,10 @@ $this->title = 'Category';
 
 <div class="panel panel-default">
 	<div class="panel-heading">
+<!--	<span style="color:#fff;float:right;margin-top: 18px;padding-left:15px"><?= Html::a('Import category Excel', ['product/upload'], ['class'=>'btn btn-warning']) ?></span>-->
 <span style="color:#fff;float:right;margin-top: 18px;"><?= Html::a('Add Category', ['	category'], ['class'=>'btn btn-warning']) ?></span>
 		
-		<h2>Category</h2>
+		<h2 class="text-center">Category</h2>
 	</div>	
 	<?php if(Yii::$app->session->hasFlash('success')):?>
 	<div class="alert alert-dismissible alert-success">

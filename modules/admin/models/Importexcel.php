@@ -50,4 +50,5 @@ class Importexcel extends \yii\db\ActiveRecord
             return false;
         }
     }
+	
 }

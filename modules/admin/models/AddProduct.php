@@ -2,6 +2,7 @@
 
 namespace app\modules\admin\models;
 
+use app\modules\admin\models\Importexcel;
 use Yii;
 
 /**
@@ -45,5 +46,21 @@ class AddProduct extends \yii\db\ActiveRecord
             'price' => 'Price',
             'image' => 'Image',
         ];
+    }
+	
+	 public function imexcel($rowData) {
+        
+        
+        $parameters=array(
+                    'product_id' => $rowData[0][0],
+                    'name_product' =>$rowData[0][1],
+                    'price' => $rowData[0][1],	
+                    'image' =>$rowData[0][2],
+                    
+					
+            );
+      
+        $returnval = Yii::$app->db->createCommand()->insert('add_product', $parameters)->execute();
+        return "Sucesss";
     }
 }

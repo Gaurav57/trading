@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
        
     
         <div class="form-group">
-            <?= Html::submitButton('Submit', ['/category/insertcategory'], ['class' => 'btn btn-primary']) ?>
+<?= Html::submitButton('Submit',['class' => 'btn btn-primary','/category/insertcategory']) ?>
         </div>
     <?php ActiveForm::end(); ?>
 

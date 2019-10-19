@@ -6,11 +6,18 @@ $this->title = 'Product';
 
 <div class="panel panel-default">
 	<div class="panel-heading">
-<span style="color:#fff;float:right;margin-top: 18px;"><?= Html::a('Add Product', ['	product'], ['class'=>'btn btn-warning']) ?></span>
-		
-		<h2>PRODUCT</h2>
-	</div>
 	
+	<span style="color:#fff;float:right;margin-top: 18px;padding-left:15px"><?= Html::a('Import Product Excel', ['upload'], ['class'=>'btn btn-warning']) ?></span>
+<span style="color:#fff;float:right;margin-top: 18px;"><?= Html::a('Add Product', ['	product'], ['class'=>'btn btn-warning']) ?></span>
+
+		
+		<h2 class="text-center">PRODUCT</h2>
+	</div>
+	<?php if(Yii::$app->session->hasFlash('success')):?>
+	
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <?php echo Yii::$app->session->getFlash('success');?>
+	<?php endif; ?>
 	<div class="panel-body">
 		<table class="table table-hover">
   <thead>
