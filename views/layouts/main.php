@@ -1,3 +1,15 @@
+<?php
+
+/* @var $this \yii\web\View */
+/* @var $content string */
+
+use app\widgets\Alert;
+use yii\helpers\Html;
+use app\assets\AppAsset;
+
+AppAsset::register($this);
+?>
+<?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr" class="sign-up contact-page">
 <head>
@@ -6,6 +18,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Trading">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="<?php echo Yii::$app->homeUrl?>images/cart.png">
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::$app->homeUrl?>styles/bootstrap4/bootstrap.min.css">
 <link href="<?php echo Yii::$app->homeUrl?>plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
@@ -127,6 +140,7 @@
 								<div class="cart_content">
 									<div class="cart_text"><a href="<?php echo Yii::$app->homeUrl?>site/cart">Cart</a></div>
 									<div class="cart_price">85</div>
+
 								</div>
 							</div>
 						</div>
@@ -134,6 +148,7 @@
 				</div>
 			</div>
 		</div>
+
 	</div>
 	
 	<!-- Main Navigation -->
@@ -331,10 +346,12 @@
 					<div class="menu_contact">
 						<div class="menu_contact_item"><div class="menu_contact_icon"><img src="<?php echo Yii::$app->homeUrl?>images/phone_white.png" alt=""></div>+91 9372422907</div>
 						<div class="menu_contact_item"><div class="menu_contact_icon"><img src="<?php echo Yii::$app->homeUrl?>images/mail_white.png" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
+
 					</div>
 				</div>
 			</div>
 		</div>
+
 	</div>
 </div>
 
@@ -472,6 +489,7 @@
 
 <script src="<?php echo Yii::$app->homeUrl?>plugins/greensock/TimelineMax.min.js"></script>
 
+
 <script src="<?php echo Yii::$app->homeUrl?>plugins/scrollmagic/ScrollMagic.min.js"></script>
 
 <script src="<?php echo Yii::$app->homeUrl?>plugins/greensock/animation.gsap.min.js"></script>
@@ -481,6 +499,7 @@
 <script src="<?php echo Yii::$app->homeUrl?>plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
 
 <script src="<?php echo Yii::$app->homeUrl?>plugins/easing/easing.js"></script>
+
 
 <script src="<?php echo Yii::$app->homeUrl?>plugins/Isotope/isotope.pkgd.min.js"></script>
 

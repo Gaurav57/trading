@@ -1,7 +1,6 @@
 <script src="<?php echo Yii::$app->homeUrl?>js/custom.js"></script>
 
 <div id="demo" class="carousel slide" data-ride="carousel" data-interval="2500" style="height: 300px">
-
 <!-- Indicators -->
 <ul class="carousel-indicators">
 <li data-target="#demo" data-slide-to="0" class="active"></li>
