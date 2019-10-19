@@ -1,46 +1,47 @@
-<?php
+<div class="sign-in limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <form class="login100-form validate-form p-l-55 p-r-55 p-t-150">
+                    <span class="login100-form-title">
+                        Sign In
+                    </span>
 
-/* @var $this yii\web\View */
-/* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\LoginForm */
-use yii\helpers\Html;	
-use yii\bootstrap\ActiveForm;
+                    <div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username">
+                        <input class="input100" type="text" name="username" placeholder="Email">
+                        <span class="focus-input100"></span>
+                    </div>
 
-$title = 'Login';
-$params['breadcrumbs'][] = $title;
-?>
-<div class="site-login">
-    <h1><?= Html::encode($title) ?></h1>
+                    <div class="wrap-input100 validate-input" data-validate = "Please enter password">
+                        <input class="input100" type="password" name="pass" placeholder="Password">
+                        <span class="focus-input100"></span>
+                    </div>
 
-    <p>Please fill out the following fields to login:</p>
+                    <div class="text-right p-t-13 p-b-23">
+                        <span class="txt1">
+                            Forgot
+                        </span>
 
-    <?php $form = ActiveForm::begin([
-        'id' => 'login-form',
-        'layout' => 'horizontal',
-        'fieldConfig' => [
-            'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
-            'labelOptions' => ['class' => 'col-lg-1 control-label'],
-        ],
-    ]); ?>
+                        <a href="#" class="txt2">
+                            Username / Password?
+                        </a>
+                    </div>
 
-        <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn">
+                            Sign in
+                        </button>
+                    </div>
 
-        <?= $form->field($model, 'password')->passwordInput() ?>
+                    <div class="flex-col-c p-t-170 p-b-40">
+                        <span class="txt1 p-b-9">
+                            Don’t have an account?
+                        </span>
 
-        <?= $form->field($model, 'rememberMe')->checkbox([
-            'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
-        ]) ?>
-
-        <div class="form-group">
-            <div class="col-lg-offset-1 col-lg-11">
-                <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                        <a href="#" class="txt3">
+                            Sign up now
+                        </a>
+                    </div>
+                </form>
             </div>
         </div>
-
-    <?php ActiveForm::end(); ?>
-
-    <div class="col-lg-offset-1" style="color:#999;">
-        You may login with <strong>admin/admin</strong> or <strong>demo/demo</strong>.<br>
-        To modify the username/password, please check out the code <code>app\models\User::$users</code>.
     </div>
-</div>

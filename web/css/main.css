@@ -40,118 +40,12 @@
   }
 }
 
-/* ==========================================================================
-   #BOX-SIZING
-   ========================================================================== */
-/**
- * More sensible default box-sizing:
- * css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice
- */
-html {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-* {
-  padding: 0;
-  margin: 0;
-}
-
-*, *:before, *:after {
-  -webkit-box-sizing: inherit;
-  -moz-box-sizing: inherit;
-  box-sizing: inherit;
-}
-
-/* ==========================================================================
-   #RESET
-   ========================================================================== */
-/**
- * A very simple reset that sits on top of Normalize.css.
- */
-body,
-h1, h2, h3, h4, h5, h6,
-blockquote, p, pre,
-dl, dd, ol, ul,
-figure,
-hr,
-fieldset, legend {
-  margin: 0;
-  padding: 0;
-}
-
-*
- * Remove trailing margins from nested lists.
- 
-li > ol,
-li > ul {
-  margin-bottom: 0;
-}
-
-/**
- * Remove default table spacing.
- */
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-/**
- * 1. Reset Chrome and Firefox behaviour which sets a `min-width: min-content;`
- *    on fieldsets.
- */
-fieldset {
-  min-width: 0;
-  /* [1] */
-  border: 0;
-}
-
-button {
-  outline: none;
-  background: none;
-  border: none;
-}
 
 /* ==========================================================================
    #PAGE WRAPPER
    ========================================================================== */
 .sign-up .page-wrapper {
   min-height: 100vh;
-}
-
-body {
-  font-family: "Roboto", "Arial", "Helvetica Neue", sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 400;
-}
-
-h1 {
-  font-size: 36px;
-}
-
-h2 {
-  font-size: 30px;
-}
-
-h3 {
-  font-size: 24px;
-}
-
-h4 {
-  font-size: 18px;
-}
-
-h5 {
-  font-size: 15px;
-}
-
-h6 {
-  font-size: 13px;
 }
 
 /* ==========================================================================
@@ -472,7 +366,7 @@ h6 {
 }
 
 .sign-up .card-2 .card-heading {
-  background: url("../pic2.jpg") top left/cover no-repeat;
+  background: url("../images/registerimg/pic2.jpg") top left/cover no-repeat;
   width: 29.1%;
   display: table-cell;
 }
