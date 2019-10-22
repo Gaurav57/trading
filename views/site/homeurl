@@ -1,0 +1,55 @@
+
+    <div class="page-wrapper bg-red p-t-180 p-b-100 font-robo">
+        <div class="wrapper wrapper--w960">
+            <div class="card card-2">
+                <div class="card-heading"></div>
+                <div class="card-body">
+                    <h2 class="title">Registration Form</h2>
+                    <form method="POST">
+                        <div class="input-group">
+                            <input class="input--style-2" type="text" placeholder="Name" name="name">
+                        </div>
+                        <div class="input-group">
+                            <input class="input--style-2" type="text" placeholder="Contact" name="contact">
+                        </div>
+                              <div class="input-group">
+                            <input class="input--style-2" type="text" placeholder="Email" name="email">
+                        </div>
+                       
+                        <div class="input-group">
+                            <input class="input--style-2" type="password" placeholder="Password" name="password">
+
+                        </div>
+
+                        <div class="input-group">
+                            <div class="rs-select2 js-select-simple select--no-search">
+                                <select name="class">
+                                    <option disabled="disabled" selected="">Catogery</option>
+                                    <option>Raw material</option>
+                                    <option>Manufacture</option>
+                                    <option>Distributer</option>
+                                    <option>Dealer</option>
+                                    <option>Retailer</option>
+                                </select>
+                                <div class="select-dropdown"></div>
+                            </div>
+                        </div>
+
+                        <div class="p-t-30">
+                            <button class="btn btn--radius btn--green" type="submit">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="vendor/select2/select2.min.js"></script>
+    <script src="vendor/datepicker/moment.min.js"></script>
+    <script src="vendor/datepicker/daterangepicker.js"></script>
+
+    <!-- Main JS-->
+    <script src="js/global.js"></script>
