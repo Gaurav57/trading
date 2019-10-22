@@ -237,8 +237,8 @@ AppAsset::register($this);
 		<li class="hassubs">
 			<a href="<?php echo Yii::$app->homeUrl?>">Partners<i class="fas fa-chevron-down"></i></a>
 			<ul>
-				<li><a href="<?php echo Yii::$app->homeUrl?>">Partner Login<i class="fas fa-chevron-down"></i></a></li>
-				<li><a href="<?php echo Yii::$app->homeUrl?>">Register as a Seller<i class="fas fa-chevron-down"></i></a></li>
+				<li><a href="<?php echo Yii::$app->homeUrl?>admin/login-form">Partner Login<i class="fas fa-chevron-down"></i></a></li>
+				<li><a href="<?php echo Yii::$app->homeUrl?>admin/register">Register as a Seller<i class="fas fa-chevron-down"></i></a></li>
 				<li><a href="<?php echo Yii::$app->homeUrl?>">Become a Franchise<i class="fas fa-chevron-down"></i></a></li>
 				<li><a href="<?php echo Yii::$app->homeUrl?>">Become an Affiliate<i class="fas fa-chevron-down"></i></a></li>
 				<li><a href="<?php echo Yii::$app->homeUrl?>site/advertise">Advertise With US<i class="fas fa-chevron-down"></i></a></li>

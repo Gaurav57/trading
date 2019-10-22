@@ -35,11 +35,12 @@ use app\modules\admin\models\Change;
         ->andwhere(['password' => $password])
         ->one();
               //  echo $query->createCommand()->getRawSql();die;
-
+       
         if(!empty($data)){
             Yii::$app->session["admin"] = $data['email'];
+			 //print_r($data['email']);die;
             Yii::$app->session["isGuest"] = 'No';
-            $this->redirect(['dash']);
+            $this->redirect(['/dashboard']);
      }
      else{
         //echo "invalid";
@@ -102,4 +103,11 @@ use app\modules\admin\models\Change;
             $this->layout = false;
             return $this->render('change', ['model' => $model]);
         }
+		 public function actionLogout()
+    {
+        unset(Yii::$app->session["admin"]);
+        Yii::$app->session["isGuest"] = true;
+        Yii::$app->session->destroy();
+        return $this->goHome();
+    }
 }
