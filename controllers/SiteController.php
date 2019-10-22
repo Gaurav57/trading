@@ -12,8 +12,12 @@ use app\models\product;
 use yii\data\Pagination;
 use app\models\ContactUs;
 use app\models\TradingReg;
+use app\models\ProductsMenu;
+use app\models\ProductsChild;
 class SiteController extends Controller
 {
+    
+    
     /**
      * {@inheritdoc}
      */
@@ -45,10 +49,11 @@ class SiteController extends Controller
      */
     public function actions()
     {
+        $productsmenu = productsmenu::find()->all();
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
-            ],
+            ],$this->view->params['productsmenu'] = $productsmenu,
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
@@ -61,6 +66,8 @@ class SiteController extends Controller
      *
      * @return string
      */
+    
+
     public function actionIndex()
     {
         
@@ -68,6 +75,15 @@ class SiteController extends Controller
         $products3 = product::find()->where(['best_seller'=>'top20'])->all();
         $products7 = product::find()->where(['latest_featured'=>'feature'])->all();
         $products10 = product::find()->where(['trends'=>'2018'])->all();
+
+
+        
+
+
+
+         
+
+        
 
 
         return $this->render('index', ['product'=>$products, 'product3'=>$products3, 'product7'=>$products7, 'product10'=>$products10]);
@@ -101,6 +117,10 @@ class SiteController extends Controller
     public function actionBlog()
     {
         return $this->render('blog');
+    }
+     public function actionLogin()
+    {
+        return $this->render('login');
     }
 
     public function actionContact()
