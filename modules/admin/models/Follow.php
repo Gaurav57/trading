@@ -9,7 +9,7 @@ class Follow extends \yii\db\ActiveRecord
 {
 	 public static function tableName()
     {
-        return 'add_category';
+        return 'user_credential';
     }
     
  /*  public function getRawmaterial()

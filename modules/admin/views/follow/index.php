@@ -15,18 +15,33 @@ $this->title = 'Follow';
     <tr>
       <th scope="col">User_ID</th>
       <th scope="col">RaW Materials</th>
+	   <th scope="col">Email</th>
 	  <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
+  <?php
+if(count($model)) :
+foreach ($model as $row) :
+?> 
   <tr class="table-active">
-      <th scope="row"><?="id";?></th>
-      <td><?="product";?></td> 
+      <th scope="row"><?=$row->user_id;?></th>
+      <td><?=$row->username;?></td> 
+	   <td><?=$row->email;?></td> 
  <td><span>
    <?= Html::a('Follow', ['/controller/action'], ['class'=>'btn btn-primary']) ?>
 	
 	 </span></td>
 	 </tr>
+	 <?php
+endforeach;
+else : ?>
+<tr>
+<td colspan="6">No Record found</td>
+</tr>
+<?php
+endif;
+?>	
   </tbody>
 </table>
 	</div>

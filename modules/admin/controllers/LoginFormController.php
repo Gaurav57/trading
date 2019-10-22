@@ -83,20 +83,23 @@ use app\modules\admin\models\Change;
 
      public function actionChange()
 
-     {
-       $email = Yii::$app->identity;
-       $loadedpost = $email->load(Yii::$app->request->post());
+      {
 
+            $model = new Change();
+          
+            $returndata = Yii::$app->request->post();
 
+            if($model->load($returndata)) {
 
-       if($loadedpost && $email->validate()) {
-         $email->save(false);
-         Yii::$app->$session->setflash('change','you successfully u r password');
-         return $this->refresh();
+                $message = $model->savedata($returndata);
 
-         return $this->render("change",[ 
-         'email' => $email,
-     ]);
-
-       }    
+                if($message == 'Success') {
+                    return $this->redirect(['index']);
+                }
+               
+            }
+            
+            $this->layout = false;
+            return $this->render('change', ['model' => $model]);
+        }
 }
