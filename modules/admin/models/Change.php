@@ -19,5 +19,17 @@ class Change extends Model
         	];
     }
  
-   
+   public function pass($data){
+ 
+        $sqldata = (new \yii\db\Query())->select(['email'])->from('admin_login')->
+        where (["email" => $this->email])->all();
+         if(count($sqldata) > 0){
+         $formdata = array('password' => ($data ['admin_login']['password']));
+          
+            $returndata = Yii::$app->db->createCommand("UPDATE admin_login SET password=:password, WHERE email=:email")->execute();
+
+            return "Success";
+         }
+    }
+
 }
