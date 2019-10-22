@@ -36,7 +36,7 @@ use yii\helpers\ArrayHelper;
 
                     <div class="form-group">
                         
-                            <?php
+                            <!-- <?php
 echo $form->field($model, 'category')->dropDownList(
             [
             'Raw material'   => 'Raw material', 
@@ -45,7 +45,7 @@ echo $form->field($model, 'category')->dropDownList(
             'Dealer'         => 'Dealer', 
             'Retailer'       => 'Retailer'
             ]
-    ); ?>
+    ); ?> -->
                            
                     
                     </div>
