@@ -42,17 +42,19 @@ class AdminLogin extends ActiveRecord
 
 
 
-public static function findByEmail($email) {
-    $admin_login = admin_login::find()
-            ->where([
-                "email" => $email
-            ])
-            ->one();
-    if (!count($admin_login)) {
-        return null;
+public function pass($data){
+ 
+        $sqldata = (new \yii\db\Query())->select(['email'])->from('admin_login')->
+        where (["email" => $this->email])->all();
+         if(count($sqldata) > 0){
+         $formdata = array('password' => ($data ['admin_login']['password']));
+          
+            $data = Yii::$app->db->createCommand("UPDATE admin_login SET password=:password, WHERE email=:email");
+
+            return $data;
+         }
     }
-    return new static($admin_login);
-}
+   
 
 
 
