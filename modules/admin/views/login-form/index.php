@@ -39,6 +39,6 @@ use yii\helpers\Url;
              <?php echo Html::submitButton('<i class="fas fa-sign-in-alt" style="margin-right:150px"></i> login', ['class'=> 'btn btn-primary btn btn-md btn-rounded btn-block form-control']); ?>
             </div>
             <hr>
-            <?= Html::a('Forgot Password',['forgot']) ?>
+            <?= Html::a('Forgot Password ?',['forgot']) ?>
            <?php ActiveForm::end(); ?>
 </div> 

@@ -23,19 +23,20 @@ use app\modules\admin\models\Change;
     public function actionIndex() 
 {
         $model = new AdminLogin();
-        $postdata = Yii::$app->request->post(); 
+        $postdata = Yii::$app->request->post();
     if($model->load($postdata)){
+    //print_r($model); die;
         $email = $postdata['AdminLogin']['email'];
         $password = $postdata['AdminLogin']['password'];
+
         
         $query = new \yii\db\Query();
         $data = $query->select('email,password')
-        ->from('admin_login')
+        ->from('user_credential')
         ->andwhere(['email' => $email])
-        ->andwhere(['password' => $password])
+        ->andwhere(['password' => md5($password)])
         ->one();
-              //  echo $query->createCommand()->getRawSql();die;
-
+                //echo $query->createCommand()->getRawSql();die;
         if(!empty($data)){
             Yii::$app->session["admin"] = $data['email'];
             Yii::$app->session["isGuest"] = 'No';
@@ -61,13 +62,13 @@ use app\modules\admin\models\Change;
       
         $query = new \yii\db\Query();
         $data = $query->select('email')
-        ->from('admin_login')
+        ->from('user_credential')
         ->andwhere(['email' => $email])
          ->one();
               //  echo $query->createCommand()->getRawSql();die;
          
         if(!empty($data)){
-            Yii::$app->session["admin"] = $data['email'];
+            Yii::$app->session["admin_email"] = $data['email'];
             //print_r($data); die;
             Yii::$app->session["isGuest"] = 'No';
             $this->redirect(['login-form/change']);
@@ -87,13 +88,15 @@ use app\modules\admin\models\Change;
 
             $model = new Change();
           
-            $returndata = Yii::$app->request->post();
-
-            if($model->load($returndata)) {
-
-                $message = $model->savedata($returndata);
-
+            $formdata = Yii::$app->request->post();
+            $email = Yii::$app->session["admin_email"];
+            //print_r($formdata); die;
+            if(isset($formdata) && $model->load($formdata)) {
+                //print_r($formdata); die;
+                $message = $model->savedata($formdata, $email);
+                //print_r($message); die;
                 if($message == 'Success') {
+
                     return $this->redirect(['index']);
                 }
                
@@ -102,4 +105,5 @@ use app\modules\admin\models\Change;
             $this->layout = false;
             return $this->render('change', ['model' => $model]);
         }
+        
 }
