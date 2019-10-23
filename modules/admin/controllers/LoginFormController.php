@@ -38,9 +38,10 @@ use app\modules\admin\models\Change;
        
         if(!empty($data)){
             Yii::$app->session["admin"] = $data['email'];
-			 //print_r($data['email']);die;
+			 
             Yii::$app->session["isGuest"] = 'No';
-            $this->redirect(['/dashboard']);
+			return $this->redirect(['./dashboard']);
+          
      }
      else{
         //echo "invalid";
@@ -69,7 +70,7 @@ use app\modules\admin\models\Change;
          
         if(!empty($data)){
             Yii::$app->session["admin"] = $data['email'];
-            //print_r($data); die;
+            //
             Yii::$app->session["isGuest"] = 'No';
             $this->redirect(['login-form/change']);
          }
@@ -89,15 +90,9 @@ use app\modules\admin\models\Change;
             $model = new Change();
           
             $returndata = Yii::$app->request->post();
-
-            if($model->load($returndata)) {
-
-                $message = $model->savedata($returndata);
-
-                if($message == 'Success') {
-                    return $this->redirect(['index']);
-                }
-               
+		print_r($returndata);die;
+            if($model->load($returndata) && $model->save()) {
+				return ;
             }
             
             $this->layout = false;
@@ -105,9 +100,9 @@ use app\modules\admin\models\Change;
         }
 		 public function actionLogout()
     {
-        unset(Yii::$app->session["admin"]);
-        Yii::$app->session["isGuest"] = true;
+       // unset(Yii::$app->session["admin"]);
+       // Yii::$app->session["isGuest"] = true;
         Yii::$app->session->destroy();
-        return $this->goHome();
+        return $this->redirect(['./login-form']);
     }
 }
