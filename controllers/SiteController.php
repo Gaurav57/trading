@@ -8,12 +8,14 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
-use app\models\product;
+use app\models\AddProduct;
 use yii\data\Pagination;
 use app\models\ContactUs;
 use app\models\TradingReg;
 use app\models\ProductsMenu;
 use app\models\ProductsChild;
+use app\models\TradingLogin;
+
 class SiteController extends Controller
 {
     
@@ -71,19 +73,10 @@ class SiteController extends Controller
     public function actionIndex()
     {
         
-        $products = product::find()->where(['new_arrival'=>'featured'])->all();
-        $products3 = product::find()->where(['best_seller'=>'top20'])->all();
-        $products7 = product::find()->where(['latest_featured'=>'feature'])->all();
-        $products10 = product::find()->where(['trends'=>'2018'])->all();
-
-
-        
-
-
-
-         
-
-        
+        $products = AddProduct::find()->where(['new_arrival'=>'featured'])->all();
+        $products3 = AddProduct::find()->where(['best_seller'=>'top20'])->all();
+        $products7 = AddProduct::find()->where(['latest_featured'=>'feature'])->all();
+        $products10 = AddProduct::find()->where(['trends'=>'2018'])->all();
 
 
         return $this->render('index', ['product'=>$products, 'product3'=>$products3, 'product7'=>$products7, 'product10'=>$products10]);
@@ -120,7 +113,20 @@ class SiteController extends Controller
     }
      public function actionLogin()
     {
-        return $this->render('login');
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
+        $model = new TradingLogin();
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            return $this->render('index');
+        }
+
+        $model->password = '';
+        return $this->render('login', [
+            'model' => $model,
+        ]);
+        //return $this->render('login');
     }
 
     public function actionContact()
@@ -142,7 +148,7 @@ class SiteController extends Controller
 
     {
 
-        $query = Product::find();
+        $query = AddProduct::find();
         $count = $query->count();
         $pages = new pagination (['totalCount' => $count, 'defaultPageSize' => 15]);
         $products6 = $query->offset($pages->offset)->limit($pages->limit)->all();
@@ -154,18 +160,18 @@ class SiteController extends Controller
     public function actionProductdetail()
     {
         $show = $_GET['pid'];
-        $detail = product::find()->where(['product_id'=>$show])->one();
+        $detail = AddProduct::find()->where(['product_id'=>$show])->one();
         return $this->render('product-detail',['detail'=>$detail]);
     }
 
     public function actionSearch()
     {
         $wildcart = $_GET['search'];
-        $query = Product::find();
+        $query = AddProduct::find();
         $count = $query->count();
         $pages = new pagination (['totalCount' => $count, 'defaultPageSize' => 15]);
         $data = $query->offset($pages->offset)->limit($pages->limit)->all();
-        $data = product::find()->Where(['like', 'name', $wildcart])->all();
+        $data = AddProduct::find()->Where(['like', 'name_product', $wildcart])->all();
         //print_r($data['0']->product_id);
         //echo "alert($data)";
         return $this->render('viewsearch',['data'=>$data, 'pages' => $pages]);
