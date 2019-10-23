@@ -35,11 +35,12 @@ use app\modules\admin\models\Change;
         ->andwhere(['password' => $password])
         ->one();
               //  echo $query->createCommand()->getRawSql();die;
-
+       
         if(!empty($data)){
             Yii::$app->session["admin"] = $data['email'];
+			 //print_r($data['email']);die;
             Yii::$app->session["isGuest"] = 'No';
-            $this->redirect(['dash']);
+            $this->redirect(['/dashboard']);
      }
      else{
         //echo "invalid";
@@ -83,20 +84,30 @@ use app\modules\admin\models\Change;
 
      public function actionChange()
 
-     {
-       $email = Yii::$app->identity;
-       $loadedpost = $email->load(Yii::$app->request->post());
+      {
 
+            $model = new Change();
+          
+            $returndata = Yii::$app->request->post();
 
+            if($model->load($returndata)) {
 
-       if($loadedpost && $email->validate()) {
-         $email->save(false);
-         Yii::$app->$session->setflash('change','you successfully u r password');
-         return $this->refresh();
+                $message = $model->savedata($returndata);
 
-         return $this->render("change",[ 
-         'email' => $email,
-     ]);
-
-       }    
+                if($message == 'Success') {
+                    return $this->redirect(['index']);
+                }
+               
+            }
+            
+            $this->layout = false;
+            return $this->render('change', ['model' => $model]);
+        }
+		 public function actionLogout()
+    {
+        unset(Yii::$app->session["admin"]);
+        Yii::$app->session["isGuest"] = true;
+        Yii::$app->session->destroy();
+        return $this->goHome();
+    }
 }

@@ -12,14 +12,12 @@ DashboardAsset::register($this);
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <title>Online Trading </title>
     <?= Html::csrfMetaTags() ?>
 <title><?= Html::encode($this->title) ?></title>
  <?php $this->head() ?>
 </head>
-
 <body>
 <?php $this->beginBody() ?>
   <nav class="navbar navbar-default navbar-static-top" >
@@ -60,7 +58,12 @@ DashboardAsset::register($this);
 							<li class=""><a href="#">Other Link</a></li>
 							<li class=""><a href="#">Other Link</a></li>
 							<li class="divider"></li>
-							<li><a href="#">Logout</a></li>
+							 <?php if(!isset(Yii::$app->session["username"])){ ?>
+					<li class="ml-xl-3 login"><a href="<?=Yii::$app->homeUrl.'admin/login-form'?>"><span class="border-left pl-xl-4"></span>Log In</a></li>
+				<?php } else {?>
+					<li class="ml-xl-3 login"><a href="<?=Yii::$app->homeUrl.'index.php/dashboard/logout'?>"><span class="border-left pl-xl-4"></span>Logout</a></li>
+				<?php } ?>
+							<!--<li><a href="#">Logout</a></li>-->
 						</ul>
 					</li>
 				</ul>
@@ -141,8 +144,8 @@ DashboardAsset::register($this);
 
  		
 </div>
-<div class="col-md-10 content">
-               
+<div class="col-md-10 ">
+				
      <?= $content ?> 
 </div>
         

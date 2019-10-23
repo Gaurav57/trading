@@ -163,6 +163,7 @@ AppAsset::register($this);
 				<!-- Main Nav Menu -->
 
 <div class="main_nav_menu">
+	
 	<ul class="standard_dropdown main_nav_dropdown">
 		<li><a href="<?php echo Yii::$app->homeUrl?>">Home<i class="fas fa-chevron-down"></i></a></li>
 		<li><a href="<?php echo Yii::$app->homeUrl?>site/event">Events<i class="fas fa-chevron-down"></i></a></li>
@@ -170,7 +171,9 @@ AppAsset::register($this);
 			<a href="<?php echo Yii::$app->homeUrl?>">Products<i class="fas fa-chevron-down"></i></a>
 			<ul>
 	<li>
-		<a href="<?php echo Yii::$app->homeUrl?>">Security & Surveillance<i class="fas fa-chevron-down"></i></a>
+		<?php foreach ($this->params['productsmenu'] as $menu) {  ?>
+		<a href="<?php echo Yii::$app->homeUrl?>"><?php echo $menu->menu_name; ?><i class="fas fa-chevron-down"></i></a>
+	<?php  }?>
 		<ul>
 			<li><a href="shop.html">Surveillance<i class="fas fa-chevron-down"></i></a></li>
 			<li><a href="access_control.html">Access Control<i class="fas fa-chevron-down"></i></a></li>
@@ -181,19 +184,19 @@ AppAsset::register($this);
 		</ul>
 	</li>
 				<li>
-					<a href="<?php echo Yii::$app->homeUrl?>">Networking<i class="fas fa-chevron-down"></i></a>
+					<!-- <a href="<?php echo Yii::$app->homeUrl?>">Networking<i class="fas fa-chevron-down"></i></a> -->
 					<ul>
 						<li><a href="<?php echo Yii::$app->homeUrl?>">Switches<i class="fas fa-chevron-down"></i></a></li>
 					</ul>
 				</li>
 				<li>
-					<a href="<?php echo Yii::$app->homeUrl?>">Accessories<i class="fas fa-chevron-down"></i></a>
+					<!-- <a href="<?php echo Yii::$app->homeUrl?>">Accessories<i class="fas fa-chevron-down"></i></a> -->
 					<ul>
 						<li><a href="<?php echo Yii::$app->homeUrl?>site/product">Support Systems<i class="fas fa-chevron-down"></i></a></li>
 					</ul>
 				</li>
 				<li>
-					<a href="<?php echo Yii::$app->homeUrl?>">DRONES(DJI)<i class="fas fa-chevron-down"></i></a>
+					<!-- <a href="<?php echo Yii::$app->homeUrl?>">DRONES(DJI)<i class="fas fa-chevron-down"></i></a> -->
 					<ul>
 						<li><a href="<?php echo Yii::$app->homeUrl?>">Consumer<i class="fas fa-chevron-down"></i></a>
 							<ul>
@@ -205,13 +208,13 @@ AppAsset::register($this);
 					</ul>
 				</li>
 				<li>
-					<a href="<?php echo Yii::$app->homeUrl?>">Fire & Safety<i class="fas fa-chevron-down"></i></a>
+					<!-- <a href="<?php echo Yii::$app->homeUrl?>">Fire & Safety<i class="fas fa-chevron-down"></i></a> -->
 					<ul>
 						<li><a href="<?php echo Yii::$app->homeUrl?>">Extinguisers & Equipment<i class="fas fa-chevron-down"></i></a></li>
 					</ul>
 				</li>
 				<li>
-					<a href="<?php echo Yii::$app->homeUrl?>">Solar<i class="fas fa-chevron-down"></i></a>
+					<!-- <a href="<?php echo Yii::$app->homeUrl?>">Solar<i class="fas fa-chevron-down"></i></a> -->
 					<ul>
 						<li><a href="<?php echo Yii::$app->homeUrl?>">Solar Water Heater<i class="fas fa-chevron-down"></i></a></li>
 					</ul>
@@ -237,8 +240,8 @@ AppAsset::register($this);
 		<li class="hassubs">
 			<a href="<?php echo Yii::$app->homeUrl?>">Partners<i class="fas fa-chevron-down"></i></a>
 			<ul>
-				<li><a href="<?php echo Yii::$app->homeUrl?>">Partner Login<i class="fas fa-chevron-down"></i></a></li>
-				<li><a href="<?php echo Yii::$app->homeUrl?>">Register as a Seller<i class="fas fa-chevron-down"></i></a></li>
+				<li><a href="<?php echo Yii::$app->homeUrl?>admin/login-form">Partner Login<i class="fas fa-chevron-down"></i></a></li>
+				<li><a href="<?php echo Yii::$app->homeUrl?>admin/register">Register as a Seller<i class="fas fa-chevron-down"></i></a></li>
 				<li><a href="<?php echo Yii::$app->homeUrl?>">Become a Franchise<i class="fas fa-chevron-down"></i></a></li>
 				<li><a href="<?php echo Yii::$app->homeUrl?>">Become an Affiliate<i class="fas fa-chevron-down"></i></a></li>
 				<li><a href="<?php echo Yii::$app->homeUrl?>site/advertise">Advertise With US<i class="fas fa-chevron-down"></i></a></li>

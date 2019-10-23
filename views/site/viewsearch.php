@@ -102,12 +102,12 @@
 	<div class="product_item is_new">
 		<div class="product_border"></div>
 		<div class="product_image d-flex flex-column align-items-center justify-content-center">
-			<img src="<?php echo Yii::$app->homeUrl?>images/<?php echo $prod->image ?>" alt=""></div>
+			<img src="<?php echo Yii::$app->homeUrl?>images/<?php echo $prod->imageFile ?>" alt=""></div>
 		<div class="product_content">
 			<div class="product_price"><?php echo $prod->price ?></div>
 			<div class="product_name">
 				<div>
-				<a href="<?php echo Yii::$app->homeUrl?>site/productdetail?pid=<?php echo $prod->product_id ?>" tabindex="0"><?php echo $prod->name ?></a></div></div>
+				<a href="<?php echo Yii::$app->homeUrl?>site/productdetail?pid=<?php echo $prod->product_id ?>" tabindex="0"><?php echo $prod->name_product ?></a></div></div>
 		</div>
               <!-- <div class="product_fav"><i class="fas fa-heart"></i></div>-->
 		<ul class="product_marks">
