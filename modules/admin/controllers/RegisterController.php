@@ -87,7 +87,7 @@ class RegisterController extends Controller
 			if($message == 'Success'){
 				///print_r($formdata);die;
 				//Yii::$app->session->setFlash('message', 'Successful');
-				return $this->redirect(['../admin/dash']);
+				return $this->redirect(['../admin/dashboard']);
 			}
 			else{
 				//echo "error"; die;
