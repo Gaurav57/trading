@@ -48,7 +48,7 @@ DashboardAsset::register($this);
 			</form>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="<?php echo Yii::$app->homeUrl;?>" target="_blank">Visit Site</a></li>
-				<li class="dropdown ">
+			<!---<li class="dropdown ">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 						Account
 						<span class="caret"></span></a>
@@ -57,14 +57,14 @@ DashboardAsset::register($this);
 							<li class=""><a href="#">Other Link</a></li>
 							<li class=""><a href="#">Other Link</a></li>
 							<li class=""><a href="#">Other Link</a></li>
-							<li class="divider"></li>
-							 <?php if(!isset(Yii::$app->session["username"])){ ?>
+							<li class="divider"></li>---->
+							 <?php if(!isset(Yii::$app->session["admin"])){ ?>
 					<li class="ml-xl-3 login"><a href="<?=Yii::$app->homeUrl.'admin/login-form'?>"><span class="border-left pl-xl-4"></span>Log In</a></li>
 				<?php } else {?>
-					<li class="ml-xl-3 login"><a href="<?=Yii::$app->homeUrl.'index.php/dashboard/logout'?>"><span class="border-left pl-xl-4"></span>Logout</a></li>
+					<li class="ml-xl-3 login"><a href="<?=Yii::$app->homeUrl.'admin/login-form/logout'?>"><span class="border-left pl-xl-4"></span>Logout</a></li>
 				<?php } ?>
-							<!--<li><a href="#">Logout</a></li>-->
-						</ul>
+							<!--<li><a href="#">Logout</a></li>
+						</ul>-->
 					</li>
 				</ul>
 			</div><!-- /.navbar-collapse -->

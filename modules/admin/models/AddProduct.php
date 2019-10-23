@@ -29,9 +29,12 @@ class AddProduct extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name_product', 'price', 'image'], 'required'],
+            [['name_product', 'price', 'code','description'], 'required'],
             [['price'], 'integer'],
-            [['name_product', 'image'], 'string', 'max' => 255],
+            [['name_product', 'code'], 'string', 'max' => 255],
+			[['imageFile'], 'file','extensions' => 'png, jpg, jpeg, gif','skipOnEmpty' => true, 'on' => 'update-photo-upload'],
+
+			
         ];
     }
 
@@ -44,7 +47,9 @@ class AddProduct extends \yii\db\ActiveRecord
             'product_id' => 'Product ID',
             'name_product' => 'Name Product',
             'price' => 'Price',
-            'image' => 'Image',
+            'code' => 'Code',
+			'imageFile' => 'Logo',
+			'description'=>'Description',
         ];
     }
 	
@@ -55,7 +60,7 @@ class AddProduct extends \yii\db\ActiveRecord
                     'product_id' => $rowData[0][0],
                     'name_product' =>$rowData[0][1],
                     'price' => $rowData[0][1],	
-                    'image' =>$rowData[0][2],
+                    'code' =>$rowData[0][2],
                     
 					
             );
@@ -63,4 +68,29 @@ class AddProduct extends \yii\db\ActiveRecord
         $returnval = Yii::$app->db->createCommand()->insert('add_product', $parameters)->execute();
         return "Sucesss";
     }
+	public function upload(){
+		
+		if ($this->validate()) {
+            $this->imageFile->saveAs('images/' . $this->imageFile->baseName . '.' . $this->imageFile->extension);
+            return $this->imageFile->baseName . '.' . $this->imageFile->extension;
+        } else {
+            return '';
+        }
+	}
+	public function savedata($data, $path, $lastID)
+	{
+			
+					$formdata = array(
+					//'user_id' => $lastID,
+					'name_product' => $data['AddProduct']['name_product'],
+					'price' => $data['AddProduct']['price'],
+					'code' => $data['AddProduct']['code'],
+					'imageFile' => $path,
+					'description' => $data['AddProduct']['description'],
+				
+						);
+				
+				$data = Yii::$app->db->createCommand()->insert('add_product', $formdata)->execute();
+				return "Success";
+				}
 }

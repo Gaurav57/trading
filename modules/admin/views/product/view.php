@@ -18,7 +18,7 @@ $this->title = 'View Post';
    <?php echo $post->price;?>
   </li>
   <li class="list-group-item d-flex justify-content-between align-items-center">
-   <?php echo $post->image;?>
+   <?php echo $post->code;?>
   </li>
 </ul>
 <div class="row">
