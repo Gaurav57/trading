@@ -8,7 +8,7 @@
 				<!-- Images -->
 			<!-- 	<div class="col-lg-2 order-lg-1 order-2">
 					<ul class="image_list">
-						<li data-image="<?php echo Yii::$app->homeUrl?>images/<?php echo $detail->image ;?>"><img src="<?php echo Yii::$app->homeUrl?>images/single_4.jpg" alt=""></li>
+						<li data-image="<?php echo Yii::$app->homeUrl?>images/<?php echo $detail->imageFile ;?>"><img src="<?php echo Yii::$app->homeUrl?>images/single_4.jpg" alt=""></li>
 						<li data-image="<?php echo Yii::$app->homeUrl?>images/single_2.jpg"><img src="<?php echo Yii::$app->homeUrl?>images/single_2.jpg" alt=""></li>
 						<li data-image="<?php echo Yii::$app->homeUrl?>images/single_3.jpg"><img src="<?php echo Yii::$app->homeUrl?>images/single_3.jpg" alt=""></li>
 					</ul>
@@ -16,14 +16,14 @@
 
 				<!-- Selected Image -->
 				<div class="col-lg-6 order-lg-2 order-1">
-					<div class="image_selected"><img src="<?php echo Yii::$app->homeUrl?>images/<?php echo $detail->image ;?>" alt=""></div>
+					<div class="image_selected"><img src="<?php echo Yii::$app->homeUrl?>images/<?php echo $detail->imageFile ;?>" alt=""></div>
 				</div>
 
 				<!-- Description -->
 				<div class="col-lg-6 order-3">
 					<div class="product_description">
 						<div class="product_category">Laptops</div>
-						<div class="product_name"><?php echo $detail->name ;?></div>
+						<div class="product_name"><?php echo $detail->name_product ;?></div>
 						<div class="rating_r rating_r_4 product_rating"><i></i><i></i><i></i><i></i><i></i></div>
 						<div class="product_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum. laoreet turpis, nec sollicitudin dolor cursus at. Maecenas aliquet, dolor a faucibus efficitur, nisi tellus cursus urna, eget dictum lacus turpis.</p></div>
 						<div class="order_info d-flex flex-row">

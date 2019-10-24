@@ -40,10 +40,12 @@ use app\modules\admin\models\Change;
         if(!empty($data)){
             Yii::$app->session["admin"] = $data['email'];
             Yii::$app->session["isGuest"] = 'No';
-            $this->redirect(['dash']);
+            $this->redirect(['../admin/dashboard']);
      }
      else{
-        //echo "invalid";
+
+        Yii::$app->session->setFlash('success', "*invalid user/password");
+
      }
     }
         $this->layout = false;
