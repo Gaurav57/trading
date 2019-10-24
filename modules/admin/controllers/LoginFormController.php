@@ -30,17 +30,16 @@ use app\modules\admin\models\Change;
         
         $query = new \yii\db\Query();
         $data = $query->select('email,password')
-        ->from('admin_login')
+        ->from('user_credential')
         ->andwhere(['email' => $email])
-        ->andwhere(['password' => $password])
+        ->andwhere(['password' => md5($password)])
         ->one();
               //  echo $query->createCommand()->getRawSql();die;
        
         if(!empty($data)){
             Yii::$app->session["admin"] = $data['email'];
-			 
             Yii::$app->session["isGuest"] = 'No';
-			return $this->redirect(['./dashboard']);
+			return $this->redirect(['../admin/dashboard']);
           
      }
      else{
