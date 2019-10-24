@@ -24,9 +24,6 @@ class Change extends Model
          if(count($sqldata) > 0){
          $formdata = array('password' => ($data ['user_credential']['password']));
 
-          ->bindValue(':email', $email)
-            ->bindValue(':password', $formdata)
-            ->execute();
             return "Success";
          }
     }

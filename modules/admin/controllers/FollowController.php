@@ -12,7 +12,7 @@ class FollowController extends \yii\web\Controller
     {
 		$model=new Follow();	
 		$model= Follow::find()->where(['category'=>'Manufacturer'])->all();
-		echo "<pre>";	
+		//echo "<pre>";	
 		//print_r($model);die;			
 	//	$model= Follow::find()->where(['category_name'=>'distrubutor'])->all();
 		//$model= Follow::find()->where(['category_name'=>'distrubutor'])->all();

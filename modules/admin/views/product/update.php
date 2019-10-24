@@ -13,8 +13,9 @@ use yii\widgets\ActiveForm;
 
         <?= $form->field($post, 'name_product')?>
 		 <?= $form->field($post, 'price') ?>
-		  <?= $form->field($post, 'image') ?>
-       
+		  <?= $form->field($post, 'code') ?>
+       <!---<?= $form->field($post, 'imageFile')->fileInput(['class'=>'form-control', 'placeholder' => 'Logo']); ?>--->
+        <?= $form->field($post, 'description')->textarea(['rows' => '6']) ?>
     
         <div class="form-group">
             <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
