@@ -18,7 +18,10 @@ use yii\helpers\Url;
 <div id="logreg-forms">
        
             <?php $form = ActiveForm::begin(['class'=> 'form-signin']); ?>
-            
+            <?php if(Yii::$app->session->hasflash('success')):?>
+                <button type="button" class="close" data-dismiss="alter"></button>
+                <?php echo Yii::$app->session->getFlash('success');?>
+            <?php endif; ?>
             
             <h1 class="h3 mb-3 font-weight-normal" style="text-align: center; color: #fff;">Login</h1>
           
@@ -39,6 +42,6 @@ use yii\helpers\Url;
              <?php echo Html::submitButton('<i class="fas fa-sign-in-alt" style="margin-right:150px"></i> login', ['class'=> 'btn btn-primary btn btn-md btn-rounded btn-block form-control']); ?>
             </div>
             <hr>
-            <?= Html::a('Forgot Password',['forgot']) ?>
+            <?= Html::a('Forgot Password ?',['forgot']) ?>
            <?php ActiveForm::end(); ?>
 </div> 
