@@ -48,16 +48,16 @@ class RegisterController extends Controller
 	
 	public function actionPersonal()
 	{
-		$model1 = new UserPersonal();
+		$model = new UserPersonal();
 		$formdata = Yii::$app->request->post();
 		$session = Yii::$app->session;
 		$lastID = $session['user_id'];
 		echo var_dump($lastID); 
 		if(isset($lastID)){
-			if(isset($formdata) && $model1->load($formdata) && $model1->validate()){
+			if(isset($formdata) && $model->load($formdata) && $model->validate()){
 				
 				//print_r($formdata);die;
-				$message = $model1->savedata($formdata, $lastID);
+				$message = $model->savedata($formdata, $lastID);
 				if($message == 'Success'){
 				//Yii::$app->session->setFlash('message', 'Successful');
 				return $this->redirect(['/admin/register/business']);
@@ -71,23 +71,23 @@ class RegisterController extends Controller
 			return $this->redirect(['index']);
 		}
 		$this->layout = false;
-        return $this->render('p_info', ['model1' => $model1]);
+        return $this->render('p_info', ['model' => $model]);
 	}
 	
 	
 	public function actionBusiness() {
-		$model2 = new UserBusiness();
+		$model = new UserBusiness();
 		$formdata = Yii::$app->request->post();
 		$session = Yii::$app->session;
 		$lastID = $session['user_id'];
 		if(isset($lastID)){
 			//print_r($formdata);die;
-			if(isset($formdata) && $model2->load($formdata)){
+			if(isset($formdata) && $model->load($formdata)){
 			
 				//get the instance of the uploaded file
-				$model2->imageFile = UploadedFile::getInstance($model2, 'imageFile');
-				$path = $model2->upload();
-				$message = $model2->savedata($formdata, $path, $lastID);
+				$model->imageFile = UploadedFile::getInstances($model, 'imageFile');
+				$path = $model->upload();
+				$message = $model->savedata($formdata, $path, $lastID);
 				if($message == 'Success'){
 					///print_r($formdata);die;
 					//Yii::$app->session->setFlash('message', 'Successful');
@@ -103,6 +103,6 @@ class RegisterController extends Controller
 			return $this->redirect(['index']);
 		}
 		$this->layout = false;
-        return $this->render('b_info', ['model2' => $model2]);
+        return $this->render('b_info', ['model' => $model]);
 	}
 }

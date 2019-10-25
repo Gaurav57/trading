@@ -6,15 +6,17 @@ use Yii;
 
 class UserCredential extends \yii\db\ActiveRecord
 {
+	public $agree;
 
     public function rules()
     {
         return [
             [['registerAs', 'orgName', 'contact', 'email', 'password', 'fName', 'lName', 'gst', 'iecode', 'brands', 'latchOn', 'iPartner', 'catalouge', 'street', 'city', 'state', 'country', 'zip'], 'required'],
 			['email', 'email'],
-			[['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'jpg, jpeg, png'],
-			[['catalouge'], 'file', 'skipOnEmpty' => true, 'extensions' => 'jpg, jpeg, png'],
+			[['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'jpg, jpeg, png', 'maxFiles' => 10],
+			[['catalouge'], 'file', 'skipOnEmpty' => true, 'extensions' => 'jpg, jpeg, png', 'maxFiles' => 10],
 			['password' ,'validatePassword'],
+			array('agree', 'required', 'requiredValue' => 1, 'message' => 'I agree to Terms and Conditons.'),
         ];
     }
 
