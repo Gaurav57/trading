@@ -40,12 +40,11 @@ use app\modules\admin\models\Change;
         if(!empty($data)){
             Yii::$app->session["admin"] = $data['email'];
             Yii::$app->session["isGuest"] = 'No';
-<<<<<<< HEAD
+
+
 			return $this->redirect(['../admin/dashboard']);
           
-=======
             $this->redirect(['../admin/dashboard']);
->>>>>>> 0d02ceecdc5a642688ad8525453a20ab3c83c6b2
      }
      else{
 
