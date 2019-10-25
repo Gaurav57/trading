@@ -9,7 +9,7 @@ use yii\filters\VerbFilter;
 use yii\web\Session;
 use yii\web\Application;
 use yii\web\UploadedFile;
-use app\modules\admin\models\UserCredential;
+use app\modules\admin\models\Register;
 use app\modules\admin\models\UserPersonal;
 use app\modules\admin\models\UserBusiness;
 
@@ -21,21 +21,37 @@ class RegisterController extends Controller
 	
     public function actionIndex()
     {
-        $model = new UserCredential();
+        $model = new Register();
 		
 		$formdata = Yii::$app->request->post();
 	
 		if(isset($formdata) && $model->load($formdata) && $model->validate()){
-				//print_r($formdata);die;
-			$message = $model->savedata($formdata);
+				echo"<pre>";
+//				print_r($formdata);die;
+			//$message = $model->savedata($formdata);
 			$lastID = Yii::$app->db->getLastInsertID();
 			$session = Yii::$app->session;
 			$session['user_id'] = $lastID;
-		//	print_r($message); die;
+			//get the instance of the uploaded file
+			$path = '';
+			if($formdata['Register']['logo'] != '') {
+				$model->logo = UploadedFile::getInstances($model, 'logo');
+				$path = $model->upload();
+			}
+			$path1 = '';
+			if($formdata['Register']['catalouge'] != '') {
+				//get the instance of the uploaded file
+				$model->catalouge = UploadedFile::getInstances($model, 'catalouge');
+				$path1 = $model->upload1();
+			}
+			$message = $model->savedata($formdata, $path, $path1, $lastID);
+			echo"<pre>";
+			print_r($message); die;
+			//
 			if(isset($message) && $message != ''){
 				//Yii::$app->session->setFlash('message', 'Successful');
 				
-				return $this->redirect(['/admin/register/personal']);
+				return $this->redirect(['../admin/dashboard']);
 			}
 			else{
 				Yii::$app->session->setFlash('message', $message);
@@ -45,7 +61,7 @@ class RegisterController extends Controller
 		$this->layout = false;
         return $this->render('index', ['model' => $model]);
     }
-	
+	/*
 	public function actionPersonal()
 	{
 		$model = new UserPersonal();
@@ -73,8 +89,9 @@ class RegisterController extends Controller
 		$this->layout = false;
         return $this->render('p_info', ['model' => $model]);
 	}
+	*/
 	
-	
+	/*
 	public function actionBusiness() {
 		$model = new UserBusiness();
 		$formdata = Yii::$app->request->post();
@@ -85,7 +102,7 @@ class RegisterController extends Controller
 			if(isset($formdata) && $model->load($formdata)){
 			
 				//get the instance of the uploaded file
-				$model->imageFile = UploadedFile::getInstances($model, 'imageFile');
+				$model->logo = UploadedFile::getInstances($model, 'logo');
 				$path = $model->upload();
 				$message = $model->savedata($formdata, $path, $lastID);
 				if($message == 'Success'){
@@ -105,4 +122,5 @@ class RegisterController extends Controller
 		$this->layout = false;
         return $this->render('b_info', ['model' => $model]);
 	}
+	*/
 }

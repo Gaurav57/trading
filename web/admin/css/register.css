@@ -5,10 +5,21 @@
   box-sizing: border-box;
 }
 
+.help-block{
+	color : red;
+}
+
+.mycheckbox{
+	display: inline-block;
+	float: left;
+	margin-left: 10px;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   font-size: 16px;
   color: #2c2c2c;
+  background: #ff9900;
 }
 body a {
   color: inherit;
@@ -24,6 +35,7 @@ body a {
   margin-bottom: 30px;
   font-size: 2.1rem;
   color: #ff9900;
+  font-size: 30px;
 }
 
 .content {

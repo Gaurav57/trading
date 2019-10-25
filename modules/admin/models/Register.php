@@ -4,22 +4,32 @@ namespace app\modules\admin\models;
 
 use Yii;
 
-class UserCredential extends \yii\db\ActiveRecord
+class Register extends \yii\db\ActiveRecord
 {
 	public $agree;
-
+	public $logo;
+	public $catalouge;
+	public $brandName;
+	public $state;
+	public $country;
+	public $checkBox;
+	public $countryName;
+	public $stateName;
+	public $country_id;
+	public $cat_id;
+	
     public function rules()
     {
         return [
-            [['registerAs', 'orgName', 'contact', 'email', 'password', 'fName', 'lName', 'gst', 'iecode', 'brands', 'latchOn', 'iPartner', 'catalouge', 'street', 'city', 'state', 'country', 'zip'], 'required'],
+            [['registerAs', 'orgName', 'contact', 'email', 'password', 'fName', 'lName', 'iecode', 'iPartner', 'street', 'city', 'state', 'country', 'zip', 'cat_id', 'agree'], 'required'],
 			['email', 'email'],
-			[['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'jpg, jpeg, png', 'maxFiles' => 10],
+			[['logo'], 'file', 'skipOnEmpty' => true, 'extensions' => 'jpg, jpeg, png', 'maxFiles' => 10],
 			[['catalouge'], 'file', 'skipOnEmpty' => true, 'extensions' => 'jpg, jpeg, png', 'maxFiles' => 10],
-			['password' ,'validatePassword'],
-			array('agree', 'required', 'requiredValue' => 1, 'message' => 'I agree to Terms and Conditons.'),
+			//['password' ,'validatePassword'],
+			array('agree', 'required', 'requiredValue' => 1,),
         ];
     }
-
+/*
 	public function validatePassword($attribute, $params)
     {
         if (!$this->hasErrors()) {
@@ -30,7 +40,8 @@ class UserCredential extends \yii\db\ActiveRecord
             }
         }
     }
-	
+*/	
+
     public function attributeLabels()
     {
         return [
@@ -43,53 +54,85 @@ class UserCredential extends \yii\db\ActiveRecord
 			'fName' => 'First Name',
 			'lName' => 'Last Name',
 			'iecode' => 'Import/Export Code',
-			'gst' => 'GST No.',
-			'brands', => 'Brands/Logo',
-			'latchOn', => 'Latch On',
-			'catalouge', => 'Catalouge',
-			'street', => 'street',
-			'city', => 'City',
-			'state', => 'State',
-			'country', => 'Country',
-			'zip' => 'Zip'
+			'gst' => 'GST/VAT',
+			'brandName' => 'Brands/Logo',
+			'latchOn' => 'Latch On',
+			'catalouge' => 'Catalouge',
+			'street' => 'Street',
+			'city' => 'City',
+			'state' => 'State',
+			'country' => 'Country',
+			'zip' => 'Zip',
+			'cat_id' => 'Category',
+			'agree' => 'I accept Terms and Conditions.',
+			'iPartner' => 'Installation Partner',
             'create_date' => 'Create Date',
             'update_date' => 'Update Date',
         ];
     }
 	
-	public function savedata($data){
+	
+	public function upload(){
+		
+		if ($this->validate()) {
+            $this->logo->saveAs('uploads/' . $this->logo->baseName . '.' . $this->logo->extension);
+            return $this->logo->baseName . '.' . $this->logo->extension;
+        } else {
+            return '';
+        }
+	}
+	
+	public function upload1(){
+		
+		if ($this->validate()) {
+            $this->catalouge->saveAs('uploads/' . $this->catalouge->baseName . '.' . $this->catalouge->extension);
+            return $this->catalouge->baseName . '.' . $this->catalouge->extension;
+        } else {
+            return '';
+        }
+	}
+	
+	public function savedata($data, $path, $path1){
 		//print_r($data); die;
-				$sqldata = (new \yii\db\Query())->select(['email'])->from('user_credential')->
-				where(["email" => $data['UserCredential']['email']])->all();
+				$sqldata = (new \yii\db\Query())->select(['email'])->from('register')->
+				where(["email" => $data['Register']['email']])->all();
+				//echo"<pre>";
 				//print_r($data); die;
 				if(count($sqldata) > 0){
 					return "You are already registered.";
 				} else {
 					$formdata = array(
-					'RegisterAs' => $data['UserCredential']['RegisterAs'],
-					'orgName' => $data['UserCredential']['orgName'],
-					'category' => $data['UserCredential']['category'],
-					'username' => $data['UserCredential']['username'],
-					'contact' => $data['UserCredential']['contact'],
-					'email' => $data['UserCredential']['email'],
-					'password' => md5($data['UserCredential']['password']),
-					'fName' => $data['UserCredential']['fName'],
-					'lName' => $data['UserCredential']['lName'],
-					'iecode' => $data['UserCredential']['iecode'],
-					'gst' => $data['UserCredential']['gst'],
-					'brands' => $data['UserCredential']['brands'],
-					'latchOn' => $data['UserCredential']['latchOn'],
-					'catalouge' => $data['UserCredential']['catalouge'],
-					'street' => $data['UserCredential']['street'],
-					'city' => $data['UserCredential']['city'],
-					'state' => $data['UserCredential']['state'],
-					'country' => $data['UserCredential']['country'],
-					'zip' => $data['UserCredential']['zip'],
+					'registerAs' => $data['Register']['registerAs'],
+					'orgName' => $data['Register']['orgName'],
+					//'category' => $data['Register']['category'],
+					'contact' => $data['Register']['contact'],
+					'email' => $data['Register']['email'],
+					'password' => md5($data['Register']['password']),
+					'fName' => $data['Register']['fName'],
+					'lName' => $data['Register']['lName'],
+					'iecode' => $data['Register']['iecode'],
+					'gst' => $data['Register']['gst'],
+					'brandName' => $data['Register']['brandName'],
+					'latchOn' => $data['Register']['latchOn'],
+					'street' => $data['Register']['street'],
+					'city' => $data['Register']['city'],
+					'stateName' => $data['Register']['stateName'],
+					'countryName' => $data['Register']['countryName'],
+					'zip' => $data['Register']['zip'],
 					'create_date' => date('Y-m-d'),
 					'update_date' => date('Y-m-d'),
 						);
 	
-					$returndata = Yii::$app->db->createCommand()->insert('user_credential', $formdata)->execute();
+					$returndata = Yii::$app->db->createCommand()->insert('register', $formdata)->execute();
+					foreach($data['Register']['cat_id'] as $category){
+						$fdata = array(
+							'user_id' => $returndata['id'],
+							'cat_id' => $category,
+						);
+						$returndata = Yii::$app->db->createCommand()->insert('user_category', $fdata)->execute();
+							echo"<pre>";
+							print_r($returndata); die;
+					}
 					return $returndata;
 				}
 		}
