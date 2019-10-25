@@ -48,55 +48,61 @@ class RegisterController extends Controller
 	
 	public function actionPersonal()
 	{
-		$model = new UserPersonal();
-		
+		$model1 = new UserPersonal();
 		$formdata = Yii::$app->request->post();
-	
-		if(isset($formdata) && $model->load($formdata) && $model->validate()){
-			$session = Yii::$app->session;
-			$lastID = $session['user_id'];
+		$session = Yii::$app->session;
+		$lastID = $session['user_id'];
+		echo var_dump($lastID); 
+		if(isset($lastID)){
+			if(isset($formdata) && $model1->load($formdata) && $model1->validate()){
+				
 				//print_r($formdata);die;
-				$message = $model->savedata($formdata, $lastID);
-			if($message == 'Success'){
+				$message = $model1->savedata($formdata, $lastID);
+				if($message == 'Success'){
 				//Yii::$app->session->setFlash('message', 'Successful');
 				return $this->redirect(['/admin/register/business']);
-			}
-			else{
+				}
+				else{
 				Yii::$app->session->setFlash('message', 'Failed!');
 				return $this->redirect(['index']);
+				}
 			}
+		} else{
+			return $this->redirect(['index']);
 		}
 		$this->layout = false;
-        return $this->render('p_info', ['model' => $model]);
+        return $this->render('p_info', ['model1' => $model1]);
 	}
 	
 	
-	public function actionBusiness()
-	{
-		$model = new UserBusiness();
-		
+	public function actionBusiness() {
+		$model2 = new UserBusiness();
 		$formdata = Yii::$app->request->post();
-		//print_r($formdata);die;
-		if(isset($formdata) && $model->load($formdata)){
-			$session = Yii::$app->session;
-			$lastID = $session['user_id'];
-			//get the instance of the uploaded file
-			$model->imageFile = UploadedFile::getInstance($model, 'imageFile');
-			$path = $model->upload();
-			$message = $model->savedata($formdata, $path, $lastID);
-			if($message == 'Success'){
-				///print_r($formdata);die;
-				//Yii::$app->session->setFlash('message', 'Successful');
-				return $this->redirect(['../admin/dashboard']);
+		$session = Yii::$app->session;
+		$lastID = $session['user_id'];
+		if(isset($lastID)){
+			//print_r($formdata);die;
+			if(isset($formdata) && $model2->load($formdata)){
+			
+				//get the instance of the uploaded file
+				$model2->imageFile = UploadedFile::getInstance($model2, 'imageFile');
+				$path = $model2->upload();
+				$message = $model2->savedata($formdata, $path, $lastID);
+				if($message == 'Success'){
+					///print_r($formdata);die;
+					//Yii::$app->session->setFlash('message', 'Successful');
+					return $this->redirect(['../admin/dashboard']);
+				} else {
+					//echo "error"; die;
+					Yii::$app->session->setFlash('message', 'Failed!');
+					return $this->redirect(['index']);
+				}
+				//echo "error1"; die;
 			}
-			else{
-				//echo "error"; die;
-				Yii::$app->session->setFlash('message', 'Failed!');
-				return $this->redirect(['index']);
-			}
-			//echo "error1"; die;
+		} else {
+			return $this->redirect(['index']);
 		}
 		$this->layout = false;
-        return $this->render('b_info', ['model' => $model]);
+        return $this->render('b_info', ['model2' => $model2]);
 	}
 }
