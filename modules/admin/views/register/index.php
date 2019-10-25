@@ -61,7 +61,7 @@ use yii\helpers\Url;
                     </div>
                   </div>
 				  <div class="form-row mt-4">
-					<?php $category = ['Raw Material' => 'Raw Material', 'Manufacturer' => 'Manufacturer', 'Distributer' => 'Distributer', 'Dealer' => 'Dealer', 'Retailer'=> 'Retailer' ] ?>
+					<?php $category = ['Raw Material' => 'Raw Material', 'Manufacturer' => 'Manufacturer', 'Distributer' => 'Distributer', 'Dealer' => 'Dealer', 'Vendor'=> 'Vendor' ] ?>
 					<?= $form->field($model, 'category')->dropDownList($category, ['prompt' => 'Select']); ?>
 				  </div>
                   <div class="button-row d-flex mt-4">

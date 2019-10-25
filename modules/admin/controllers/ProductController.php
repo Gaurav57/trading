@@ -21,15 +21,34 @@ class ProductController extends \yii\web\Controller
 	public function actionProduct()
 	{
 		$model=new AddProduct();
+	
 		$formdata=Yii::$app->request->post();
-		
+		//echo "<pre>";
+		  // print_r($formdata);die;
       if(isset($formdata) && $model->load($formdata))	
 	  {
 		  $session = Yii::$app->session;
-			$lastID = $session['user_id'];
-		  $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
-		  $path = $model->upload();
-			$message = $model->savedata($formdata, $path, $lastID);
+		  $lastID = $session['user_id'];
+		  $model->imageFile = UploadedFile::getInstances($model, 'imageFile');
+		  $path = [];
+		  foreach($model->imageFile as $images){
+			$path[] = $model->upload($images);	
+			ob_start();
+			$images = '';
+		  }
+		  
+		  $model->casestudies = UploadedFile::getInstances($model, 'casestudies');
+		  $pathstudies = $model->upload($model->casestudies);
+		  
+		  $model->specsheet = UploadedFile::getInstances($model, 'specsheet');
+		  $pathsheet= $model->upload($model->casesheet);
+		  
+		  $model->video = UploadedFile::getInstances($model, 'video');
+		  $pathvideo= $model->upload($model->video);
+		  
+	
+$message=$model->savedata($formdata,$path,$pathstudies,$pathsheet,$pathvideo,$lastID);
+		
 		  if($message == 'Success')
 		  {
 				Yii::$app->session->setFlash('message','product inserted'); 

@@ -100,8 +100,7 @@ use app\modules\admin\models\Change;
         }
 		 public function actionLogout()
     {
-       // unset(Yii::$app->session["admin"]);
-       // Yii::$app->session["isGuest"] = true;
+       
         Yii::$app->session->destroy();
         return $this->redirect(['./login-form']);
     }

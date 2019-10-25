@@ -17,5 +17,11 @@ class DashboardController extends Controller
     {
         return $this->render('index');
     }
+	public function getId()
+	{
+		
+		//$model= AddProduct::find()->where(['id'=>'2'])->all();
+		//print_r($model);die;
+	}
 	
 }

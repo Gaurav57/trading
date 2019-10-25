@@ -129,6 +129,11 @@ DashboardAsset::register($this);
 						<li><a href="#"><span class="glyphicon glyphicon-signal"></span> Link</a></li>
 						<li><a href="#"><span class="glyphicon glyphicon-signal"></span> Link</a></li>
 						<li><a href="#"><span class="glyphicon glyphicon-signal"></span> Link</a></li>
+						<li><a href="#"><span class="glyphicon glyphicon-signal"></span> Link</a></li>
+						<li><a href="#"><span class="glyphicon glyphicon-signal"></span> Link</a></li>
+						<li><a href="#"><span class="glyphicon glyphicon-signal"></span> Link</a></li>
+						<li><a href="#"><span class="glyphicon glyphicon-signal"></span> Link</a></li>
+						
 						
 
 
