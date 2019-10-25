@@ -23,49 +23,125 @@ use yii\helpers\Url;
 	
 <?php endif; ?>
 
-  <h1 class="header__title">REGISTRATION</h1>
+<h1 class="header__title">REGISTRATION</h1>
 </header>
 <div class="content">
   <div class="content__inner">
     <div class="container overflow-hidden">
       <div class="multisteps-form">
         <div class="row">
-          <div class="col-12 col-lg-8 ml-auto mr-auto mb-4">
-            <div class="multisteps-form__progress">
-              <?= Html::submitButton('User Details', ['class' => 'multisteps-form__progress-btn js-active']); ?><!--<button class="multisteps-form__progress-btn js-active" type="button" title="User Info">User Info</button>-->
-              <?= Html::submitButton('Personal Details', ['class' => 'multisteps-form__progress-btn']); ?><!--<button class="multisteps-form__progress-btn" type="button" title="Address">Personal Details</button>-->
-              <?= Html::submitButton('Business Details', ['class' => 'multisteps-form__progress-btn']); ?><!--<button class="multisteps-form__progress-btn" type="button" title="Order Info">Business Details</button>-->
-            </div>
-          </div>
-        </div>
-        <div class="row">
           <div class="col-12 col-lg-8 m-auto">
-            <?php $form = ActiveForm::begin(['class' => 'multisteps-form__form']); ?><!--<form class="multisteps-form__form">-->
+            <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'class' => 'multisteps-form__form']); ?><!--<form class="multisteps-form__form">-->
               <div class="multisteps-form__panel shadow p-4 rounded bg-white js-active" data-animation="scaleIn">
-                <h3 class="multisteps-form__title">Your User Info</h3>
                 <div class="multisteps-form__content">
+				 <div class="form-row mt-4">
+					<?php $registerAs = ['Raw Material' => 'Raw Material', 'Manufacturer' => 'Manufacturer', 'Distributer' => 'Distributer', 'Dealer' => 'Dealer', 'Retailer'=> 'Retailer' ] ?>
+					<?= $form->field($model, 'registerAs')->dropDownList($registerAs, ['prompt' => 'Select']); ?>
+				  </div>
                   <div class="form-row mt-4">
-                    <div class="col-12 col-sm-6">
-                      <?= $form->field($model, 'username')->textInput(['placeholder' => 'Username']); ?><!--<input class="multisteps-form__input form-control" type="text" placeholder="Username"/>-->
+                    <div class="col-12 col-sm-10">
+                      <?= $form->field($model, 'orgName')->textInput(['placeholder' => 'Organisation Name']); ?><!--<input class="multisteps-form__input form-control" type="text" placeholder="Username"/>-->
                     </div>
-                    <div class="col-12 col-sm-6 mt-4 mt-sm-0">
-						<?= $form->field($model, 'contact')->textInput(['placeholder' => 'Contact']); ?><!--<input class="multisteps-form__input form-control" type="text" placeholder="Email"/>-->
+				  </div>
+				  <div class="form-row mt-4">
+                    <div class="col-12 col-sm-10">
+						<?= $form->field($model, 'contact')->textInput(['placeholder' => 'Contact']); ?>
                     </div>
                   </div>
                   <div class="form-row mt-4">
-                    <div class="col-12 col-sm-6">
-						<?= $form->field($model, 'email')->Input('email', ['placeholder' => 'Email']); ?><!--<input class="multisteps-form__input form-control" type="password" placeholder="Password"/>-->
+                    <div class="col-12 col-sm-10">
+						<?= $form->field($model, 'email')->Input('email', ['placeholder' => 'Email']); ?>
                     </div>
-                    <div class="col-12 col-sm-6 mt-4 mt-sm-0">
-						<?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Password']); ?><!--<input class="multisteps-form__input form-control" type="password" placeholder="Confirm Password"/>-->
+				  </div>
+				  <div class="form-row mt-4">
+                    <div class="col-12 col-sm-10">
+						<?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Password']); ?>
                     </div>
                   </div>
 				  <div class="form-row mt-4">
+                    <div class="col-12 col-sm-10">
+						<?= $form->field($model, 'fName')->textInput(['class'=>'form-control', 'placeholder' => 'First Name']); ?>
+                    </div>
+                  </div>
+                  <div class="form-row mt-4">
+                    <div class="col-12 col-sm-10">
+						<?= $form->field($model, 'lName')->textInput(['class'=>'form-control', 'placeholder' => 'Last Name']); ?>
+                    </div>
+				  </div>
+                  <div class="form-row mt-4">
+                    <div class="col-12 col-sm-10">
+					<?php $category = ['GST No' => 'GST No', 'VAT' => 'VAT', 'Other' => 'Other'] ?>
+					<?= $form->field($model, 'gst')->dropDownList($category, ['prompt' => 'Select']); ?>
+                    </div>
+				  </div>
+                  <div class="form-row mt-4">
+                    <div class="col-12 col-sm-10">
+						<?= $form->field($model, 'iecode')->textInput(['class'=>'form-control', 'placeholder' => 'Import/Export Code']); ?>
+                    </div>
+				  </div>	
+                  <div class="form-row mt-4">
+                    <div class="col-12 col-sm-10">
+						<?= $form->field($model, 'brands')->textInput(['class'=>'form-control', 'placeholder' => 'Brands'])
+						<?php echo $form->field($model, 'imageFile[]')->fileInput(['multiple'=>'multiple', 'class'=>'form-control']); ?>
+                    </div>
+				  </div>	
+                  <div class="form-row mt-4">
+                    <div class="col-12 col-sm-10">
+						<?= $form->field($model, 'latchOn')->textInput(['class'=>'form-control', 'placeholder' => 'Latch On']); ?>
+                    </div>
+				  </div>
+				  <div class="form-row mt-4">
+                    <div class="col-12 col-sm-10">
+						<?= $form->field($model, 'iPartner')->checkbox(array('label'=>''))
+											->label('Installation Partner'); ?>
+                    </div>
+				  </div>
+				  <div class="form-row mt-4">
+<<<<<<< HEAD
 					<?php $category = ['Raw Material' => 'Raw Material', 'Manufacturer' => 'Manufacturer', 'Distributer' => 'Distributer', 'Dealer' => 'Dealer', 'Vendor'=> 'Vendor' ] ?>
 					<?= $form->field($model, 'category')->dropDownList($category, ['prompt' => 'Select']); ?>
+=======
+                    <div class="col-12 col-sm-10">
+						<?php echo $form->field($model, 'catalouge[]')->fileInput(['multiple'=> true, 'class'=>'form-control']); ?>
+                    </div>
+				  </div>	
+                  <div class="form-row mt-4">
+                    <div class="col-12 col-sm-10">
+						<?= $form->field($model, 'street')->textInput(['class'=>'form-control', 'placeholder' => 'Street']); ?>
+                    </div>
+				  </div>	
+                  <div class="form-row mt-4">
+                    <div class="col-12 col-sm-10">
+						<?= $form->field($model, 'city')->textInput(['class'=>'form-control', 'placeholder' => 'City']); ?>
+                    </div>
 				  </div>
+				  <div class="form-row mt-4">
+                    <div class="col-12 col-sm-10">
+					<?php $state = ['Delhi' => 'Delhi', 'Maharashtra' => 'Maharashtra'] ?>
+					<?= $form->field($model, 'state')->dropDownList($state, ['prompt' => 'Select']); ?>
+                    </div>
+				  </div>
+				  <div class="form-row mt-4">
+                    <div class="col-12 col-sm-10">
+					<?php $country = ['China' => 'China', 'India' => 'India'] ?>
+					<?= $form->field($model, 'country')->dropDownList($country, ['prompt' => 'Select']); ?>
+                    </div>
+				  </div>	
+                  <div class="form-row mt-4">
+                    <div class="col-12 col-sm-10">
+						<?= $form->field($model, 'zip')->textInput(['class'=>'form-control', 'placeholder' => 'Zip Code']); ?>
+                    </div>
+				  </div>	
+                  <div class="form-row mt-4">
+                    <div class="col-12 col-sm-10">
+						<?php echo $form->checkBox($model, 'agree', array('class' => 'mR'));?>
+							Terms &amp; condition 
+                    </div>
+>>>>>>> 209da22b876f2a9c6fa076b9773428aaabe543f7
+				  </div>
+				
                   <div class="button-row d-flex mt-4">
-					<span><?= Html::submitButton('Next', ['class' => 'btn btn-primary ml-auto js-btn-next']); ?></span><!--<button class="btn btn-primary ml-auto js-btn-next" type="button" title="Next">Next</button>-->
+					  <span><?= Html::submitButton('Submit', ['class'=> 'btn btn-success ml-auto']); ?></span><!--<button class="btn btn-success ml-auto" type="button" title="Send">Send</button>-->
                   </div>
                 </div>
               </div>
