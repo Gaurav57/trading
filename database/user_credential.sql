@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 24, 2019 at 05:11 PM
+-- Generation Time: Oct 25, 2019 at 05:19 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.7
 
@@ -35,7 +35,7 @@ CREATE TABLE `user_credential` (
   `orgName` varchar(255) NOT NULL,
   `gst` varchar(255) NOT NULL,
   `resgisterAs` varchar(255) NOT NULL,
-  `code` varchar(300) NOT NULL,
+  `iecode` varchar(300) NOT NULL,
   `contact` int(15) NOT NULL,
   `email` varchar(300) NOT NULL,
   `password` varchar(300) NOT NULL,
@@ -54,7 +54,7 @@ CREATE TABLE `user_credential` (
 -- Dumping data for table `user_credential`
 --
 
-INSERT INTO `user_credential` (`user_id`, `fName`, `lName`, `orgName`, `gst`, `resgisterAs`, `code`, `contact`, `email`, `password`, `create_date`, `update_date`, `imageFile`, `latchOn`, `iPartner`, `catalouge`, `street`, `city`, `zip`) VALUES
+INSERT INTO `user_credential` (`user_id`, `fName`, `lName`, `orgName`, `gst`, `resgisterAs`, `iecode`, `contact`, `email`, `password`, `create_date`, `update_date`, `imageFile`, `latchOn`, `iPartner`, `catalouge`, `street`, `city`, `zip`) VALUES
 (1, '', '', '', '', 'Manufacturer', 'naumaan', 2147483647, 'mohammednaumaanalvi@gmail.com', '318d3f2be4c1c1487925ebf6f4149a0a', '2019-10-18', '2019-10-18 00:00:00', '', '', 0, '', '', '', ''),
 (2, '', '', '', '', 'Manufacturer', 'arif', 89889, 'arifs0479@gmail.com', '9a0fe27c8bcc9aad51eda55e1b735eb5', '2019-10-18', '2019-10-18 00:00:00', '', '', 0, '', '', '', ''),
 (3, '', '', '', '', 'Raw Material', 'nazim', 965210753, 'nazim@gmail.com', '339157246b942ea4ffb7ed0b39c7eb74', '2019-10-23', '2019-10-23 00:00:00', '', '', 0, '', '', '', '');
@@ -67,7 +67,8 @@ INSERT INTO `user_credential` (`user_id`, `fName`, `lName`, `orgName`, `gst`, `r
 -- Indexes for table `user_credential`
 --
 ALTER TABLE `user_credential`
-  ADD PRIMARY KEY (`user_id`);
+  ADD PRIMARY KEY (`user_id`),
+  ADD UNIQUE KEY `user_id` (`user_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
