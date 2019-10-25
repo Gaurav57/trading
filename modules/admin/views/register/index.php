@@ -93,12 +93,12 @@ use yii\helpers\Url;
 				  <div class="form-row mt-4">
                     <div class="col-12 col-sm-10">
 						<?= $form->field($model, 'iPartner')->checkbox(array('label'=>''))
-										->label('Installation Partner'); ?>
+											->label('Installation Partner'); ?>
                     </div>
 				  </div>
 				  <div class="form-row mt-4">
                     <div class="col-12 col-sm-10">
-						<?php echo $form->field($model, 'catalouge[]')->fileInput(['multiple'=>'multiple', 'class'=>'form-control']); ?>
+						<?php echo $form->field($model, 'catalouge[]')->fileInput(['multiple'=> true, 'class'=>'form-control']); ?>
                     </div>
 				  </div>	
                   <div class="form-row mt-4">
@@ -126,6 +126,12 @@ use yii\helpers\Url;
                   <div class="form-row mt-4">
                     <div class="col-12 col-sm-10">
 						<?= $form->field($model, 'zip')->textInput(['class'=>'form-control', 'placeholder' => 'Zip Code']); ?>
+                    </div>
+				  </div>	
+                  <div class="form-row mt-4">
+                    <div class="col-12 col-sm-10">
+						<?php echo $form->checkBox($model, 'agree', array('class' => 'mR'));?>
+							Terms &amp; condition 
                     </div>
 				  </div>
 				
