@@ -81,7 +81,7 @@ use yii\helpers\Url;
 				  </div>	
                   <div class="form-row mt-4">
                     <div class="col-12 col-sm-10">
-						<?= $form->field($model, 'brands')->textInput(['class'=>'form-control', 'placeholder' => 'Brands'])
+						<?= $form->field($model, 'brands')->textInput(['class'=>'form-control', 'placeholder' => 'Brands'])?>
 						<?php echo $form->field($model, 'imageFile[]')->fileInput(['multiple'=>'multiple', 'class'=>'form-control']); ?>
                     </div>
 				  </div>	
