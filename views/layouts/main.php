@@ -95,7 +95,7 @@ AppAsset::register($this);
 				<!-- Logo -->
 				<div class="col-lg-2 col-sm-3 col-3 order-1">
 					<div class="logo_container">
-						<div class="logo"><a href="<?php echo Yii::$app->homeUrl?>">Trading</a></div>
+                                            <div class="logo"><a href="<?php echo Yii::$app->homeUrl?>"><img src="<?php echo Yii::$app->homeUrl?>/images/fliege-registered-white.png" style="width:100%"/></a></div>
 					</div>
 				</div>
 

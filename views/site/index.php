@@ -59,9 +59,9 @@
             <div class="featured_slider_item">
                 <div class="border_active"></div>
                 <div class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
-                    <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="<?php echo Yii::$app->homeUrl?>images/<?php echo $prod->image ?>" alt=""></div>
+                    <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="<?php echo Yii::$app->homeUrl?>images/<?php echo $prod->imageFile ?>" alt=""></div>
                     <div class="product_content">
-                        <div class="product_price discount"><?php echo $prod->price ?><span>$300</span></div>
+                        <div class="product_price discount"><?php echo $prod->price_user ?><span>$300</span></div>
                         <div class="product_name"><div><a href="<?php echo Yii::$app->homeUrl?>site/productdetail?pid=<?php echo $prod->product_id ?>"><?php echo $prod->name_product ?></a></div></div>
                         <div class="product_extras">
 <!--                                     <div class="product_color">
@@ -320,9 +320,9 @@
                         <div class="arrivals_slider_item">
                             <div class="border_active"></div>
                             <div class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
-                                <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="<?php echo Yii::$app->homeUrl?>images/<?php echo $prod->image ?>" alt=""></div>
+                                <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="<?php echo Yii::$app->homeUrl?>images/<?php echo $prod->imageFile ?>" alt=""></div>
                                 <div class="product_content">
-                                    <div class="product_price"><?php echo $prod->price ?></div>
+                                    <div class="product_price"><?php echo $prod->price_user ?></div>
                                     <div class="product_name"><div><a href="<?php echo Yii::$app->homeUrl?>site/productdetail?pid=<?php echo $prod->product_id ?>"><?php echo $prod->name_product ?></a></div></div>
                                     <div class="product_extras">
 <!--                                    <div class="product_color">
@@ -407,12 +407,12 @@
                 <!-- Best Sellers Item -->
                 <div class="bestsellers_item">
                     <div class="bestsellers_item_container d-flex flex-row align-items-center justify-content-start">
-                        <div class="bestsellers_image"><img src="<?php echo Yii::$app->homeUrl?>images/<?php echo $prod3->image ?>" alt=""></div>
+                        <div class="bestsellers_image"><img src="<?php echo Yii::$app->homeUrl?>images/<?php echo $prod3->imageFile ?>" alt=""></div>
                         <div class="bestsellers_content">
                             <div class="bestsellers_category"><a href="#">Headphones</a></div>
                             <div class="bestsellers_name"><a href="<?php echo Yii::$app->homeUrl?>site/productdetail?pid=<?php echo $prod->product_id ?>"><?php echo $prod3->name_product ?></a></div>
                             <div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
-                            <div class="bestsellers_price discount"><?php echo $prod3->price ?></div>
+                            <div class="bestsellers_price discount"><?php echo $prod3->price_user ?></div>
                         </div>
                     </div>
                     <div class="bestsellers_fav active"><i class="fas fa-heart"></i></div>
@@ -519,12 +519,12 @@
             <!-- Trends Slider Item -->
             <div class="owl-item">
                 <div class="trends_item is_new">
-                    <div class="trends_image d-flex flex-column align-items-center justify-content-center"><img src="<?php echo Yii::$app->homeUrl?>images/<?php echo $prod->image ?>" alt=""></div>
+                    <div class="trends_image d-flex flex-column align-items-center justify-content-center"><img src="<?php echo Yii::$app->homeUrl?>images/<?php echo $prod->imageFile ?>" alt=""></div>
                     <div class="trends_content">
                         <div class="trends_category"><a href="#">Smartphones</a></div>
                         <div class="trends_info clearfix">
                             <div class="trends_name"><a href="<?php echo Yii::$app->homeUrl?>site/productdetail?pid=<?php echo $prod->product_id ?>"><?php echo $prod->name_product ?></a></div>
-                            <div class="trends_price"><?php echo $prod->price ?></div>
+                            <div class="trends_price"><?php echo $prod->price_user ?></div>
                         </div>
                     </div>
                     <ul class="trends_marks">
