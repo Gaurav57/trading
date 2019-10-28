@@ -21,7 +21,7 @@ DashboardAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
- 			 <nav class="t-header">
+ <nav class="t-header">
       <div class="t-header-brand-wrapper">
         <a href="index.html">
           <img class="logo" src="<?php echo Yii::$app->homeUrl;?>admin/images/logo.svg" alt="">
