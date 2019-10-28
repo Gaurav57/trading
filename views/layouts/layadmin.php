@@ -20,6 +20,7 @@ DashboardAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
+
  			 <nav class="t-header">
       <div class="t-header-brand-wrapper">
         <a href="index.html">
@@ -174,7 +175,6 @@ DashboardAsset::register($this);
         <div class="sidebar-upgrade-banner">
         </div>
       </div>
-    
      <?= $content ?> 
   
  <?php $this->endBody() ?>

@@ -6,7 +6,7 @@ $this->title = 'Follow';
 
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h2 class="text-center">Follow Our RaW Materials</h2>
+		<h2 class="text-center">Follow Our Partners</h2>
 	</div>
 	
 	<div class="panel-body">
@@ -14,7 +14,7 @@ $this->title = 'Follow';
   <thead>
     <tr>
       <th scope="col">User_ID</th>
-      <th scope="col">RaW Materials</th>
+      <th scope="col">Partners</th>
 	   <th scope="col">Email</th>
 	  <th scope="col">Action</th>
     </tr>

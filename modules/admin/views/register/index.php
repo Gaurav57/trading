@@ -100,8 +100,16 @@ use yii\helpers\Url;
                     </div>
 				  </div>
 				  <div class="form-row mt-4">
-                    <div class="col-12 col-sm-12">
-						<?php echo $form->field($model, 'catalouge')->fileInput(['multiple'=> true, 'class'=>'form-control']); ?>
+                    <div class="col-12 col-sm-10">
+						<?= $form->field($model, 'iPartner')->checkbox(array('label'=>''))
+											->label('Installation Partner'); ?>
+                    </div>
+				  </div>
+				  <div class="form-row mt-4">
+					<?php $category = ['Raw Material' => 'Raw Material', 'Manufacturer' => 'Manufacturer', 'Distributer' => 'Distributer', 'Dealer' => 'Dealer', 'Vendor'=> 'Vendor' ] ?>
+					<?= $form->field($model, 'category')->dropDownList($category, ['prompt' => 'Select']); ?>
+                    <div class="col-12 col-sm-10">
+						<?php echo $form->field($model, 'catalouge[]')->fileInput(['multiple'=> true, 'class'=>'form-control']); ?>
                     </div>
 				  </div>	
                   <div class="form-row mt-4">

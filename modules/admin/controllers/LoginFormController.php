@@ -111,5 +111,14 @@ use app\modules\admin\models\Change;
             $this->layout = false;
             return $this->render('change', ['model' => $model]);
         }
+<<<<<<< HEAD
+		 public function actionLogout()
+    {
+       
+        Yii::$app->session->destroy();
+        return $this->redirect(['./login-form']);
+    }
+=======
         
+>>>>>>> 209da22b876f2a9c6fa076b9773428aaabe543f7
 }
