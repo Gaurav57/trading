@@ -24,7 +24,7 @@ class ProductController extends \yii\web\Controller
 	
 		$formdata=Yii::$app->request->post();
 		//echo "<pre>";
-		  // print_r($formdata);die;
+		   //print_r($formdata);die;
       if(isset($formdata) && $model->load($formdata))	
 	  {
 		  $session = Yii::$app->session;

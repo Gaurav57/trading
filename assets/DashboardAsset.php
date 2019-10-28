@@ -26,7 +26,7 @@ class DashboardAsset extends AssetBundle
 		'admin/css/register.css',
 		 'admin/css/admin.css',
 		'https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap',
-        'admin/css/asad/style.css',
+        'admin/css/asad/style_1.css',
         'admin/css/asad/style.css.map',
     ];
   public $js = [		
@@ -34,11 +34,13 @@ class DashboardAsset extends AssetBundle
 	   'admin/js/register.js',
 	    'admin/js/admin.js',
 	    'admin/js/main.js',
+		'admin/js/apexcharts.min.js',
+		'admin/js/Chart.min.js',
         'admin/js/asad/dashboard.js',
-        'admin/js/asad/highlight.pack.js',
+        //'admin/js/asad/highlight.pack.js',
         'admin/js/asad/template.js',
-        'admin/js/charts/asad/chartjs.addon.js',
-        'admin/js/charts/chartjs.js',
+        'admin/js/asad/charts/chartjs.addon.js',
+        'admin/js/asad/charts/chartjs.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
