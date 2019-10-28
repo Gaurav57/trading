@@ -37,38 +37,35 @@ use yii\helpers\Url;
                 <div class="multisteps-form__content">
 				<h4 class="header__title">REGISTRATION</h4>
 				<div class="form-row mt-4">
-                    <div class="col-12 col-sm-12">
+                    <div class="col-12 col-sm-6">
 					<?php $registerAs = ['Raw Material' => 'Raw Material', 'Manufacturer' => 'Manufacturer', 'Distributer' => 'Distributer', 'Dealer' => 'Dealer', 'Retailer'=> 'Retailer' ] ?>
 					<?= $form->field($model, 'registerAs')->dropDownList($registerAs, ['prompt' => 'Select']); ?>
 				    </div>
-				  </div>
-                  <div class="form-row mt-4">
-                    <div class="col-12 col-sm-12">
+					<div class="col-12 col-sm-6">
                       <?= $form->field($model, 'orgName')->textInput(['placeholder' => 'Organisation Name']); ?><!--<input class="multisteps-form__input form-control" type="text" placeholder="Username"/>-->
                     </div>
 				  </div>
 				  <div class="form-row mt-4">
-                    <div class="col-12 col-sm-12">
+                    <div class="col-12 col-sm-6">
 						<?= $form->field($model, 'contact')->textInput(['placeholder' => 'Contact']); ?>
                     </div>
-                  </div>
-                  <div class="form-row mt-4">
-                    <div class="col-12 col-sm-12">
+					<div class="col-12 col-sm-6">
 						<?= $form->field($model, 'email')->Input('email', ['placeholder' => 'Email']); ?>
                     </div>
-				  </div>
-				  <div class="form-row mt-4">
-                    <div class="col-12 col-sm-12">
-						<?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Password']); ?>
-                    </div>
                   </div>
 				  <div class="form-row mt-4">
-                    <div class="col-12 col-sm-12">
-						<?= $form->field($model, 'fName')->textInput(['class'=>'form-control', 'placeholder' => 'First Name']); ?>
+                    <div class="col-12 col-sm-6">
+						<?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Password']); ?>
+                    </div>
+                    <div class="col-12 col-sm-6">
+						<?= $form->field($model, 'confirmPassword')->passwordInput(['placeholder' => 'Confirm Password']); ?>
                     </div>
                   </div>
                   <div class="form-row mt-4">
-                    <div class="col-12 col-sm-12">
+					<div class="col-12 col-sm-6">
+						<?= $form->field($model, 'fName')->textInput(['class'=>'form-control', 'placeholder' => 'First Name']); ?>
+                    </div>
+                    <div class="col-12 col-sm-6">
 						<?= $form->field($model, 'lName')->textInput(['class'=>'form-control', 'placeholder' => 'Last Name']); ?>
                     </div>
 				  </div>
@@ -87,26 +84,24 @@ use yii\helpers\Url;
                     </div>
 				  </div>	
                   <div class="form-row mt-4">
-                    <div class="col-12 col-sm-4">
+                    <div class="col-12 col-sm-5">
 						<?= $form->field($model, 'brandName')->textInput(['class'=>'form-control', 'placeholder' => 'Brand Name']) ?>
 					</div>
-                    <div class="col-12 col-sm-8">
+                    <div class="col-12 col-sm-7">
 						<?php echo $form->field($model, 'logo')->fileInput(['multiple'=> true, 'class'=>'form-control']); ?>
 					</div>
 				  </div>	
                   <div class="form-row mt-4">
-                    <div class="col-12 col-sm-12">
+                    <div class="col-12 col-sm-5">
 						<?= $form->field($model, 'latchOn')->textInput(['class'=>'form-control', 'placeholder' => 'Latch On']); ?>
                     </div>
-				  </div>
-				  <div class="form-row mt-4">
-                    <div class="col-12 col-sm-12">
+					<div class="col-12 col-sm-7">
 						<?php echo $form->field($model, 'catalouge')->fileInput(['multiple'=> true, 'class'=>'form-control']); ?>
                     </div>
-				  </div>	
+				  </div>
                   <div class="form-row mt-4">
                     <div class="col-12 col-sm-12">
-						<?= $form->field($model, 'street')->textInput(['class'=>'form-control', 'placeholder' => 'Street']); ?>
+						<?= $form->field($model, 'address')->textInput(['class'=>'form-control', 'placeholder' => 'Address']); ?>
                     </div>
 				  </div>	
                   <div class="form-row mt-4">
