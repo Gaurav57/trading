@@ -1,6 +1,13 @@
+<?php
 
+use yii\helpers\Html;
+use yii\bootstrap\ActiveForm;
+use yii\helpers\ArrayHelper;
+
+
+?>
 	<!-- Single Product -->
-
+<script src="<?php echo Yii::$app->homeUrl?>js/product_custom.js"></script>
 	<div class="single_product">
 		<div class="container">
 			<div class="row">
@@ -27,13 +34,19 @@
 						<div class="rating_r rating_r_4 product_rating"><i></i><i></i><i></i><i></i><i></i></div>
 						<div class="product_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum. laoreet turpis, nec sollicitudin dolor cursus at. Maecenas aliquet, dolor a faucibus efficitur, nisi tellus cursus urna, eget dictum lacus turpis.</p></div>
 						<div class="order_info d-flex flex-row">
-<form action="#">
+<?php $form = ActiveForm::begin(); ?>
 <div class="clearfix" style="z-index: 1000;">
 
 	<!-- Product Quantity -->
 	<div class="product_quantity clearfix">
 		<span>Quantity: </span>
-		<input id="quantity_input" type="text" pattern="[0-9]*" value="1">
+		
+		<?= $form->field($model, 'quantity')->textInput(['value' => '1','id' => 'quantity_input']) ?>
+		<?php if (isset($_SESSION["__id"])) { ?>
+		<?= $form->field($model, 'user_id')->hiddenInput(['value' =>  $_SESSION["__id"] ,'id' => 'quantity_input']) ?>
+		<?= $form->field($model, 'product_id')->hiddenInput(['value' => $detail->product_id,'id' => 'quantity_input']) ?>
+	<?php  }  ?>
+		<!-- <input id="quantity_input" type="text" pattern="[0-9]*" value="1"> -->
 		<div class="quantity_buttons">
 			<div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fas fa-chevron-up"></i></div>
 			<div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fas fa-chevron-down"></i></div>
@@ -58,12 +71,15 @@
 </div>
 
 			<div class="product_price"><?php echo $detail->price ;?></div>
+			<?= Yii::$app->session->getFlash('success');?>
 			<div class="button_container">
-				<button type="button" class="button cart_button">Add to Cart</button>
+				<?= Html::submitButton('Add to Cart', ['class' => 'button cart_button']) ?>
+				
+				
 				<!--<div class="product_fav"><i class="fas fa-heart"></i></div>-->
 			</div>
 								
-							</form>
+							<?php ActiveForm::end(); ?>
 						</div>
 					</div>
 				</div>
