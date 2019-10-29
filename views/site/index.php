@@ -57,7 +57,7 @@
             <div class="featured_slider_item">
                 <div class="border_active"></div>
                 <div class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
-                    <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="<?php echo Yii::$app->homeUrl?>images/<?php echo $prod->imageFile ?>" alt=""></div>
+                    <div class="product_image d-flex flex-column align-items-center justify-content-center"><a href="<?php echo Yii::$app->homeUrl?>site/productdetail?pid=<?php echo $prod->product_id ?>"><img src="<?php echo Yii::$app->homeUrl?>images/<?php echo $prod->imageFile ?>" alt=""></a></div>
                     <div class="product_content">
                         <div class="product_price discount"><?php echo $prod->price ?><span>$300</span></div>
                         <div class="product_name"><div><a href="<?php echo Yii::$app->homeUrl?>site/productdetail?pid=<?php echo $prod->product_id ?>"><?php echo $prod->name_product ?></a></div></div>

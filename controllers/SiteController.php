@@ -15,6 +15,9 @@ use app\models\TradingReg;
 use app\models\ProductsMenu;
 use app\models\ProductsChild;
 use app\models\TradingLogin;
+use app\models\ParentChild;
+use app\models\Cart;
+use app\models\Events;
 
 class SiteController extends Controller
 {
@@ -23,39 +26,53 @@ class SiteController extends Controller
     /**
      * {@inheritdoc}
      */
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['logout'],
-                'rules' => [
-                    [
-                        'actions' => ['logout'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
-                ],
-            ],
-        ];
-    }
+    // public function behaviors()
+    // {
+    //     return [
+    //         'access' => [
+    //             'class' => AccessControl::className(),
+    //             'only' => ['logout'],
+    //             'rules' => [
+    //                 [
+    //                     'actions' => ['logout'],
+    //                     'allow' => true,
+    //                     'roles' => ['@'],
+    //                 ],
+    //             ],
+    //         ],
+    //         'verbs' => [
+    //             'class' => VerbFilter::className(),
+    //             'actions' => [
+    //                 'logout' => ['post'],
+    //             ],
+    //         ],
+    //     ];
+    // }
 
     /**
      * {@inheritdoc}
      */
+
     public function actions()
+
     {
+
+        $totalcart = Cart::find()->where(['user_id'=>  isset($_SESSION["__id"])?$_SESSION["__id"]:0])->count();
+         //print_r($totalcart);die;
         $productsmenu = productsmenu::find()->all();
+        $productschild = ProductsChild::find()->where(['menu_id'=>'1'])->all();
+        $parachild = ParentChild::find()->where(['child_id'=>'1'])->all();
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
             ],$this->view->params['productsmenu'] = $productsmenu,
+            $this->view->params['productschild'] = $productschild,
+            $this->view->params['parachild'] = $parachild,
+            $this->view->params['totalcart'] = $totalcart,
+            
+            
+            
+            
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
@@ -72,6 +89,7 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
+        
         
         $products = AddProduct::find()->where(['new_arrival'=>'featured'])->all();
         $products3 = AddProduct::find()->where(['best_seller'=>'top20'])->all();
@@ -95,7 +113,7 @@ class SiteController extends Controller
    
         // new record   
         if($model->load(Yii::$app->request->post()) && $model->save()){ 
-            Yii::$app->getSession()->setFlash('success', '<div class="alert alert-success alert-dismiss">Registered Successfully</div>');
+            Yii::$app->getSession()->setFlash('success', '<div class="alert alert-success alert-dismiss">You Have Been Registered Successfully,Please Login To Us.</div>');
 
               
             return $this->redirect(['registration']);   
@@ -119,14 +137,17 @@ class SiteController extends Controller
 
         $model = new TradingLogin();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->render('index');
+             return $this->goHome();
         }
-
-        $model->password = '';
         return $this->render('login', [
             'model' => $model,
         ]);
         //return $this->render('login');
+    }
+    public function actionLogout()
+    {
+        Yii::$app->session->destroy();
+         return $this->goHome();
     }
 
     public function actionContact()
@@ -141,7 +162,11 @@ class SiteController extends Controller
 
      public function actionCart()
     {
-        return $this->render('cart');
+        $model = cart::find()
+        ->joinWith('AddProduct')
+        ->all();
+
+        return $this->render('cart',['model'=>$model]);
     }
     
     public function actionProduct()
@@ -161,7 +186,20 @@ class SiteController extends Controller
     {
         $show = $_GET['pid'];
         $detail = AddProduct::find()->where(['product_id'=>$show])->one();
-        return $this->render('product-detail',['detail'=>$detail]);
+         $model = new Cart();   
+   
+        // new record   
+        if($model->load(Yii::$app->request->post()) && $model->save()){ 
+            Yii::$app->getSession()->setFlash('success', '<div class="alert alert-success alert-dismiss">Item Added Successfully</div>');
+            return $this->render('product-detail',['detail'=>$detail,'model' => $model]);   
+        }
+        return $this->render('product-detail',['detail'=>$detail,'model' => $model]);
+        
+
+
+        
+        
+       
     }
 
     public function actionSearch()
@@ -199,7 +237,8 @@ class SiteController extends Controller
 
     public function actionEvent()
     {
-        return $this->render('events');
+        $events = events::find()->all();
+        return $this->render('events', ['events' => $events]);
     }
     
 }

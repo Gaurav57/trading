@@ -19,67 +19,14 @@
 					<div class="blog_posts d-flex flex-row align-items-start justify-content-between">
 						
 						<!-- Blog post -->
+						<?php foreach($events as $event) { ?>
 						<div class="blog_post">
-							<div class="blog_image" style="background-image:url(<?php echo Yii::$app->homeUrl?>images/blog_1.jpg)"></div>
-							<div class="blog_text">Vivamus sed nunc in arcu cursus mollis quis et orci. Interdum et malesuada.</div>
+							<div class="blog_image" style="background-image:url(<?php echo Yii::$app->homeUrl?>images/<?php echo $event->image ?>)"></div>
+							<div class="viewed_name" style="text-align:center" ><a href="#" style="font-size: 20px"><?php echo $event->title ?></a></div>
+							<div class="blog_text" style="padding-top: 12px"><?php echo $event->discription?></div>
 							<div class="blog_button"><a href="blog_single.html">Continue Reading</a></div>
 						</div>
-
-						<!-- Blog post -->
-						<div class="blog_post">
-							<div class="blog_image" style="background-image:url(<?php echo Yii::$app->homeUrl?>images/blog_2.jpg)"></div>
-							<div class="blog_text">Cras lobortis nisl nec libero pulvinar lacinia. Nunc sed ullamcorper massa.</div>
-							<div class="blog_button"><a href="blog_single.html">Continue Reading</a></div>
-						</div>
-
-						<!-- Blog post -->
-						<div class="blog_post">
-							<div class="blog_image" style="background-image:url(<?php echo Yii::$app->homeUrl?>images/blog_3.jpg)"></div>
-							<div class="blog_text">Fusce tincidunt nulla magna, ac euismod quam viverra id. Fusce eget metus feugiat</div>
-							<div class="blog_button"><a href="blog_single.html">Continue Reading</a></div>
-						</div>
-
-						<!-- Blog post -->
-						<div class="blog_post">
-							<div class="blog_image" style="background-image:url(<?php echo Yii::$app->homeUrl?>images/blog_4.jpg)"></div>
-							<div class="blog_text">Etiam leo nibh, consectetur nec orci et, tempus tempus ex</div>
-							<div class="blog_button"><a href="blog_single.html">Continue Reading</a></div>
-						</div>
-
-						<!-- Blog post -->
-						<div class="blog_post">
-							<div class="blog_image" style="background-image:url(<?php echo Yii::$app->homeUrl?>images/blog_5.jpg)"></div>
-							<div class="blog_text">Sed viverra pellentesque dictum. Aenean ligula justo, viverra in lacus porttitor</div>
-							<div class="blog_button"><a href="blog_single.html">Continue Reading</a></div>
-						</div>
-
-						<!-- Blog post -->
-						<div class="blog_post">
-							<div class="blog_image" style="background-image:url(<?php echo Yii::$app->homeUrl?>images/blog_6.jpg)"></div>
-							<div class="blog_text">In nisl tortor, tempus nec ex vitae, bibendum rutrum mi. Integer tempus nisi</div>
-							<div class="blog_button"><a href="blog_single.html">Continue Reading</a></div>
-						</div>
-
-						<!-- Blog post -->
-						<div class="blog_post">
-							<div class="blog_image" style="background-image:url(<?php echo Yii::$app->homeUrl?>images/blog_7.jpg)"></div>
-							<div class="blog_text">Make Life Easier on Yourself by Accepting “Good Enough.” Don’t Pursue Perfection.</div>
-							<div class="blog_button"><a href="blog_single.html">Continue Reading</a></div>
-						</div>
-
-						<!-- Blog post -->
-						<div class="blog_post">
-							<div class="blog_image" style="background-image:url(<?php echo Yii::$app->homeUrl?>images/blog_8.jpg)"></div>
-							<div class="blog_text">13 Reasons You Are Failing At Life And Becoming A Bum</div>
-							<div class="blog_button"><a href="blog_single.html">Continue Reading</a></div>
-						</div>
-
-						<!-- Blog post -->
-						<div class="blog_post">
-							<div class="blog_image" style="background-image:url(<?php echo Yii::$app->homeUrl?>images/blog_9.jpg)"></div>
-							<div class="blog_text">4 Steps to Getting Anything You Want In Life</div>
-							<div class="blog_button"><a href="blog_single.html">Continue Reading</a></div>
-						</div>
+						<?php } ?>
 						
 					</div>
 				</div>

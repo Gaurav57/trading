@@ -76,9 +76,20 @@ AppAsset::register($this);
 							</ul>
 						</div>
 						<div class="top_bar_user">
+							<?php if(!isset($_SESSION["__id"])) { ?>
 							<div class="user_icon"><img src="<?php echo Yii::$app->homeUrl?>images/user.svg" alt=""></div>
-							<div><a href="<?php echo Yii::$app->homeUrl?>site/registration">Register</a></div>
+								<div><a href="<?php echo Yii::$app->homeUrl?>site/registration">Register</a></div>
 							<div><a href="<?php echo Yii::$app->homeUrl?>site/login">Login</a></div>
+						<?php }else { ?>
+							<div class="user_icon"><img src="<?php echo Yii::$app->homeUrl?>images/user.svg" alt=""></div>
+								<div><a href="<?php echo Yii::$app->homeUrl?>">My Profile</a></div>
+						
+							<div><a href="<?php echo Yii::$app->homeUrl?>site/logout">Logout</a></div>
+						<?php } ?>
+							
+							
+							
+							
 						</div>
 					</div>
 				</div>
@@ -130,16 +141,26 @@ AppAsset::register($this);
 				<!-- Wishlist -->
 				<div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
 					<div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
+						
 						<!-- Cart -->
 						<div class="cart">
 							<div class="cart_container d-flex flex-row align-items-center justify-content-end">
 								<div class="cart_icon">
 									<img src="<?php echo Yii::$app->homeUrl?>images/cart.png" alt="">
-									<div class="cart_count"><span>10</span></div>
+
+								<div class="cart_count"><span>
+
+									<?php if (isset($_SESSION['__id'])?$_SESSION['__id']:0) {
+								print_r($this->params['totalcart']);
+							}else{
+								echo "0";
+							} ?>
+								
+							</span></div>
 								</div>
 								<div class="cart_content">
 									<div class="cart_text"><a href="<?php echo Yii::$app->homeUrl?>site/cart">Cart</a></div>
-									<div class="cart_price">85</div>
+									<div class="cart_price"></div>
 
 								</div>
 							</div>
@@ -165,22 +186,40 @@ AppAsset::register($this);
 <div class="main_nav_menu">
 	
 	<ul class="standard_dropdown main_nav_dropdown">
-		<li><a href="<?php echo Yii::$app->homeUrl?>">Home<i class="fas fa-chevron-down"></i></a></li>
-		<li><a href="<?php echo Yii::$app->homeUrl?>site/event">Events<i class="fas fa-chevron-down"></i></a></li>
+		<li>
+			<a href="<?php echo Yii::$app->homeUrl?>">Home<i class="fas fa-chevron-down"></i></a>
+		</li>
+		<li>
+			<a href="<?php echo Yii::$app->homeUrl?>site/event">Events<i class="fas fa-chevron-down"></i></a>
+		</li>
 		<li class="hassubs">
 			<a href="<?php echo Yii::$app->homeUrl?>">Products<i class="fas fa-chevron-down"></i></a>
 			<ul>
-	<li>
+				<li>
 		<?php foreach ($this->params['productsmenu'] as $menu) {  ?>
 		<a href="<?php echo Yii::$app->homeUrl?>"><?php echo $menu->menu_name; ?><i class="fas fa-chevron-down"></i></a>
 	<?php  }?>
 		<ul>
-			<li><a href="shop.html">Surveillance<i class="fas fa-chevron-down"></i></a></li>
-			<li><a href="access_control.html">Access Control<i class="fas fa-chevron-down"></i></a></li>
+			<?php foreach ($this->params['productschild'] as $menu_child) {  ?>
+			<li>
+				<a href="shop.html"><?php echo $menu_child->child_name; ?><i class="fas fa-chevron-down"></i></a>
+				<ul>
+					
+						<li>
+							<?php foreach ($this->params['parachild'] as $para_child) {  ?>
+							<a href="<?php echo Yii::$app->homeUrl?>"><?php echo $para_child->para_name; ?><i class="fas fa-chevron-down"></i></a>
+
+						</li>
+						<?php  }?>
+					
+				</ul>
+			</li>
+		<?php  } ?>
+			<!-- <li><a href="access_control.html">Access Control<i class="fas fa-chevron-down"></i></a></li>
 			<li><a href="biometrics.html">Biometrics<i class="fas fa-chevron-down"></i></a></li>
 			<li><a href="barriers.html">Barriers<i class="fas fa-chevron-down"></i></a></li>
 			<li><a href="cables.html">Cables<i class="fas fa-chevron-down"></i></a></li>
-			<li><a href="accessories.html">Accessories<i class="fas fa-chevron-down"></i></a></li>
+			<li><a href="accessories.html">Accessories<i class="fas fa-chevron-down"></i></a></li> -->
 		</ul>
 	</li>
 				<li>
@@ -193,6 +232,7 @@ AppAsset::register($this);
 					<!-- <a href="<?php echo Yii::$app->homeUrl?>">Accessories<i class="fas fa-chevron-down"></i></a> -->
 					<ul>
 						<li><a href="<?php echo Yii::$app->homeUrl?>site/product">Support Systems<i class="fas fa-chevron-down"></i></a></li>
+
 					</ul>
 				</li>
 				<li>
