@@ -16,11 +16,11 @@ class AdminLogin extends ActiveRecord
     {
         return [
             [['email', 'password'], 'required'],
-           ['password' ,'validatePassword'],
+           /*['password' ,'validatePassword'],*/
         ];
     }
 
-     public function validatePassword($attribute, $params, $password)
+    public function validatePassword($attribute, $params, $password)
     {
         if (!$this->hasErrors()) {
             $user = $this->getUser();

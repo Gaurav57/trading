@@ -26,6 +26,7 @@ use app\modules\admin\models\Change;
         $postdata = Yii::$app->request->post();
     if($model->load($postdata) && $model->validate()){
     //print_r($model); die;
+  
         $email = $postdata['AdminLogin']['email'];
         $password = $postdata['AdminLogin']['password'];
 
