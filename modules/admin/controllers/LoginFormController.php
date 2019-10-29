@@ -25,17 +25,18 @@ use app\modules\admin\models\Change;
         $model = new AdminLogin();
         $postdata = Yii::$app->request->post();
     if($model->load($postdata)){
-    //print_r($model); die;
+  
         $email = $postdata['AdminLogin']['email'];
         $password = $postdata['AdminLogin']['password'];
 
-        
         $query = new \yii\db\Query();
         $data = $query->select('email,password')
         ->from('user_credential')
         ->andwhere(['email' => $email])
         ->andwhere(['password' => md5($password)])
         ->one();
+		//echo "<pre>";
+          //print_r($data); die;
                 //echo $query->createCommand()->getRawSql();die;
         if(!empty($data)){
             Yii::$app->session["admin"] = $data['email'];
@@ -44,7 +45,7 @@ use app\modules\admin\models\Change;
 
 			return $this->redirect(['../admin/dashboard']);
           
-            $this->redirect(['../admin/dashboard']);
+            //$this->redirect(['../admin/dashboard']);
      }
      else{
 
@@ -111,14 +112,14 @@ use app\modules\admin\models\Change;
             $this->layout = false;
             return $this->render('change', ['model' => $model]);
         }
-<<<<<<< HEAD
+
 		 public function actionLogout()
     {
        
         Yii::$app->session->destroy();
         return $this->redirect(['./login-form']);
     }
-=======
+
         
->>>>>>> 209da22b876f2a9c6fa076b9773428aaabe543f7
+
 }

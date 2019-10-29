@@ -4,7 +4,7 @@
             <div class="row">
               <div class="col-12 py-5">
                 <h4>Dashboard</h4>
-                <p class="text-gray">Welcome aboard, Allen Clerk</p>
+                <p class="text-gray">Welcome aboard, Gaurav Dig-Gip</p>
               </div>
             </div>
             <div class="row">
@@ -385,14 +385,14 @@
         <!-- partial:partials/_footer.html -->
         <footer class="footer">
           <div class="row">
-            <div class="col-sm-6 text-center text-sm-right order-sm-1">
+           <!--<div class="col-sm-6 text-center text-sm-right order-sm-1">
               <ul class="text-gray">
                 <li><a href="#">Terms of use</a></li>
                 <li><a href="#">Privacy Policy</a></li>
               </ul>
-            </div>
+            </div>-->
             <div class="col-sm-6 text-center text-sm-left mt-3 mt-sm-0">
-              <small class="text-muted d-block">Dig-zip pvt ltd. All rights reserved</small>
+              <small class="text-muted d-block">Dig-Gip pvt ltd. All rights reserved</small>
            
             </div>
           </div>

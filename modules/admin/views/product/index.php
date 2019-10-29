@@ -24,7 +24,9 @@ $this->title = 'Product';
     <tr>
       <th scope="col">Product_id</th>
       <th scope="col">Product Name</th>
-      
+       <th scope="col">Price-Distributer</th>
+	    <th scope="col">Price-Dealer</th>
+		
 	  <th scope="col">Action</th>
     </tr>
   </thead>
@@ -36,9 +38,12 @@ foreach ($model as $row) :
     <tr class="table-active">
       <th scope="row"><?=$row->product_id;?></th>
       <td><?=$row->name_product;?></td>
+	  <td><?=$row->price_distributer;?></td>
+	   <td><?=$row->price_dealer;?></td>
+     
      
 	  <td><span>
-	<?= Html::a('view', ['view','id'=>$row->product_id], ['class'=>'btn btn-primary']) ?> 
+	<!--<?= Html::a('view', ['view','id'=>$row->product_id], ['class'=>'btn btn-primary']) ?> -->
 	  <?= Html::a('update', ['update','id'=>$row->product_id], ['class'=>'btn btn-success']) ?> 
 	   <?= Html::a('delete', ['delete','id'=>$row->product_id], ['class'=>'btn btn-danger']) ?> 
 	 </span></td>

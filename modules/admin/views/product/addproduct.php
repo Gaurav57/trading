@@ -7,7 +7,7 @@ use yii\widgets\ActiveForm;
 /* @var $model app\modules\admin\models\AddProduct */
 /* @var $form ActiveForm */
 ?>
-<div class="admin-dash-add_product">
+<div class="admin-dash-add_product col-md-11" style="margin-left: 15px;background-color:aliceblue;">
 <h1>Add Product</h1>
     <?php $form = ActiveForm::begin(); ?>
 

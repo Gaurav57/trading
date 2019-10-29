@@ -21,7 +21,7 @@ class Register extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['registerAs', 'orgName', 'contact', 'email', 'password', 'confirmPassword', 'fName', 'lName', 'iecode', 'iPartner', 'address', 'city', 'state', 'country', 'zip', 'cat_id', 'agree'], 'required'],
+            [['registerAs', 'orgName', 'contact', 'email', 'password', 'confirmPassword', 'fName', 'lName', 'iecode', 'iPartner', 'address', 'city', 'stateName', 'country', 'zip', 'cat_id', 'agree'], 'required'],
 			['email', 'email'],
 			[['logo'], 'file', 'skipOnEmpty' => true, 'extensions' => 'jpg, jpeg, png', 'maxFiles' => 10],
 			[['catalouge'], 'file', 'skipOnEmpty' => true, 'extensions' => 'jpg, jpeg, png', 'maxFiles' => 10],

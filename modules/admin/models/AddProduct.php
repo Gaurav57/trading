@@ -39,7 +39,7 @@ class AddProduct extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'add_product';
+        return 'product';
     }
 
     /**
@@ -48,7 +48,7 @@ class AddProduct extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name_product', 'price_distributer', 'sp_distributer', 'loyality_pt_distributer', 'moq_distributer', 'price_dealer', 'sp_dealer', 'loyality_pt_dealer', 'moq_dealer', 'price_reseller', 'sp_reseller', 'loyality_pt_reseller', 'moq_reseller', 'price_user','sp_price','loyality_point', 'description', 'imageFile','cat_id', 'latest_featured', 'new_arrival', 'best_seller', 'new', 'offers', 'trends'], 'required'],
+            [['name_product', 'price_distributer', 'sp_distributer', 'loyality_pt_distributer', 'moq_distributer', 'price_dealer', 'sp_dealer', 'loyality_pt_dealer', 'moq_dealer', 'price_reseller', 'sp_reseller', 'loyality_pt_reseller', 'moq_reseller', 'price_user','sp_price','loyality_point', 'description','cat_id', 'latest_featured', 'new_arrival', 'best_seller', 'new', 'offers', 'trends'], 'required'],
             [['price_distributer', 'sp_distributer', 'loyality_pt_distributer', 'moq_distributer', 'price_dealer', 'sp_dealer', 'loyality_pt_dealer', 'moq_dealer', 'price_reseller', 'sp_reseller', 'loyality_pt_reseller', 'moq_reseller', 'price_user', 'cat_id'], 'integer'],
             [['description'], 'string'],
 			[['imageFile'], 'file','extensions' => 'jpg, jpeg','maxFiles' => 5,'skipOnEmpty' => true],
@@ -97,7 +97,7 @@ class AddProduct extends \yii\db\ActiveRecord
             'trends' => 'Trends',
         ];
     }
-	public function upload($images){
+/* 	public function upload($images){
         $images->saveAs('images/products/' . $images->baseName . '.' . $images->extension);
         return $images->baseName . '.' . $images->extension;
        
@@ -119,11 +119,11 @@ class AddProduct extends \yii\db\ActiveRecord
             return  $pathvideo->baseName . '.' .  $pathvideo->extension;
        }
 
-	public function savedata($formdata, $path,$pathstudies,$pathsheet,$pathvideo,$lastID)
+ */	public function savedata($data,$lastID)
 	{
 			
 					$formdata = array(
-					//'user_id' => $lastID,
+					'product_id' => $lastID,
 					'name_product' => $data['AddProduct']['name_product'],
 					'price_distributer' => $data['AddProduct']['price_distributer'],
 					'sp_distributer' => $data['AddProduct']['sp_distributer'],
@@ -140,17 +140,17 @@ class AddProduct extends \yii\db\ActiveRecord
 					'price_user' => $data['AddProduct']['price_user'],
 					'sp_price' => $data['AddProduct']['sp_price'],
 					'moq_dealer' => $data['AddProduct']['moq_dealer'],
-					'imageFile' => $path,
+					/* 'imageFile' => $path,
 					'casestudies' =>$pathstudies,
 					'specsheet' =>$pathsheet,
-					'video' =>$pathvideo,
-					'warranty' => $data['AddProduct']['warranty'],
+					'video' =>$pathvideo,*/
+					 'warranty' => $data['AddProduct']['warranty'],
 					'ref_client' => $data['AddProduct']['ref_client'],
 					'description' => $data['AddProduct']['description'],
 				
 					);
 				
-				$data = Yii::$app->db->createCommand()->insert('add_product', $formdata)->execute();
+				$data = Yii::$app->db->createCommand()->insert('product', $formdata)->execute();
 				return "Success";
 				}
 }
