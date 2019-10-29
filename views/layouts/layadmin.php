@@ -23,7 +23,7 @@ DashboardAsset::register($this);
 
  <nav class="t-header">
       <div class="t-header-brand-wrapper">
-        <a href="index.html">
+        <a href="<?php echo Yii::$app->homeUrl;?>admin/dashboard">
           <img class="logo" src="<?php echo Yii::$app->homeUrl;?>images/fliege-registered-white.png" alt="">
           <img class="logo-mini" src="../assets/images/logo_mini.svg" alt="">
         </a>

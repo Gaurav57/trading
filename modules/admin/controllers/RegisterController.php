@@ -26,13 +26,14 @@ class RegisterController extends Controller
 		$formdata = Yii::$app->request->post();
 	
 		if(isset($formdata) && $model->load($formdata) && $model->validate()){
-				echo"<pre>";
-//				print_r($formdata);die;
-			//$message = $model->savedata($formdata);
+			
+			$message = $model->savedata($formdata);
+			echo "<pre>";
+	print_r($message);die;
 			$lastID = Yii::$app->db->getLastInsertID();
 			$session = Yii::$app->session;
 			$session['user_id'] = $lastID;
-			//get the instance of the uploaded file
+			
 			$path = '';
 			if($formdata['Register']['logo'] != '') {
 				$model->logo = UploadedFile::getInstances($model, 'logo');
@@ -45,11 +46,11 @@ class RegisterController extends Controller
 				$path1 = $model->upload1();
 			}
 			$message = $model->savedata($formdata, $path, $path1, $lastID);
-			echo"<pre>";
-			print_r($message); die;
-			//
+			//echo"<pre>";
+			//print_r($message); die;
+			
 			if(isset($message) && $message != ''){
-				//Yii::$app->session->setFlash('message', 'Successful');
+				Yii::$app->session->setFlash('message', 'Successful');
 				
 				return $this->redirect(['../admin/dashboard']);
 			}

@@ -4,14 +4,20 @@
 				<div class="col-lg-10 offset-lg-1">
 					<div class="cart_container">
 						<div class="cart_title">Shopping Cart</div>
+
+						
+							
+						<?php  } ?>
 						<div class="cart_items">
 							<ul class="cart_list">
+								<?php foreach($model as $cart_detail) { ?>
 								<li class="cart_item clearfix">
-									<div class="cart_item_image"><img src="<?php echo Yii::$app->homeUrl?>images/shopping_cart.jpg" alt=""></div>
+									<div class="cart_item_image"><img src="<?php echo Yii::$app->homeUrl?>images/shopping_cart.jpg" alt="">
+									</div>
 									<div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
 										<div class="cart_item_name cart_info_col">
 											<div class="cart_item_title">Name</div>
-											<div class="cart_item_text">MacBook Air 13</div>
+											<div class="cart_item_text"><?php echo $cart_detail->name_product ?></div>
 										</div>
 										<div class="cart_item_color cart_info_col">
 											<div class="cart_item_title">Color</div>
@@ -19,11 +25,11 @@
 										</div>
 										<div class="cart_item_quantity cart_info_col">
 											<div class="cart_item_title">Quantity</div>
-											<div class="cart_item_text">1</div>
+											<div class="cart_item_text"><?php echo $cart_detail->quantity ?></div>
 										</div>
 										<div class="cart_item_price cart_info_col">
 											<div class="cart_item_title">Price</div>
-											<div class="cart_item_text">$2000</div>
+											<div class="cart_item_text">$<?php echo $cart_detail->price ?></div>
 										</div>
 										<div class="cart_item_total cart_info_col">
 											<div class="cart_item_title">Total</div>
@@ -31,6 +37,7 @@
 										</div>
 									</div>
 								</li>
+							<?php } ?>
 							</ul>
 						</div>
 						
