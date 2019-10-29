@@ -93,7 +93,7 @@ body{
     border-color: #ff9900;
 }
 .form-control:focus {
-    color: #ff9900;
+    /*color: #ff9900;*/
     background-color: #fff;
     border-color: #fff;
     outline: 0;

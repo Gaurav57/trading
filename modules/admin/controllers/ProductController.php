@@ -2,7 +2,8 @@
 
 namespace app\modules\admin\controllers;
 
-use yii; 
+use yii;
+use yii\web\Session; 
 use app\modules\admin\models\AddProduct;
 use app\modules\admin\models\Importexcel;
 use yii\web\UploadedFile;
@@ -20,14 +21,38 @@ class ProductController extends \yii\web\Controller
 	public function actionProduct()
 	{
 		$model=new AddProduct();
-		
+	
 		$formdata=Yii::$app->request->post();
-      if($model->load($formdata))	
+		//echo "<pre>";
+		   //print_r($formdata);die;
+      if(isset($formdata) && $model->load($formdata))	
 	  {
-		  if($model->save())
+		  $session = Yii::$app->session;
+		  $lastID = $session['user_id'];
+		  $model->imageFile = UploadedFile::getInstances($model, 'imageFile');
+		  $path = [];
+		  foreach($model->imageFile as $images){
+			$path[] = $model->upload($images);	
+			ob_start();
+			$images = '';
+		  }
+		  
+		  $model->casestudies = UploadedFile::getInstances($model, 'casestudies');
+		  $pathstudies = $model->upload($model->casestudies);
+		  
+		  $model->specsheet = UploadedFile::getInstances($model, 'specsheet');
+		  $pathsheet= $model->upload($model->casesheet);
+		  
+		  $model->video = UploadedFile::getInstances($model, 'video');
+		  $pathvideo= $model->upload($model->video);
+		  
+	
+$message=$model->savedata($formdata,$path,$pathstudies,$pathsheet,$pathvideo,$lastID);
+		
+		  if($message == 'Success')
 		  {
-				Yii::$app->getSession->setFlash('message','product inserted'); 
-          return $this->redirect(['../admin/product']);			
+				Yii::$app->session->setFlash('message','product inserted'); 
+          return $this->redirect(['./product']);			
 		  }
 		  else
 		  {
@@ -44,8 +69,11 @@ class ProductController extends \yii\web\Controller
 	public function actionUpdate($id)
 	{
 		$post=AddProduct::findOne($id);
+		 //$post->scenario = 'update-photo-upload';
+		 
 		if($post->load(Yii::$app->request->post()) && $post->save())
 		{
+			
 			Yii::$app->session->setFlash('success','<div class="alert alert-dismissible alert-success">category updated</div>'); 
 			return $this->redirect(['./product']);
 		}
@@ -60,8 +88,8 @@ class ProductController extends \yii\web\Controller
 		$post=AddProduct::findOne($id)->delete();
 		if($post)
 		{
-			Yii::$app->session->setFlash('success','product deleted'); 
-			return $this->redirect(['admin/product']);
+			Yii::$app->session->setFlash('success','<div class="alert alert-dismissible alert-success">category deleted</div>'); 
+			return $this->redirect(['./product']);
 		}
 	}
 	public function actionUpload()

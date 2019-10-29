@@ -115,7 +115,10 @@ class SiteController extends Controller
         if($model->load(Yii::$app->request->post()) && $model->save()){ 
             Yii::$app->getSession()->setFlash('success', '<div class="alert alert-success alert-dismiss">You Have Been Registered Successfully,Please Login To Us.</div>');
 
-              
+              $session = Yii::$app->session;
+             $session->set('user_id');
+
+
             return $this->redirect(['registration']);   
         }
         else

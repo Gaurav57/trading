@@ -33,7 +33,7 @@ CREATE TABLE `add_product` (
   `name_product` varchar(50) NOT NULL,
   `price` varchar(10) NOT NULL,
   `code` varchar(255) NOT NULL,
-  `image` varchar(50) NOT NULL,
+  `imageFile` varchar(50) NOT NULL,
   `description` text NOT NULL,
   `cat_id` int(10) NOT NULL,
   `latest_featured` varchar(50) NOT NULL,
@@ -48,7 +48,7 @@ CREATE TABLE `add_product` (
 -- Dumping data for table `add_product`
 --
 
-INSERT INTO `add_product` (`product_id`, `name_product`, `price`, `code`, `image`, `description`, `cat_id`, `latest_featured`, `new_arrival`, `best_seller`, `new`, `offers`, `trends`) VALUES
+INSERT INTO `add_product` (`product_id`, `name_product`, `price`, `code`, `imageFile`, `description`, `cat_id`, `latest_featured`, `new_arrival`, `best_seller`, `new`, `offers`, `trends`) VALUES
 (1, 'Huawei MediaPad', '225', '', 'light1.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing', 0, 'feature', '', '', '', '', ''),
 (2, 'Apple iPod shuffle', '225', '', 'light2.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing', 0, 'feature', '', '', '', '', ''),
 (3, 'Apple iPod shuffle', '225', '', 'fan.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing', 0, 'feature', '', '', '', '', ''),

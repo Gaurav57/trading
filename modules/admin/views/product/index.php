@@ -22,10 +22,9 @@ $this->title = 'Product';
 		<table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">SR.NO</th>
+      <th scope="col">Product_id</th>
       <th scope="col">Product Name</th>
-      <th scope="col">Price</th>
-      <th scope="col">Image	</th>
+      
 	  <th scope="col">Action</th>
     </tr>
   </thead>
@@ -37,8 +36,7 @@ foreach ($model as $row) :
     <tr class="table-active">
       <th scope="row"><?=$row->product_id;?></th>
       <td><?=$row->name_product;?></td>
-      <td><?=$row->price;?></td>
-      <td><?=$row->image;?></td>
+     
 	  <td><span>
 	<?= Html::a('view', ['view','id'=>$row->product_id], ['class'=>'btn btn-primary']) ?> 
 	  <?= Html::a('update', ['update','id'=>$row->product_id], ['class'=>'btn btn-success']) ?> 

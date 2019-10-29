@@ -20,137 +20,245 @@ DashboardAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-  <nav class="navbar navbar-default navbar-static-top" >
-    <div class="container-fluid">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle navbar-toggle-sidebar collapsed">
-			MENU
-			</button>
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="<?php echo Yii::$app->homeUrl;?>">
-				Electric-Trade
-			</a>
-		</div>
 
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">      
-			<form class="navbar-form navbar-right" method="GET" role="search">
-				<div class="form-group">
-					<input type="text" name="q" class="form-control" placeholder="Search">
-				</div>
-				<button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
-			</form>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="<?php echo Yii::$app->homeUrl;?>" target="_blank">Visit Site</a></li>
-				<li class="dropdown ">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-						Account
-						<span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-							<li class="dropdown-header">SETTINGS</li>
-							<li class=""><a href="#">Other Link</a></li>
-							<li class=""><a href="#">Other Link</a></li>
-							<li class=""><a href="#">Other Link</a></li>
-							<li class="divider"></li>
-							 <?php if(!isset(Yii::$app->session["username"])){ ?>
-					<li class="ml-xl-3 login"><a href="<?=Yii::$app->homeUrl.'admin/login-form'?>"><span class="border-left pl-xl-4"></span>Log In</a></li>
-				<?php } else {?>
-					<li class="ml-xl-3 login"><a href="<?=Yii::$app->homeUrl.'index.php/dashboard/logout'?>"><span class="border-left pl-xl-4"></span>Logout</a></li>
-				<?php } ?>
-							<!--<li><a href="#">Logout</a></li>-->
-						</ul>
-					</li>
-				</ul>
-			</div><!-- /.navbar-collapse -->
-		</div>
-		<!-- /.container-fluid -->
-	</nav>  	
-	<div class="container-fluid main-container">
-  		<div class="col-md-2 sidebar">
-  			<div class="row">
-	<!-- uncomment code for absolute positioning tweek see top comment in css -->
-	<div class="absolute-wrapper"> </div>
-	<!-- Menu -->
-	<div class="side-menu">
-		<nav class="navbar navbar-default" role="navigation">
-			<!-- Main Menu -->
-			<div class="side-menu-container">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="<?php echo Yii::$app->homeUrl;?>admin/dashboard"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
-					<li><a href="<?php echo Yii::$app->homeUrl;?>admin/category"><span class="glyphicon glyphicon-plane"></span> Category</a></li>
-					<li><a href="<?php echo Yii::$app->homeUrl;?>admin/product"><span class="glyphicon glyphicon-cloud"></span>Product</a></li>
-					<li><a href="<?php echo Yii::$app->homeUrl;?>admin/reward"><span class="glyphicon glyphicon-signal"></span> Reward Point</a></li>
-					<li><a href="<?php echo Yii::$app->homeUrl;?>admin/follow"><span class="glyphicon glyphicon-signal"></span> Follow</a></li>
-					<!-- Dropdown-->
-					<li class="panel panel-default" id="dropdown">
-						<a data-toggle="collapse" href="#dropdown-lvl1">
-							<span class="glyphicon glyphicon-user"></span> Sub Level <span class="caret"></span>
-						</a>
-
-						<!-- Dropdown level 1 -->
-						<div id="dropdown-lvl1" class="panel-collapse collapse">
-							<div class="panel-body">
-								<ul class="nav navbar-nav">
-									<li><a href="#">Link</a></li>
-									<li><a href="#">Link</a></li>
-									<li><a href="#">Link</a></li>
-
-									<!-- Dropdown level 2 -->
-									<li class="panel panel-default" id="dropdown">
-										<a data-toggle="collapse" href="#dropdown-lvl2">
-											<span class="glyphicon glyphicon-off"></span> Sub Level <span class="caret"></span>
-										</a>
-										<div id="dropdown-lvl2" class="panel-collapse collapse">
-											<div class="panel-body">
-												<ul class="nav navbar-nav">
-													<li><a href="#">Link</a></li>
-													<li><a href="#">Link</a></li>
-													<li><a href="#">Link</a></li>
-												</ul>
-											</div>
-										</div>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</li>
-
-					
-						
-						<li><a href="#"><span class="glyphicon glyphicon-signal"></span> Link</a></li>
-						<li><a href="#"><span class="glyphicon glyphicon-signal"></span> Link</a></li>
-						<li><a href="#"><span class="glyphicon glyphicon-signal"></span> Link</a></li>
-						<li><a href="#"><span class="glyphicon glyphicon-signal"></span> Link</a></li>
-						<li><a href="#"><span class="glyphicon glyphicon-signal"></span> Link</a></li>
-						<li><a href="#"><span class="glyphicon glyphicon-signal"></span> Link</a></li>
-						
-
-
-				</ul>
-			</div><!-- /.navbar-collapse -->
-		</nav>
-
-
-
-	</div>
-</div> 
-
-
- 		
-</div>
-<div class="col-md-10 ">
-				
+ <nav class="t-header">
+      <div class="t-header-brand-wrapper">
+        <a href="index.html">
+          <img class="logo" src="<?php echo Yii::$app->homeUrl;?>images/fliege-registered-white.png" alt="">
+          <img class="logo-mini" src="../assets/images/logo_mini.svg" alt="">
+        </a>
+      </div>
+      <!--- <div class="t-header-content-wrapper"> 
+        <div class="t-header-content">
+          <button class="t-header-toggler t-header-mobile-toggler d-block d-lg-none">
+            <i class="mdi mdi-menu"></i>
+          </button>
+          <form action="#" class="t-header-search-box">
+            <div class="input-group">
+              <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Search" autocomplete="off">
+              <button class="btn btn-primary" type="submit"><i class="mdi mdi-arrow-right-thick"></i></button>
+            </div>
+          </form>
+          <ul class="nav ml-auto">
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="#" id="notificationDropdown" data-toggle="dropdown" aria-expanded="false">
+                <i class="mdi mdi-bell-outline mdi-1x"></i>
+              </a>
+              <div class="dropdown-menu navbar-dropdown dropdown-menu-right" aria-labelledby="notificationDropdown">
+                <div class="dropdown-header">
+                  <h6 class="dropdown-title">Notifications</h6>
+                  <p class="dropdown-title-text">You have 4 unread notification</p>
+                </div>
+                <div class="dropdown-body">
+                  <div class="dropdown-list">
+                    <div class="icon-wrapper rounded-circle bg-inverse-primary text-primary">
+                      <i class="mdi mdi-alert"></i>
+                    </div>
+                    <div class="content-wrapper">
+                      <small class="name">Storage Full</small>
+                      <small class="content-text">Server storage almost full</small>
+                    </div>
+                  </div>
+                  <div class="dropdown-list">
+                    <div class="icon-wrapper rounded-circle bg-inverse-success text-success">
+                      <i class="mdi mdi-cloud-upload"></i>
+                    </div>
+                    <div class="content-wrapper">
+                      <small class="name">Upload Completed</small>
+                      <small class="content-text">3 Files uploded successfully</small>
+                    </div>
+                  </div>
+                  <div class="dropdown-list">
+                    <div class="icon-wrapper rounded-circle bg-inverse-warning text-warning">
+                      <i class="mdi mdi-security"></i>
+                    </div>
+                    <div class="content-wrapper">
+                      <small class="name">Authentication Required</small>
+                      <small class="content-text">Please verify your password to continue using cloud services</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="dropdown-footer">
+                  <a href="#">View All</a>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="#" id="messageDropdown" data-toggle="dropdown" aria-expanded="false">
+                <i class="mdi mdi-message-outline mdi-1x"></i>
+                <span class="notification-indicator notification-indicator-primary notification-indicator-ripple"></span>
+              </a>
+              <div class="dropdown-menu navbar-dropdown dropdown-menu-right" aria-labelledby="messageDropdown">
+                <div class="dropdown-header">
+                  <h6 class="dropdown-title">Messages</h6>
+                  <p class="dropdown-title-text">You have 4 unread messages</p>
+                </div>
+                <div class="dropdown-body">
+                  <div class="dropdown-list">
+                    <div class="image-wrapper">
+                      <img class="profile-img" src="<?php echo Yii::$app->homeUrl;?>admin/images/profile/male/image_1.png" alt="profile image">
+                      <div class="status-indicator rounded-indicator bg-success"></div>
+                    </div>
+                    <div class="content-wrapper">
+                      <small class="name">Clifford Gordon</small>
+                      <small class="content-text">Lorem ipsum dolor sit amet.</small>
+                    </div>
+                  </div>
+                  <div class="dropdown-list">
+                    <div class="image-wrapper">
+                      <img class="profile-img" src="<?php echo Yii::$app->homeUrl;?>admin/images/profile/female/image_2.png" alt="profile image">
+                      <div class="status-indicator rounded-indicator bg-success"></div>
+                    </div>
+                    <div class="content-wrapper">
+                      <small class="name">Rachel Doyle</small>
+                      <small class="content-text">Lorem ipsum dolor sit amet.</small>
+                    </div>
+                  </div>
+                  <div class="dropdown-list">
+                    <div class="image-wrapper">
+                      <img class="profile-img" src="<?php echo Yii::$app->homeUrl;?>admin/images/profile/male/image_3.png" alt="profile image">
+                      <div class="status-indicator rounded-indicator bg-warning"></div>
+                    </div>
+                    <div class="content-wrapper">
+                      <small class="name">Lewis Guzman</small>
+                      <small class="content-text">Lorem ipsum dolor sit amet.</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="dropdown-footer">
+                  <a href="#">View All</a>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="#" id="appsDropdown" data-toggle="dropdown" aria-expanded="false">
+                <i class="mdi mdi-apps mdi-1x"></i>
+              </a>
+              <div class="dropdown-menu navbar-dropdown dropdown-menu-right" aria-labelledby="appsDropdown">
+                <div class="dropdown-header">
+                  <h6 class="dropdown-title">Apps</h6>
+                  <p class="dropdown-title-text mt-2">Authentication required for 3 apps</p>
+                </div>
+                <div class="dropdown-body border-top pt-0">
+                  <a class="dropdown-grid">
+                    <i class="grid-icon mdi mdi-jira mdi-2x"></i>
+                    <span class="grid-tittle">Jira</span>
+                  </a>
+                  <a class="dropdown-grid">
+                    <i class="grid-icon mdi mdi-trello mdi-2x"></i>
+                    <span class="grid-tittle">Trello</span>
+                  </a>
+                  <a class="dropdown-grid">
+                    <i class="grid-icon mdi mdi-artstation mdi-2x"></i>
+                    <span class="grid-tittle">Artstation</span>
+                  </a>
+                  <a class="dropdown-grid">
+                    <i class="grid-icon mdi mdi-bitbucket mdi-2x"></i>
+                    <span class="grid-tittle">Bitbucket</span>
+                  </a>
+                </div>
+                <div class="dropdown-footer">
+                  <a href="#">View All</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>----->
+    </nav>
+ <div class="page-body">   	
+   	  <div class="sidebar">
+      <!-- <div class="user-profile">
+          <div class="display-avatar animated-avatar">
+            <img class="profile-img img-lg rounded-circle" src="<?php echo Yii::$app->homeUrl;?>admin/images/profile/male/image_1.png" alt="profile image">
+          </div>
+          <div class="info-wrapper">
+            <p class="user-name">Allen Clerk</p>
+            <h6 class="display-income">$3,400,00</h6>
+          </div>
+        </div>-->
+         <ul class="navigation-menu">
+          <li class="nav-category-divider">MAIN</li>
+          <li>
+            <a href="<?php echo Yii::$app->homeUrl;?>admin/dashboard">
+              <span class="link-title">Dashboard</span>
+              <i class="mdi mdi-gauge link-icon"></i>
+            </a>
+          </li>
+		   <li>
+            <a href="<?php echo Yii::$app->homeUrl;?>admin/category">
+              <span class="link-title">Category</span>
+              <i class="mdi mdi-clipboard-outline link-icon"></i>
+            </a>
+          </li>
+		   <li>
+            <a href="<?php echo Yii::$app->homeUrl;?>admin/product">
+              <span class="link-title">Product</span>
+              <i class="mdi mdi-clipboard-outline link-icon"></i>
+            </a>
+          </li>
+		  <!----
+          <li>
+            <a href="#sample-pages" data-toggle="collapse" aria-expanded="false">
+              <span class="link-title">Sample Pages</span>
+              <i class="mdi mdi-flask link-icon"></i>
+            </a>
+            <ul class="collapse navigation-submenu" id="sample-pages">
+              <li>
+                <a href="pages/sample-pages/login_1.html" target="_blank">Login</a>
+              </li>
+              <li>
+                <a href="pages/sample-pages/error_2.html" target="_blank">Error</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#ui-elements" data-toggle="collapse" aria-expanded="false">
+              <span class="link-title">UI Elements</span>
+              <i class="mdi mdi-bullseye link-icon"></i>
+            </a>
+            <ul class="collapse navigation-submenu" id="ui-elements">
+              <li>
+                <a href="pages/ui-components/buttons.html">Buttons</a>
+              </li>
+              <li>
+                <a href="pages/ui-components/tables.html">Tables</a>
+              </li>
+              <li>
+                <a href="pages/ui-components/typography.html">Typography</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="pages/forms/form-elements.html">
+              <span class="link-title">Forms</span>
+              <i class="mdi mdi-clipboard-outline link-icon"></i>
+            </a>
+          </li>
+          <li>
+            <a href="pages/charts/chartjs.html">
+              <span class="link-title">Charts</span>
+              <i class="mdi mdi-chart-donut link-icon"></i>
+            </a>
+          </li>
+          <li>
+            <a href="pages/icons/material-icons.html">
+              <span class="link-title">Icons</span>
+              <i class="mdi mdi-flower-tulip-outline link-icon"></i>
+            </a>
+          </li>
+          <li class="nav-category-divider">DOCS</li>
+          <li>
+            <a href="../docs/docs.html">
+              <span class="link-title">Documentation</span>
+              <i class="mdi mdi-asterisk link-icon"></i>
+            </a>
+          </li>
+        </ul>---->
+        <div class="sidebar-upgrade-banner">
+        </div>
+      </div>
      <?= $content ?> 
-</div>
-        
-  	</div>
-   
   
  <?php $this->endBody() ?>
 </body>

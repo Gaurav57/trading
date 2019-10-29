@@ -5,10 +5,25 @@
   box-sizing: border-box;
 }
 
+.help-block{
+	color : red;
+}
+
+.mycheckbox{
+	display: inline-block;
+	float: left;
+	margin-left: 10px;
+}
+
+#register-cat_id{
+	display: grid;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   font-size: 16px;
   color: #2c2c2c;
+  background: #ff9900;
 }
 body a {
   color: inherit;
@@ -24,6 +39,7 @@ body a {
   margin-bottom: 30px;
   font-size: 2.1rem;
   color: #ff9900;
+  font-size: 30px;
 }
 
 .content {
@@ -113,16 +129,13 @@ body a {
 .form-control {
     display: block;
     width: 100%;
-    height: calc(2.25rem + 2px);
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    color: #ff9900;
     background-color: #fff;
     background-clip: padding-box;
-    border: 1px solid #000;
-    border-radius: .25rem;
+    border-radius: 0rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+	border-top: none;
+	border-left: none;
+	border-right: none;
 }
 .form-control:focus {
 	box-shadow: none;
@@ -243,3 +256,11 @@ body a {
 /*select:hover{
 	background-color:#ff9900;
 }*/
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+	color: #FFF;
+}
+
+.navbar-default .navbar-nav > li > a {
+	color: #FFF;
+}

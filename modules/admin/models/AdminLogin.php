@@ -9,7 +9,7 @@ class AdminLogin extends ActiveRecord
 {
     public static function tableName()
     {
-        return 'admin_login';
+        return 'user_credential';
     } 
 
     public function rules()
@@ -20,7 +20,7 @@ class AdminLogin extends ActiveRecord
         ];
     }
 
-     public function validatePassword($attribute, $params)
+     public function validatePassword($attribute, $params, $password)
     {
         if (!$this->hasErrors()) {
             $user = $this->getUser();
@@ -29,6 +29,7 @@ class AdminLogin extends ActiveRecord
                 $this->addError($attribute, 'Incorrect username or password.');
             }
         }
+        return $this->password === md5($password);
     }
     
     public function attributeLabels()
@@ -42,18 +43,6 @@ class AdminLogin extends ActiveRecord
 
 
 
-public function pass($data){
- 
-        $sqldata = (new \yii\db\Query())->select(['email'])->from('admin_login')->
-        where (["email" => $this->email])->all();
-         if(count($sqldata) > 0){
-         $formdata = array('password' => ($data ['admin_login']['password']));
-          
-            $data = Yii::$app->db->createCommand("UPDATE admin_login SET password=:password, WHERE email=:email");
-
-            return $data;
-         }
-    }
    
 
 
