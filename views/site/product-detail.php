@@ -40,13 +40,14 @@ use yii\helpers\ArrayHelper;
 	<!-- Product Quantity -->
 	<div class="product_quantity clearfix">
 		<span>Quantity: </span>
-		
-		<?= $form->field($model, 'quantity')->textInput(['value' => '1','id' => 'quantity_input']) ?>
+		  
 		<?php if (isset($_SESSION["__id"])) { ?>
+		<?= $form->field($model, 'quantity')->textInput(['value' => '1','id' => 'quantity_input']) ?>
+		
 		<?= $form->field($model, 'user_id')->hiddenInput(['value' =>  $_SESSION["__id"] ,'id' => 'quantity_input']) ?>
 		<?= $form->field($model, 'product_id')->hiddenInput(['value' => $detail->product_id,'id' => 'quantity_input']) ?>
 	<?php  }  ?>
-		<!-- <input id="quantity_input" type="text" pattern="[0-9]*" value="1"> -->
+		<!--  -->
 		<div class="quantity_buttons">
 			<div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fas fa-chevron-up"></i></div>
 			<div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fas fa-chevron-down"></i></div>
@@ -72,6 +73,7 @@ use yii\helpers\ArrayHelper;
 
 			<div class="product_price"><?php echo $detail->price ;?></div>
 			<?= Yii::$app->session->getFlash('success');?>
+			
 			<div class="button_container">
 				<?= Html::submitButton('Add to Cart', ['class' => 'button cart_button']) ?>
 				

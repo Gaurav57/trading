@@ -30,7 +30,7 @@ class Cart extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            
+            ['product_id','unique','message' => 'This Item Already Added To Cart'],
             [['product_id', 'user_id', 'quantity'], 'integer'],
             [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => AddProduct::className(), 'targetAttribute' => ['product_id' => 'product_id']],
         ];
