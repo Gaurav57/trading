@@ -35,8 +35,15 @@ use yii\helpers\Url;
             <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'class' => 'multisteps-form__form']); ?><!--<form class="multisteps-form__form">-->
               <div class="multisteps-form__panel shadow p-4 rounded bg-white js-active" data-animation="scaleIn">
                 <div class="multisteps-form__content">
-				<h4 class="header__title">REGISTRATION</h4>
-				<div class="form-row mt-4">
+				<div class="row">
+                <div class="col-mt-2" style="margin-left:20px;">
+                 <h1 class="h3 mb-3 font-weight-normal" style="text-align: center; color: #ff9900;">registration</h1>
+            </div>
+                   <div class="col-mt-4">
+                <a href=<?php echo yii::$app->homeUrl;?> class="btn btn-primary" style="color:white; margin-left:470px">Go Back</a>
+                </div>
+            </div>
+          <div class="form-row mt-4">
                     <div class="col-12 col-sm-6">
 					<?php $registerAs = ['Raw Material' => 'Raw Material', 'Manufacturer' => 'Manufacturer', 'Distributer' => 'Distributer', 'Dealer' => 'Dealer', 'Retailer'=> 'Retailer' ] ?>
 					<?= $form->field($model, 'registerAs')->dropDownList($registerAs, ['prompt' => 'Select']); ?>

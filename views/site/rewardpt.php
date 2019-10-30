@@ -9,6 +9,7 @@
 
 
 	<div class="container-fluid">
+        
         <center><h2><b style="color: #ff9900;font-family: initial;">My Reward Points</b></h2></center>
         <hr>
         <div class="jumbotron">

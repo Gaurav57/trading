@@ -25,26 +25,6 @@
 .bg-inverse-white {
   background: rgba(255, 255, 255, 0.2); }
 
-.img-ss {
-    width: 15px;
-    height: 15px;
-}
-.mr-2, .mx-2 {
-    margin-right: 0.5rem !important;
-}
-.mb-1, .my-1 {
-    margin-bottom: 0.25rem !important;
-}
-.mt-1, .my-1 {
-    margin-top: 0.25rem !important;
-}
-img {
-    vertical-align: middle;
-    border-style: none;
-}
-*, *::before, *::after {
-    box-sizing: border-box;
-}
 
 /* Header */
 .t-header {
@@ -73,8 +53,9 @@ img {
       font-weight: 500;
       font-size: 1.25rem; }
       .t-header .t-header-brand-wrapper a .logo {
-       /*max-width: 100%;*/
-        width: 150px; }
+        /*max-width: 100%;*/
+        width: 150px; 
+		background-color: black;}
       .t-header .t-header-brand-wrapper a .logo-mini {
         display: none;
         max-width: 100%;
@@ -266,7 +247,7 @@ img {
           margin-right: 15px;
           line-height: 1;
           color: #525c5d;
-          font-size: 1	.1875rem;
+          font-size: 1.1875rem;
           transition-duration: 0.3s;
           transition-property: "margin-right"; }
       .sidebar .navigation-menu li:last-child a {

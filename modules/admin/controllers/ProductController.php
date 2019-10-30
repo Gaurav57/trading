@@ -10,7 +10,17 @@ use yii\web\UploadedFile;
 
 class ProductController extends \yii\web\Controller
 {
-    public function actionIndex()
+/* 	public function beforeAction($action)
+{
+    if (parent::beforeAction($action)) {
+return $this->redirect(['./login-form']);	
+        return true;
+    } else {
+        return false;
+    }
+}
+ */  
+ public function actionIndex()
     {
 		$model=AddProduct::find()->all();
 		//print_r($model);die;
@@ -23,13 +33,13 @@ class ProductController extends \yii\web\Controller
 		$model=new AddProduct();
 	
 		$formdata=Yii::$app->request->post();
-		//echo "<pre>";
-		  // print_r($formdata);die;
+		
       if(isset($formdata) && $model->load($formdata))	
 	  {
 		  $session = Yii::$app->session;
 		  $lastID = $session['user_id'];
-		  $model->imageFile = UploadedFile::getInstances($model, 'imageFile');
+		/*   $model->imageFile = UploadedFile::getInstances($model, 'imageFile');
+		 
 		  $path = [];
 		  foreach($model->imageFile as $images){
 			$path[] = $model->upload($images);	
@@ -45,9 +55,9 @@ class ProductController extends \yii\web\Controller
 		  
 		  $model->video = UploadedFile::getInstances($model, 'video');
 		  $pathvideo= $model->upload($model->video);
-		  
+		 */  
 	
-$message=$model->savedata($formdata,$path,$pathstudies,$pathsheet,$pathvideo,$lastID);
+$message=$model->savedata($formdata,$lastID);
 		
 		  if($message == 'Success')
 		  {
@@ -68,18 +78,19 @@ $message=$model->savedata($formdata,$path,$pathstudies,$pathsheet,$pathvideo,$la
 	}
 	public function actionUpdate($id)
 	{
-		$post=AddProduct::findOne($id);
-		 //$post->scenario = 'update-photo-upload';
-		 
-		if($post->load(Yii::$app->request->post()) && $post->save())
+		$model=AddProduct::findOne($id);
+			$formdata = Yii::$app->request->post();
+		
+		if($model->load($formdata) && $model->save(false))
 		{
-			
+		//echo '<pre>';
+		//print_r($post);die;
 			Yii::$app->session->setFlash('success','<div class="alert alert-dismissible alert-success">category updated</div>'); 
 			return $this->redirect(['./product']);
 		}
 		else
 		{
-			return $this->render('update',['post'=>$post]);
+			return $this->render('update',['model'=>$model]);
 		}
 		
 	}

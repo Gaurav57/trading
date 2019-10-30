@@ -4,7 +4,7 @@
             <div class="row">
               <div class="col-12 py-5">
                 <h4>Dashboard</h4>
-                <p class="text-gray">Welcome aboard, Allen Clerk</p>
+                <p class="text-gray">Welcome aboard, Gaurav Dig-Gip</p>
               </div>
             </div>
             <div class="row">
@@ -70,7 +70,7 @@
                     <div class="wrapper">
                       <div class="d-flex justify-content-between">
                         <div class="split-header">
-                          <img class="img-ss mt-1 mb-1 mr-2" src="../assets/images/social-icons/instagram.svg" alt="instagram">
+                          
                           <p class="card-title">Followers Growth</p>
                         </div>
                         <div class="wrapper">
@@ -238,7 +238,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-8 equel-grid">
+              <!----<div class="col-md-8 equel-grid">
                 <div class="grid">
                   <div class="grid-body py-3">
                     <p class="card-title ml-n1">Order History</p>
@@ -269,7 +269,7 @@
                         </tr>
                         <tr>
                           <td class="pr-0 pl-4">
-                            <img class="profile-img img-sm" src="../assets/images/profile/male/image_3.png" alt="profile image">
+                            <img class="profile-img img-sm" src="<?php echo Yii::$app->homeUrl;?>admin/images/profile/male/image_3.png" alt="profile image">
                           </td>
                           <td class="pl-md-0">
                             <small class="text-black font-weight-medium d-block">Charlie Hawkins</small>
@@ -283,7 +283,7 @@
                         </tr>
                         <tr>
                           <td class="pr-0 pl-4">
-                            <img class="profile-img img-sm" src="../assets/images/profile/female/image_2.png" alt="profile image">
+                            <img class="profile-img img-sm" src="<?php echo Yii::$app->homeUrl;?>admin/images/profile/male/image_2.png" alt="profile image">
                           </td>
                           <td class="pl-md-0">
                             <small class="text-black font-weight-medium d-block">Nina Bates</small>
@@ -297,7 +297,7 @@
                         </tr>
                         <tr>
                           <td class="pr-0 pl-4">
-                            <img class="profile-img img-sm" src="../assets/images/profile/male/image_10.png" alt="profile image">
+                            <img class="profile-img img-sm" src="<?php echo Yii::$app->homeUrl;?>admin/images/profile/male/image_10.png" alt="profile image">
                           </td>
                           <td class="pl-md-0">
                             <small class="text-black font-weight-medium d-block">Hester Richards</small>
@@ -342,10 +342,10 @@
                         <div class="activity-log">
                           <p class="log-name">Ronald Edwards</p>
                           <div class="log-details">Report has been updated <div class="grouped-images mt-2">
-                              <img class="img-sm" src="../assets/images/profile/male/image_4.png" alt="Profile Image" data-toggle="tooltip" title="Gerald Pierce">
-                              <img class="img-sm" src="../assets/images/profile/male/image_5.png" alt="Profile Image" data-toggle="tooltip" title="Edward Wilson">
-                              <img class="img-sm" src="../assets/images/profile/female/image_6.png" alt="Profile Image" data-toggle="tooltip" title="Billy Williams">
-                              <img class="img-sm" src="../assets/images/profile/male/image_6.png" alt="Profile Image" data-toggle="tooltip" title="Lelia Hampton">
+                              <img class="img-sm" src="<?php echo Yii::$app->homeUrl;?>admin/images/profile/male/image_4.png" alt="Profile Image" data-toggle="tooltip" title="Gerald Pierce">
+                              <img class="img-sm" src="<?php echo Yii::$app->homeUrl;?>admin/images/profile/male/image_5.png" alt="Profile Image" data-toggle="tooltip" title="Edward Wilson">
+                              <img class="img-sm" src="<?php echo Yii::$app->homeUrl;?>admin/images/profile/female/image_6.png" alt="Profile Image" data-toggle="tooltip" title="Billy Williams">
+                              <img class="img-sm" src="<?php echo Yii::$app->homeUrl;?>admin/images/profile/male/image_6.png" alt="Profile Image" data-toggle="tooltip" title="Lelia Hampton">
                               <span class="plus-text img-sm">+3</span>
                             </div>
                           </div>
@@ -377,7 +377,7 @@
                     <small class="font-weight-medium"><i class="mdi mdi-chevron-down mr-2"></i> View All </small>
                   </a>
                 </div>
-              </div>
+              </div>----->
             </div>
           </div>
         </div>
@@ -385,15 +385,15 @@
         <!-- partial:partials/_footer.html -->
         <footer class="footer">
           <div class="row">
-            <div class="col-sm-6 text-center text-sm-right order-sm-1">
+           <!--<div class="col-sm-6 text-center text-sm-right order-sm-1">
               <ul class="text-gray">
                 <li><a href="#">Terms of use</a></li>
                 <li><a href="#">Privacy Policy</a></li>
               </ul>
-            </div>
+            </div>-->
             <div class="col-sm-6 text-center text-sm-left mt-3 mt-sm-0">
-              <small class="text-muted d-block">Copyright © 2019 <a href="http://www.uxcandy.co" target="_blank">UXCANDY</a>. All rights reserved</small>
-              <small class="text-gray mt-2">Handcrafted With <i class="mdi mdi-heart text-danger"></i></small>
+              <small class="text-muted d-block">Dig-Gip pvt ltd. All rights reserved</small>
+           
             </div>
           </div>
         </footer>

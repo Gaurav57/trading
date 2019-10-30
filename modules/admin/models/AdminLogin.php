@@ -9,18 +9,18 @@ class AdminLogin extends ActiveRecord
 {
     public static function tableName()
     {
-        return 'user_credential';
+        return 'register';
     } 
 
     public function rules()
     {
         return [
             [['email', 'password'], 'required'],
-            ['password' ,'validatePassword'],
+           /*['password' ,'validatePassword'],*/
         ];
     }
 
-     public function validatePassword($attribute, $params, $password)
+    public function validatePassword($attribute, $params, $password)
     {
         if (!$this->hasErrors()) {
             $user = $this->getUser();

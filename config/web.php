@@ -21,8 +21,9 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],*/
         'user' => [
-            'identityClass' => 'app\models\User',
-            'enableAutoLogin' => true,
+            'identityClass' => 'app\models\TradingReg',
+            'enableAutoLogin' => false,
+            'enableSession' => true,
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -54,6 +55,10 @@ $config = [
         
     ],
 	'modules' => [
+        'treemanager' =>  [
+        'class' => '\kartik\tree\Module',
+        // other module settings, refer detailed documentation
+    ],
         'admin' => [
             'class' => 'app\modules\admin\Module',
         ],

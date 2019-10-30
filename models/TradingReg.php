@@ -14,7 +14,7 @@ use Yii;
  * @property string $password
  * @property string $category
  */
-class TradingReg extends \yii\db\ActiveRecord
+class TradingReg extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface 
 {
     /**
      * {@inheritdoc}
@@ -30,24 +30,60 @@ class TradingReg extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'contact', 'email', 'password', 'category'], 'required'],
+            [['name', 'contact', 'email', 'password'], 'required'],
             [['contact'], 'integer'],
-            [['name', 'email', 'password', 'category'], 'string', 'max' => 255],
+            [['name', 'email', 'password'], 'string', 'max' => 255],
         ];
     }
 
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
+    //  public function attributeLabels()
+    //  {
+    //     return [
+    //         'id' => 'ID',
+    //         'name' => 'Name',
+    //         'contact' => 'Contact',
+    //         'email' => 'Email',
+    //         'password' => 'Password',
+    //         'category' => 'Category',
+    //     ];
+    // }
+    public function getAuthKey()
     {
-        return [
-            'id' => 'ID',
-            'name' => 'Name',
-            'contact' => 'Contact',
-            'email' => 'Email',
-            'password' => 'Password',
-            'category' => 'Category',
-        ];
+        throw new \yii\base\NotSupportedException();
+    }
+     public function getId()
+    {
+        return $this->id;
+    }
+    public function validateAuthKey($authKey)
+    {
+        throw new \yii\base\NotSupportedException();
+    }
+    public static function findIdentity($id)
+    {
+        return self::findOne($id);
+    }
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        throw new \yii\base\NotSupportedException();
+        
+    }
+
+
+
+
+
+
+
+    public static function findByEmail($email)
+    {
+        return self::findOne(['email' => $email]);
+    }
+    public function validatePassword($password)
+    {
+        return $this->password === $password;
     }
 }
