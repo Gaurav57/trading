@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 24, 2019 at 05:13 PM
+-- Generation Time: Oct 29, 2019 at 01:25 PM
 -- Server version: 10.3.16-MariaDB
--- PHP Version: 7.3.7
+-- PHP Version: 7.2.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -31,9 +31,9 @@ SET time_zone = "+00:00";
 CREATE TABLE `brand` (
   `id` int(255) NOT NULL,
   `user_id` int(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
+  `brandName` varchar(255) NOT NULL,
   `logo` varchar(255) NOT NULL,
-  `catlog` varchar(255) NOT NULL
+  `catalouge` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --

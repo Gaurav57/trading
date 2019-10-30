@@ -24,14 +24,11 @@ class RegisterController extends Controller
         $model = new Register();
 		
 		$formdata = Yii::$app->request->post();
-	
+		//echo"<pre>";
+			//	print_r($formdata);die;
+
 		if(isset($formdata) && $model->load($formdata) && $model->validate()){
-				echo"<pre>";
-//				print_r($formdata);die;
-			//$message = $model->savedata($formdata);
-			$lastID = Yii::$app->db->getLastInsertID();
-			$session = Yii::$app->session;
-			$session['user_id'] = $lastID;
+							//$message = $model->savedata($formdata);
 			//get the instance of the uploaded file
 			$path = '';
 			if($formdata['Register']['logo'] != '') {
@@ -44,10 +41,9 @@ class RegisterController extends Controller
 				$model->catalouge = UploadedFile::getInstances($model, 'catalouge');
 				$path1 = $model->upload1();
 			}
-			$message = $model->savedata($formdata, $path, $path1, $lastID);
-			echo"<pre>";
-			print_r($message); die;
-			//
+			$message = $model->savedata($formdata, $path, $path1);
+			//echo"<pre>";
+			//print_r($message); die;
 			if(isset($message) && $message != ''){
 				//Yii::$app->session->setFlash('message', 'Successful');
 				
@@ -57,7 +53,10 @@ class RegisterController extends Controller
 				Yii::$app->session->setFlash('message', $message);
 				return $this->redirect(['index']);
 			}
-		}
+		} /*else {
+			$errors = $model->errors;
+			print_r($errors); die;
+		}*/
 		$this->layout = false;
         return $this->render('index', ['model' => $model]);
     }

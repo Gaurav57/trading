@@ -109,8 +109,8 @@ use yii\helpers\Url;
 						<?= $form->field($model, 'city')->textInput(['class'=>'form-control', 'placeholder' => 'City']); ?>
                     </div>
                     <div class="col-12 col-sm-6">
-					<?php $state = ['Delhi' => 'Delhi', 'Maharashtra' => 'Maharashtra'] ?>
-					<?= $form->field($model, 'state')->dropDownList($state, ['prompt' => 'Select']); ?>
+					<?php $stateName = ['Delhi' => 'Delhi', 'Maharashtra' => 'Maharashtra'] ?>
+					<?= $form->field($model, 'stateName')->dropDownList($stateName, ['prompt' => 'Select']); ?>
                     </div>
 				  </div>
 				  <div class="form-row mt-4">
@@ -132,7 +132,7 @@ use yii\helpers\Url;
 						<?php echo $form->field($model, 'cat_id')->checkboxList(
 								[	'Security & Surveillance' => 'Security & Surveillance',
 									'Networking' => 'Networking', 'Accessories' => 'Accessories',
-									'DRONES(DJI)' => 'DRONES(DJI)', 'Fire & Safety' => 'Fire & Safety',
+									'DRONES' => 'DRONES', 'Fire & Safety' => 'Fire & Safety',
 									'Solar' => 'Solar']);?>
                     </div>
 				  </div>	
