@@ -18,6 +18,7 @@ use app\models\TradingLogin;
 use app\models\ParentChild;
 use app\models\Cart;
 use app\models\Events;
+use yii\db\Query;
 
 class SiteController extends Controller
 {
@@ -115,8 +116,7 @@ class SiteController extends Controller
         if($model->load(Yii::$app->request->post()) && $model->save()){ 
             Yii::$app->getSession()->setFlash('success', '<div class="alert alert-success alert-dismiss">You Have Been Registered Successfully,Please Login To Us.</div>');
 
-              $session = Yii::$app->session;
-             $session->set('user_id');
+              
 
 
             return $this->redirect(['registration']);   
@@ -164,12 +164,22 @@ class SiteController extends Controller
     }
 
      public function actionCart()
-    {
-        $model = cart::find()
-        ->joinWith('AddProduct')
-        ->all();
 
-        return $this->render('cart',['model'=>$model]);
+    {
+        
+        $query = new \yii\db\Query();
+        $query->select('*')
+              ->from('`cart`')
+              ->Join('INNER JOIN','`add_product`','`cart`.`product_id` = `add_product`.`product_id`')
+              ->where(['user_id'=> $_SESSION["__id"]]);
+              
+              $command = $query->createCommand();
+              $resp = $command->queryAll();
+              //print_r($resp);die;
+             // print_r($resp['0']['cart_id']);die;
+             // $result = $resp['0'];
+
+        return $this->render('cart',['resp'=>$resp]);
     }
     
     public function actionProduct()
@@ -185,18 +195,32 @@ class SiteController extends Controller
         [ 'product6' => $products6, 'pages' => $pages, ]);
     }
    
-    public function actionProductdetail()
+    public function actionProductdetail($pid)
     {
-        $show = $_GET['pid'];
-        $detail = AddProduct::find()->where(['product_id'=>$show])->one();
-         $model = new Cart();   
+        
+        $detail = AddProduct::find()->where(['product_id'=>$pid])->one();
+           
    
         // new record   
-        if($model->load(Yii::$app->request->post()) && $model->save()){ 
+         if (isset($_SESSION["__id"])) {
+            
+         $model = new Cart();
+            if($model->load(Yii::$app->request->post()) && $model->save()){ 
             Yii::$app->getSession()->setFlash('success', '<div class="alert alert-success alert-dismiss">Item Added Successfully</div>');
-            return $this->render('product-detail',['detail'=>$detail,'model' => $model]);   
+            return $this->render('product-detail',['detail'=>$detail,'model' => $model]);
+               
         }
-        return $this->render('product-detail',['detail'=>$detail,'model' => $model]);
+            
+             
+         }else{
+            Yii::$app->getSession()->setFlash('success', '<div class="alert alert-danger alert-dismiss">Login first</div>');
+            return $this->render('product-detail',['detail'=>$detail]);
+        
+    }
+    return $this->render('product-detail',['detail'=>$detail,'model' => $model]);
+    
+
+        
         
 
 
@@ -205,14 +229,14 @@ class SiteController extends Controller
        
     }
 
-    public function actionSearch()
+    public function actionSearch($search)
     {
-        $wildcart = $_GET['search'];
+        
         $query = AddProduct::find();
         $count = $query->count();
         $pages = new pagination (['totalCount' => $count, 'defaultPageSize' => 15]);
         $data = $query->offset($pages->offset)->limit($pages->limit)->all();
-        $data = AddProduct::find()->Where(['like', 'name_product', $wildcart])->all();
+        $data = AddProduct::find()->Where(['like', 'name_product', $search])->all();
         //print_r($data['0']->product_id);
         //echo "alert($data)";
         return $this->render('viewsearch',['data'=>$data, 'pages' => $pages]);
@@ -242,6 +266,10 @@ class SiteController extends Controller
     {
         $events = events::find()->all();
         return $this->render('events', ['events' => $events]);
+    }
+    public function actionCheckout()
+    {
+        return $this->render('checkout');
     }
     
 }
