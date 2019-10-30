@@ -24,15 +24,23 @@ class RegisterController extends Controller
         $model = new Register();
 		
 		$formdata = Yii::$app->request->post();
-	
+		//echo"<pre>";
+			//	print_r($formdata);die;
+
 		if(isset($formdata) && $model->load($formdata) && $model->validate()){
-				echo"<pre>";
-//				print_r($formdata);die;
-			//$message = $model->savedata($formdata);
+<<<<<<< HEAD
+							//$message = $model->savedata($formdata);
+			//get the instance of the uploaded file
+=======
+			
+			$message = $model->savedata($formdata);
+			echo "<pre>";
+	print_r($message);die;
 			$lastID = Yii::$app->db->getLastInsertID();
 			$session = Yii::$app->session;
 			$session['user_id'] = $lastID;
-			//get the instance of the uploaded file
+			
+>>>>>>> ebfc9cc09d4523be5600b0017f32a9840c5a5cbd
 			$path = '';
 			if($formdata['Register']['logo'] != '') {
 				$model->logo = UploadedFile::getInstances($model, 'logo');
@@ -44,12 +52,18 @@ class RegisterController extends Controller
 				$model->catalouge = UploadedFile::getInstances($model, 'catalouge');
 				$path1 = $model->upload1();
 			}
+<<<<<<< HEAD
+			$message = $model->savedata($formdata, $path, $path1);
+			//echo"<pre>";
+			//print_r($message); die;
+=======
 			$message = $model->savedata($formdata, $path, $path1, $lastID);
-			echo"<pre>";
-			print_r($message); die;
-			//
+			//echo"<pre>";
+			//print_r($message); die;
+			
+>>>>>>> ebfc9cc09d4523be5600b0017f32a9840c5a5cbd
 			if(isset($message) && $message != ''){
-				//Yii::$app->session->setFlash('message', 'Successful');
+				Yii::$app->session->setFlash('message', 'Successful');
 				
 				return $this->redirect(['../admin/dashboard']);
 			}
@@ -57,7 +71,10 @@ class RegisterController extends Controller
 				Yii::$app->session->setFlash('message', $message);
 				return $this->redirect(['index']);
 			}
-		}
+		} /*else {
+			$errors = $model->errors;
+			print_r($errors); die;
+		}*/
 		$this->layout = false;
         return $this->render('index', ['model' => $model]);
     }

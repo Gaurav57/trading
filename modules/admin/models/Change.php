@@ -19,10 +19,10 @@ class Change extends Model
     }
     public function savedata($data,$email){
  
-        $sqldata = (new \yii\db\Query())->select(['email'])->from('user_credential')->
+        $sqldata = (new \yii\db\Query())->select(['email'])->from('register')->
         where (["email" => $email])->all();
          if(count($sqldata) > 0){
-         $formdata = array('password' => ($data ['user_credential']['password']));
+         $formdata = array('password' => ($data ['register']['password']));
 
             return "Success";
          }
