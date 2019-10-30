@@ -126,7 +126,8 @@ body a {
           transform: translateX(-50%) scale(1.2);
   background-color: currentColor;
 }
-/* .form-control {
+
+.form-control {
     display: block;
     width: 100%;
     background-color: #fff;
@@ -142,7 +143,7 @@ body a {
 	box-shadow: none;
 	border-color: #ff9900; 
 }
-*/
+
 .pick-animation__select:hover{
 	background-color: #fff;
 	color: #ff9900;

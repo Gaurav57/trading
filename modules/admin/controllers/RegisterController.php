@@ -10,8 +10,6 @@ use yii\web\Session;
 use yii\web\Application;
 use yii\web\UploadedFile;
 use app\modules\admin\models\Register;
-use app\modules\admin\models\UserPersonal;
-use app\modules\admin\models\UserBusiness;
 
 /**
  * RegisterController implements the CRUD actions for UserCredential model.
@@ -25,22 +23,17 @@ class RegisterController extends Controller
 		
 		$formdata = Yii::$app->request->post();
 		//echo"<pre>";
-			//	print_r($formdata);die;
+		//print_r($formdata);die;
 
 		if(isset($formdata) && $model->load($formdata) && $model->validate()){
-<<<<<<< HEAD
-							//$message = $model->savedata($formdata);
+			//$message = $model->savedata($formdata);
 			//get the instance of the uploaded file
-=======
-			
-			$message = $model->savedata($formdata);
-			echo "<pre>";
-	print_r($message);die;
-			$lastID = Yii::$app->db->getLastInsertID();
-			$session = Yii::$app->session;
-			$session['user_id'] = $lastID;
-			
->>>>>>> ebfc9cc09d4523be5600b0017f32a9840c5a5cbd
+			//$message = $model->savedata($formdata);
+			//echo "<pre>";
+			//print_r($message); die;
+			//$lastID = Yii::$app->db->getLastInsertID();
+			//$session = Yii::$app->session;
+			//$session['user_id'] = $lastID;
 			$path = '';
 			if($formdata['Register']['logo'] != '') {
 				$model->logo = UploadedFile::getInstances($model, 'logo');
@@ -52,16 +45,12 @@ class RegisterController extends Controller
 				$model->catalouge = UploadedFile::getInstances($model, 'catalouge');
 				$path1 = $model->upload1();
 			}
-<<<<<<< HEAD
 			$message = $model->savedata($formdata, $path, $path1);
 			//echo"<pre>";
 			//print_r($message); die;
-=======
-			$message = $model->savedata($formdata, $path, $path1, $lastID);
+			//$message = $model->savedata($formdata, $path, $path1, $lastID);
 			//echo"<pre>";
 			//print_r($message); die;
-			
->>>>>>> ebfc9cc09d4523be5600b0017f32a9840c5a5cbd
 			if(isset($message) && $message != ''){
 				Yii::$app->session->setFlash('message', 'Successful');
 				
