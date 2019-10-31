@@ -41,7 +41,7 @@ use yii\helpers\Url;
             
                  <?= $form->field($model, 'password')->passwordInput(['placeholder'=> 'Password']); ?>
             </div>
-            <br><hr style="background-color: #FF9900;">
+            <br>
 
             <div class="input-group">
             

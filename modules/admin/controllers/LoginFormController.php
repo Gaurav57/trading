@@ -25,27 +25,38 @@ use app\modules\admin\models\Change;
         $model = new AdminLogin();
         $postdata = Yii::$app->request->post();
     if($model->load($postdata) && $model->validate()){
+  //echo "<pre>";
     //print_r($model); die;
   
         $email = $postdata['AdminLogin']['email'];
         $password = $postdata['AdminLogin']['password'];
+        //$register = $postdata['AdminLogin']['registerAs'];
+
+       // echo  $register;
 
         $query = new \yii\db\Query();
+       // echo "<pre>";
+        //  print_r($query); die;
+        
         $data = $query->select('email,password')
         ->from('register')
         ->andwhere(['email' => $email])
-        ->andwhere(['password' =>md5 ($password)])
+        ->andwhere(['password' => $password])
         ->one();
-		//echo "<pre>";
-          //print_r($data); die;
-                //echo $query->createCommand()->getRawSql();die;
+		       // echo $query->createCommand()->getRawSql();die;
         if(!empty($data)){
             Yii::$app->session["admin"] = $data['email'];
             Yii::$app->session["isGuest"] = 'No';
+  
+            $sql = $query->select('registerAs')
+            ->from('register')
+            ->where(['email' => $data['email']])
+            ->one();
 
-
-			return $this->redirect(['../admin/dashboard']);
-          
+            if($sql['registerAs'] == "Manufacturer")
+			    return $this->redirect(['../admin/dashboard']);
+            else 
+               return $this->redirect(['../index']);
             //$this->redirect(['../admin/dashboard']);
      }
      else{

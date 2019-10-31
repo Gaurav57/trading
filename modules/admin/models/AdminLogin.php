@@ -38,14 +38,8 @@ class AdminLogin extends ActiveRecord
             'user_id' => 'User ID',
             'email' => 'Email',
             'password' => 'Password',
+            
         ];
     }
-
-
-
-   
-
-
-
 
 }

@@ -28,7 +28,7 @@ use yii\helpers\Url;
               <!--<input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">-->
                <?= $form->field($model, 'email')->input('email', ['placeholder'=> 'Email']); ?>
             </div>
-            <hr>
+          
             <div class="input-group">
              <!-- <button class="btn btn-md btn-rounded btn-block form-control submit" type="submit"><i class="fas fa-sign-in-alt"></i> Sign in</button>-->
 
