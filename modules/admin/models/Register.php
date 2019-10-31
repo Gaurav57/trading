@@ -6,52 +6,48 @@ use Yii;
 
 class Register extends \yii\db\ActiveRecord
 {
-	public $agree;
+	public $type;
+	public $category_name;
+	public $password_repeat;
 	public $logo;
 	public $catalouge;
 	public $brandName;
-	public $state;
 	public $country;
 	public $checkBox;
-	public $countryName;
 	public $stateName;
 	public $country_id;
 	public $cat_id;
+	public $vendor;
+	public $returnPolicy;
+	public $servicePolicy;
+	public $webPolicy;
+	public $installerPolicy;
+	public $loyaltyPoint;
 	
     public function rules()
     {
         return [
-            [['registerAs', 'orgName', 'contact', 'email', 'password', 'confirmPassword', 'fName', 'lName', 'iecode', 'iPartner', 'address', 'city', 'stateName', 'country', 'zip', 'cat_id', 'agree'], 'required'],
+            [['type', 'orgName', 'contact', 'email', 'password', 'fName', 'lName',
+				'iecode', 'iPartner', 'address', 'city', 'stateName', 'country', 'zip',
+				'cat_id', 'vendor', 'returnPolicy', 'servicePolicy', 'webPolicy', 'installerPolicy', 'loyaltyPoint'],'required'
+			],
 			['email', 'email'],
 			[['logo'], 'file', 'skipOnEmpty' => true, 'extensions' => 'jpg, jpeg, png', 'maxFiles' => 10],
 			[['catalouge'], 'file', 'skipOnEmpty' => true, 'extensions' => 'jpg, jpeg, png', 'maxFiles' => 10],
-			//['password' ,'validatePassword'],
-			array('agree', 'required', 'requiredValue' => 1,),
+			['password_repeat', 'compare', 'compareAttribute'=>'password', 'skipOnEmpty' => false, 'message'=>"Both password should be same!"],
         ];
     }
-/*
-	public function validatePassword($attribute, $params)
-    {
-        if (!$this->hasErrors()) {
-            $user = $this->getUser();
-
-            if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Incorrect Username or Password.');
-            }
-        }
-    }
-*/	
 
     public function attributeLabels()
     {
         return [
             'user_id' => 'User ID',
-			'registerAs' => 'Register As',
+			'type' => 'Register As',
 			'orgName' => 'Organisation',
             'contact' => 'Contact',
             'email' => 'Email',
             'password' => 'Password',
-            'confirmPassword' => 'Confirm Password',
+            'password_repeat' => 'Confirm Password',
 			'fName' => 'First Name',
 			'lName' => 'Last Name',
 			'iecode' => 'Import/Export Code',
@@ -61,12 +57,17 @@ class Register extends \yii\db\ActiveRecord
 			'catalouge' => 'Catalouge',
 			'address' => 'Address',
 			'city' => 'City',
-			'state' => 'State',
+			'stateName' => 'State',
 			'country' => 'Country',
 			'zip' => 'Zip',
 			'cat_id' => 'Category',
-			'agree' => 'I accept Terms and Conditions.',
 			'iPartner' => 'Installation Partner',
+			'vendor' => 'Accept Vendor Policy',
+			'returnPolicy' => 'Accept Return Policy',
+			'servicePolicy' => 'Accept Service Policy',
+			'webPolicy' => 'Accept Web Site Service Policy',
+			'installerPolicy' => 'Accept Installer Policy',
+			'loyaltyPoint' => 'Accept Loyalty Point Redemption',
             'create_date' => 'Create Date',
             'update_date' => 'Update Date',
         ];
@@ -103,38 +104,62 @@ class Register extends \yii\db\ActiveRecord
 					return "You are already registered.";
 				} else {
 					$formdata = array(
-					'registerAs' => $data['Register']['registerAs'],
+					'registerAs' => $data['Register']['type'],
 					'orgName' => $data['Register']['orgName'],
-					//'category' => $data['Register']['category'],
 					'contact' => $data['Register']['contact'],
 					'email' => $data['Register']['email'],
 					'password' => md5($data['Register']['password']),
-					'confirmPassword' => md5($data['Register']['confirmPassword']),
 					'fName' => $data['Register']['fName'],
 					'lName' => $data['Register']['lName'],
-					'iecode' => $data['Register']['iecode'],
 					'gst' => $data['Register']['gst'],
+					'iecode' => $data['Register']['iecode'],
 					'brandName' => $data['Register']['brandName'],
 					'latchOn' => $data['Register']['latchOn'],
 					'address' => $data['Register']['address'],
 					'city' => $data['Register']['city'],
 					'stateName' => $data['Register']['stateName'],
-					'countryName' => $data['Register']['countryName'],
+					'country' => $data['Register']['country'],
 					'zip' => $data['Register']['zip'],
 					'create_date' => date('Y-m-d'),
 					'update_date' => date('Y-m-d'),
 						);
-	
+			
 					$returndata = Yii::$app->db->createCommand()->insert('register', $formdata)->execute();
+					echo Yii::$app->db->createCommand()->getRawSql(); die;
 					foreach($data['Register']['cat_id'] as $category){
 						$fdata = array(
 							'user_id' => $returndata['id'],
 							'cat_id' => $category,
 						);
-						$returndata = Yii::$app->db->createCommand()->insert('user_category', $fdata)->execute();
-							echo"<pre>";
-							print_r($returndata); die;
+						$returndata = Yii::$app->db->createCommand()->insert('product_category', $fdata)->execute();
+					//print_r($returndata);die;
 					}
+					
+					$rdata = array(
+							'user_id' => $returndata['id'],
+							'type' => $data['Register']['registerAs'],
+						);
+					$returndata = Yii::$app->db->createCommand()->insert('register_type', $rdata)->execute();
+					/*	
+					$bdata = array(
+							'user_id' => $returndata['id'],
+							'brandName' => $data['Register']['brandName'],
+							'logo' => $path,
+							'catalouge' => $path1,
+						);
+					$returndata = Yii::$app->db->createCommand()->insert('brand', $bdata)->execute();
+					
+					$sdata = array(
+							'user_id' => $returndata['id'],
+							'stateName' => $data['Register']['stateName'],
+						);
+					$returndata = Yii::$app->db->createCommand()->insert('state', $sdata)->execute();
+					
+					$sdata = array(
+							'user_id' => $returndata['id'],
+							'country' => $data['Register']['country'],
+						);
+					$returndata = Yii::$app->db->createCommand()->insert('country', $cdata)->execute();*/
 					return $returndata;
 				}
 		}

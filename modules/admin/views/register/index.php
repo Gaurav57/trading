@@ -2,8 +2,11 @@
 
 use yii\widgets\ActiveForm;
 use yii\widgets\ActiveField;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use app\modules\admin\models\ProductCategory;
 use yii\helpers\Url;
+
 
 ?>
 <head>
@@ -45,8 +48,11 @@ use yii\helpers\Url;
             </div>
           <div class="form-row mt-4">
                     <div class="col-12 col-sm-6">
-					<?php $registerAs = ['Raw Material' => 'Raw Material', 'Manufacturer' => 'Manufacturer', 'Distributer' => 'Distributer', 'Dealer' => 'Dealer', 'Retailer'=> 'Retailer' ] ?>
-					<?= $form->field($model, 'registerAs')->dropDownList($registerAs, ['prompt' => 'Select']); ?>
+					<?php
+					$register = app\modules\admin\models\RegisterType::find()->all();
+					$listData = ArrayHelper::map($register, 'user_id', 'type');
+					?>
+					<?= $form->field($model, 'type')->dropDownList($listData, ['prompt' => 'Select']); ?>
 				    </div>
 					<div class="col-12 col-sm-6">
                       <?= $form->field($model, 'orgName')->textInput(['placeholder' => 'Organisation Name']); ?><!--<input class="multisteps-form__input form-control" type="text" placeholder="Username"/>-->
@@ -65,7 +71,7 @@ use yii\helpers\Url;
 						<?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Password']); ?>
                     </div>
                     <div class="col-12 col-sm-6">
-						<?= $form->field($model, 'confirmPassword')->passwordInput(['placeholder' => 'Confirm Password']); ?>
+						<?= $form->field($model, 'password_repeat')->passwordInput(['placeholder' => 'Confirm Password']); ?>
                     </div>
                   </div>
                   <div class="form-row mt-4">
@@ -116,8 +122,8 @@ use yii\helpers\Url;
 						<?= $form->field($model, 'city')->textInput(['class'=>'form-control', 'placeholder' => 'City']); ?>
                     </div>
                     <div class="col-12 col-sm-6">
-					<?php $state = ['Delhi' => 'Delhi', 'Maharashtra' => 'Maharashtra'] ?>
-					<?= $form->field($model, 'state')->dropDownList($state, ['prompt' => 'Select']); ?>
+					<?php $stateName = ['Delhi' => 'Delhi', 'Maharashtra' => 'Maharashtra'] ?>
+					<?= $form->field($model, 'stateName')->dropDownList($stateName, ['prompt' => 'Select']); ?>
                     </div>
 				  </div>
 				  <div class="form-row mt-4">
@@ -136,16 +142,28 @@ use yii\helpers\Url;
 				  </div>
 				  <div class="form-row mt-4">
                     <div class="col-12 col-sm-12">
-						<?php echo $form->field($model, 'cat_id')->checkboxList(
-								[	'Security & Surveillance' => 'Security & Surveillance',
-									'Networking' => 'Networking', 'Accessories' => 'Accessories',
-									'DRONES(DJI)' => 'DRONES(DJI)', 'Fire & Safety' => 'Fire & Safety',
-									'Solar' => 'Solar']);?>
+					<?php echo $form->field($model, 'cat_id')->checkboxList(ProductCategory::getCategoryList()); ?>
                     </div>
 				  </div>	
                   <div class="form-row mt-4">
+					<p>I accept all Terms and Conditions</p>
                     <div class="col-12 col-sm-12">
-						<?= Html::activeCheckbox($model, 'agree', ['class' => 'agreement']) ?>
+						<?= Html::activeCheckbox($model, 'vendor', ['class' => 'agreement']) ?>
+                    </div>
+					<div class="col-12 col-sm-12">
+						<?= Html::activeCheckbox($model, 'returnPolicy', ['class' => 'agreement']) ?>
+                    </div>
+					<div class="col-12 col-sm-12">
+						<?= Html::activeCheckbox($model, 'servicePolicy', ['class' => 'agreement']) ?>
+                    </div>
+					<div class="col-12 col-sm-12">
+						<?= Html::activeCheckbox($model, 'webPolicy', ['class' => 'agreement']) ?>
+                    </div>
+					<div class="col-12 col-sm-12">
+						<?= Html::activeCheckbox($model, 'installerPolicy', ['class' => 'agreement']) ?>
+                    </div>
+					<div class="col-12 col-sm-12">
+						<?= Html::activeCheckbox($model, 'loyaltyPoint', ['class' => 'agreement']) ?>
                     </div>
 				  </div>
 				

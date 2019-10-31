@@ -159,7 +159,12 @@ AppAsset::register($this);
 							</span></div>
 								</div>
 								<div class="cart_content">
-									<div class="cart_text"><a href="<?php echo Yii::$app->homeUrl?>site/cart">Cart</a></div>
+									<div class="cart_text">
+										<?php if(isset($_SESSION["__id"])) { ?>
+										<a href="<?php echo Yii::$app->homeUrl?>site/cart">Cart</a>
+										<?php }else { ?>
+											<a href="<?php echo Yii::$app->homeUrl?>site/login">Cart</a>
+											<?php } ?></div>
 									<div class="cart_price"></div>
 
 								</div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 29, 2019 at 01:25 PM
+-- Generation Time: Oct 30, 2019 at 04:04 PM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.2.19
 
@@ -25,35 +25,44 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `state`
+-- Table structure for table `register_type`
 --
 
-CREATE TABLE `state` (
-  `id` int(255) NOT NULL,
+CREATE TABLE `register_type` (
   `user_id` int(100) NOT NULL,
-  `stateName` varchar(255) NOT NULL,
-  `country_id` varchar(255) NOT NULL
+  `type` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `register_type`
+--
+
+INSERT INTO `register_type` (`user_id`, `type`) VALUES
+(1, 'Raw Material'),
+(2, 'Manufacture'),
+(3, 'Distributer'),
+(4, 'Dealer'),
+(5, 'Retailer');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `state`
+-- Indexes for table `register_type`
 --
-ALTER TABLE `state`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `register_type`
+  ADD PRIMARY KEY (`user_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `state`
+-- AUTO_INCREMENT for table `register_type`
 --
-ALTER TABLE `state`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `register_type`
+  MODIFY `user_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
