@@ -37,6 +37,7 @@ class AddProduct extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+	 public $brandName;
     public static function tableName()
     {
         return 'product';

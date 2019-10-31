@@ -33,12 +33,12 @@ if(count($model)) :
 foreach ($model as $row) :
 ?> 
     <tr class="table-active">
-      <th scope="row"><?=$row->category_id;?></th>
+      <th scope="row"><?=$row->cat_id;?></th>
       <td><?=$row->category_name;?></td>
 	  <td><span>
-	 <?= Html::a('view', ['view','id'=>$row->category_id], ['class'=>'btn btn-primary']) ?> 
-	  <?= Html::a('update', ['update','id'=>$row->category_id], ['class'=>'btn btn-success']) ?> 
-	   <?= Html::a('delete', ['delete','id'=>$row->category_id], ['class'=>'btn btn-danger']) ?> 
+
+	  <?= Html::a('update', ['update','id'=>$row->cat_id], ['class'=>'btn btn-success']) ?> 
+	   <?= Html::a('delete', ['delete','id'=>$row->cat_id], ['class'=>'btn btn-danger']) ?> 
 	 </span></td>
     </tr>
 	<?php

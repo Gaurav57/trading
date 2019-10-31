@@ -17,7 +17,7 @@ class AddCategory extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'add_category';
+        return 'category';
     }
 
     /**

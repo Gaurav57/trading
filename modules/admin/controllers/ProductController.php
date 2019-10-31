@@ -6,6 +6,7 @@ use yii;
 use yii\web\Session; 
 use app\modules\admin\models\AddProduct;
 use app\modules\admin\models\Importexcel;
+use app\modules\admin\models\brand;
 use yii\web\UploadedFile;
 
 class ProductController extends \yii\web\Controller
@@ -61,7 +62,7 @@ $message=$model->savedata($formdata,$lastID);
 		
 		  if($message == 'Success')
 		  {
-				Yii::$app->session->setFlash('message','product inserted'); 
+				Yii::$app->session->setFlash('message','<div class="alert alert-dismissible alert-success">category inserted</div>'); 
           return $this->redirect(['./product']);			
 		  }
 		  else

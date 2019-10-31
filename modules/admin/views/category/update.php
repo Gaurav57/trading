@@ -5,8 +5,8 @@ use yii\widgets\ActiveForm;
 
 
 ?>
-<div class="admin-dash-add_category">
-<h1>Update Category</h1>
+<div class="admin-dash-add_category col-md-11" style="margin-left: 15px;background-color:aliceblue;margin-top: -64px;">
+<h1 class="text-center">Update Category</h1>
     <?php $form = ActiveForm::begin(); ?>
 
 
