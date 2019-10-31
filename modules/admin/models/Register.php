@@ -52,7 +52,7 @@ class Register extends \yii\db\ActiveRecord
 			'lName' => 'Last Name',
 			'iecode' => 'Import/Export Code',
 			'gst' => 'GST/VAT',
-			'brandName' => 'Brands/Logo',
+			'brandName' => 'Brands',
 			'latchOn' => 'Latch On',
 			'catalouge' => 'Catalouge',
 			'address' => 'Address',

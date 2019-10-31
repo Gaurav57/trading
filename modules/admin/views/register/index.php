@@ -122,14 +122,20 @@ use yii\helpers\Url;
 						<?= $form->field($model, 'city')->textInput(['class'=>'form-control', 'placeholder' => 'City']); ?>
                     </div>
                     <div class="col-12 col-sm-6">
-					<?php $stateName = ['Delhi' => 'Delhi', 'Maharashtra' => 'Maharashtra'] ?>
-					<?= $form->field($model, 'stateName')->dropDownList($stateName, ['prompt' => 'Select']); ?>
+					<?php
+						$state = app\modules\admin\models\State::find()->all();
+						$listData = ArrayHelper::map($state, 'id', 'stateName');
+					?>
+					<?= $form->field($model, 'stateName')->dropDownList($listData, ['prompt' => 'Select']); ?>
                     </div>
 				  </div>
 				  <div class="form-row mt-4">
 					<div class="col-12 col-sm-6">
-					<?php $country = ['China' => 'China', 'India' => 'India'] ?>
-					<?= $form->field($model, 'country')->dropDownList($country, ['prompt' => 'Select']); ?>
+					<?php
+						$country = app\modules\admin\models\Country::find()->all();
+						$listData = ArrayHelper::map($country, 'id', 'country');
+					?>
+					<?= $form->field($model, 'country')->dropDownList($listData, ['prompt' => 'Select']); ?>
                     </div>
 					<div class="col-12 col-sm-6">
 						<?= $form->field($model, 'zip')->textInput(['class'=>'form-control', 'placeholder' => 'Zip Code']); ?>
@@ -146,7 +152,6 @@ use yii\helpers\Url;
                     </div>
 				  </div>	
                   <div class="form-row mt-4">
-					<p>I accept all Terms and Conditions</p>
                     <div class="col-12 col-sm-12">
 						<?= Html::activeCheckbox($model, 'vendor', ['class' => 'agreement']) ?>
                     </div>

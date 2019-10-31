@@ -5,27 +5,14 @@ use yii\helpers\ArrayHelper;
 
 use Yii;
 
-/**
- * This is the model class for table "product_category".
- *
- * @property int $cat_id
- * @property string $category_name
- */
 class ProductCategory extends \yii\db\ActiveRecord
 {
-    /**
-     * {@inheritdoc}
-     */
-    public static function tableName()
-    {
+	
+    public static function tableName(){
         return 'product_category';
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function rules()
-    {
+    public function rules(){
         return [
             [['cat_id', 'category_name'], 'required'],
             [['cat_id'], 'integer'],
@@ -36,11 +23,7 @@ class ProductCategory extends \yii\db\ActiveRecord
 				];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function attributeLabels()
-    {
+    public function attributeLabels(){
         return [
             'cat_id' => 'Cat ID',
             'category_name' => 'Category',
