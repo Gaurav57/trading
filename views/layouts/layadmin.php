@@ -28,6 +28,7 @@ DashboardAsset::register($this);
           <img class="logo-mini" src="../assets/images/logo_mini.svg" alt="">
         </a>
       </div>
+	  
       <!--- <div class="t-header-content-wrapper"> 
         <div class="t-header-content">
           <button class="t-header-toggler t-header-mobile-toggler d-block d-lg-none">
@@ -197,6 +198,12 @@ DashboardAsset::register($this);
               <i class="mdi mdi-clipboard-outline link-icon"></i>
             </a>
           </li>
+		   <li>
+            <a href="<?php echo Yii::$app->homeUrl;?>admin/brand">
+              <span class="link-title">Brand</span>
+              <i class="mdi mdi-clipboard-outline link-icon"></i>
+            </a>
+          </li>
 		  <!----
           <li>
             <a href="#sample-pages" data-toggle="collapse" aria-expanded="false">
@@ -258,8 +265,9 @@ DashboardAsset::register($this);
         <div class="sidebar-upgrade-banner">
         </div>
       </div>
+	  
      <?= $content ?> 
-  
+  </div>
  <?php $this->endBody() ?>
 </body>
 

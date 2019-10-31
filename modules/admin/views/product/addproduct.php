@@ -1,18 +1,25 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
+use app\modules\admin\models\brand;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\admin\models\AddProduct */
 /* @var $form ActiveForm */
 ?>
-<div class="admin-dash-add_product col-md-11" style="margin-left: 15px;background-color:aliceblue;">
-<h1>Add Product</h1>
+<div class="admin-dash-add_product col-md-11" style="margin-left: 15px;background-color:aliceblue;margin-top: -64px;">
+<h1 class="text-center">Add Product</h1>
     <?php $form = ActiveForm::begin(); ?>
 
-      <?php $brand =['shell'=>'shell','motoxp'=>'motoxp','honda'=>'honda','yamaha'=>'Yamaha']?>
-	   <?= $form->field($model, 'brand')->dropDownList($brand,['prompt'=>'select']); ?>
+		
+	   
+	 <?php 
+     $brand =  app\modules\admin\models\Brand::find()->all();
+	$listData=ArrayHelper::map($brand,'id','brandName');
+     ?>
+		  <?= $form->field($model, 'brandName')->dropDownList($listData,['prompt'=>'Choose...']) ?>
         <?= $form->field($model, 'name_product') ?>
 		<div class="row">
 		

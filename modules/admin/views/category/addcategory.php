@@ -7,8 +7,8 @@ use yii\widgets\ActiveForm;
 /* @var $model app\modules\admin\models\AddProduct */
 /* @var $form ActiveForm */
 ?>
-<div class="admin-dash-add_category">
-<h1>Add Category</h1>
+<div class="admin-dash-add_category col-md-11" style="margin-left: 15px;background-color:aliceblue;margin-top: -64px;">
+<h1 class="text-center">Add Category</h1>
     <?php $form = ActiveForm::begin(); ?>
 
 
@@ -16,7 +16,7 @@ use yii\widgets\ActiveForm;
        
     
         <div class="form-group">
-            <?= Html::submitButton('Submit', ['/category/insertcategory'], ['class' => 'btn btn-primary']) ?>
+            <?= Html::submitButton('Submit',['class' => 'btn btn-primary']) ?>
         </div>
     <?php ActiveForm::end(); ?>
 

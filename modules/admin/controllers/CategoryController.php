@@ -58,7 +58,7 @@ class CategoryController extends \yii\web\Controller
 		if($post)
 		{
 			Yii::$app->session->setFlash('success','category deleted'); 
-			return $this->redirect(['admin/category']);
+			return $this->redirect(['./category']);
 		}
 	}
 
