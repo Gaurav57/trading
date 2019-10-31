@@ -127,6 +127,10 @@ body a {
   background-color: currentColor;
 }
 
+input[type="file"] {
+    border-bottom: none;
+}
+
 .form-control {
     display: block;
     width: 100%;

@@ -28,7 +28,7 @@ class AddProduct extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'add_product';
+        return 'product';
     }
 
     /**

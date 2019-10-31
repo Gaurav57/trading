@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 29, 2019 at 01:25 PM
+-- Generation Time: Oct 31, 2019 at 09:03 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.2.19
 
@@ -30,10 +30,16 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `state` (
   `id` int(255) NOT NULL,
-  `user_id` int(100) NOT NULL,
-  `stateName` varchar(255) NOT NULL,
-  `country_id` varchar(255) NOT NULL
+  `stateName` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `state`
+--
+
+INSERT INTO `state` (`id`, `stateName`) VALUES
+(1, 'Maharashtra'),
+(2, 'Delhi');
 
 --
 -- Indexes for dumped tables
@@ -53,7 +59,7 @@ ALTER TABLE `state`
 -- AUTO_INCREMENT for table `state`
 --
 ALTER TABLE `state`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

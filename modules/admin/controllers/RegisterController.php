@@ -52,7 +52,7 @@ class RegisterController extends Controller
 			//echo"<pre>";
 			//print_r($message); die;
 			if(isset($message) && $message != ''){
-				Yii::$app->session->setFlash('message', 'Successful');
+				//Yii::$app->session->setFlash('message', 'Successful');
 				
 				return $this->redirect(['../admin/dashboard']);
 			}

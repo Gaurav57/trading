@@ -7,6 +7,7 @@ use Yii;
 class Register extends \yii\db\ActiveRecord
 {
 	public $type;
+	public $fdata;
 	public $category_name;
 	public $password_repeat;
 	public $logo;
@@ -41,7 +42,6 @@ class Register extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'user_id' => 'User ID',
 			'type' => 'Register As',
 			'orgName' => 'Organisation',
             'contact' => 'Contact',
@@ -113,8 +113,9 @@ class Register extends \yii\db\ActiveRecord
 					'lName' => $data['Register']['lName'],
 					'gst' => $data['Register']['gst'],
 					'iecode' => $data['Register']['iecode'],
-					'brandName' => $data['Register']['brandName'],
+					'brandName' => '',
 					'latchOn' => $data['Register']['latchOn'],
+					'iPartner' => $data['Register']['iPartner'],
 					'address' => $data['Register']['address'],
 					'city' => $data['Register']['city'],
 					'stateName' => $data['Register']['stateName'],
@@ -125,30 +126,32 @@ class Register extends \yii\db\ActiveRecord
 						);
 			
 					$returndata = Yii::$app->db->createCommand()->insert('register', $formdata)->execute();
-					echo Yii::$app->db->createCommand()->getRawSql(); die;
+					//echo Yii::$app->db->createCommand()->getRawSql(); die;
+					$lastID = Yii::$app->db->getLastInsertID();
+					//print_r($lastID);die;
 					foreach($data['Register']['cat_id'] as $category){
 						$fdata = array(
-							'user_id' => $returndata['id'],
 							'cat_id' => $category,
-						);
-						$returndata = Yii::$app->db->createCommand()->insert('product_category', $fdata)->execute();
-					//print_r($returndata);die;
+							'user_id' => $lastID,
+							);
+							//print_r($fdata);die;
+						$returndata1 = Yii::$app->db->createCommand()->insert('user_category', $fdata)->execute();
 					}
 					
-					$rdata = array(
+					/*$rdata = array(
 							'user_id' => $returndata['id'],
 							'type' => $data['Register']['registerAs'],
 						);
-					$returndata = Yii::$app->db->createCommand()->insert('register_type', $rdata)->execute();
-					/*	
+					$returndata2 = Yii::$app->db->createCommand()->insert('register_type', $rdata)->execute();*/
+					
 					$bdata = array(
 							'user_id' => $returndata['id'],
 							'brandName' => $data['Register']['brandName'],
 							'logo' => $path,
 							'catalouge' => $path1,
 						);
-					$returndata = Yii::$app->db->createCommand()->insert('brand', $bdata)->execute();
-					
+					$returndata2 = Yii::$app->db->createCommand()->insert('brand', $bdata)->execute();
+					/*
 					$sdata = array(
 							'user_id' => $returndata['id'],
 							'stateName' => $data['Register']['stateName'],
