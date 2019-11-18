@@ -11,7 +11,9 @@ use Yii;
  * @property int $user_id
  * @property string $brandName
  * @property string $logo
- * @property string $catlog
+ * @property string $catalogue
+ *
+ * @property Register $user
  */
 class Brand extends \yii\db\ActiveRecord
 {
@@ -29,10 +31,10 @@ class Brand extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'user_id', 'brandName', 'logo', 'catlog'], 'required'],
-            [['id', 'user_id'], 'integer'],
-            [['brandName', 'logo', 'catlog'], 'string', 'max' => 255],
-            [['id'], 'unique'],
+            [['user_id', 'brandName', 'logo', 'catalogue'], 'required'],
+            [['user_id'], 'integer'],
+            [['brandName', 'logo', 'catalogue'], 'string', 'max' => 200],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => Register::className(), 'targetAttribute' => ['user_id' => 'user_id']],
         ];
     }
 
@@ -46,7 +48,34 @@ class Brand extends \yii\db\ActiveRecord
             'user_id' => 'User ID',
             'brandName' => 'Brand Name',
             'logo' => 'Logo',
-            'catlog' => 'Catlog',
+            'catalogue' => 'Catalogue',
         ];
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser(){
+        return $this->hasOne(Register::className(), ['user_id' => 'user_id']);
+    }
+	
+	public function upload(){
+		
+		
+            $this->logo->saveAs('brands/' . $this->logo->baseName . '.' . $this->logo->extension);
+            return $this->logo->baseName . '.' . $this->logo->extension;
+       
+	}
+	
+	public function savedata($data, $path)
+	{
+			
+		$formdata = array(
+			'brandName' => $data['Brand']['brandName'],
+			'logo' => $path,
+		);
+		
+		$data = Yii::$app->db->createCommand()->insert('brand', $formdata)->execute();
+		return "Success";
+	}
 }

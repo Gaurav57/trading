@@ -25,7 +25,7 @@ DashboardAsset::register($this);
       <div class="t-header-brand-wrapper">
         <a href="<?php echo Yii::$app->homeUrl;?>admin/dashboard">
           <img class="logo" src="<?php echo Yii::$app->homeUrl;?>images/fliege-registered-white.png" alt="">
-          <img class="logo-mini" src="../assets/images/logo_mini.svg" alt="">
+         
         </a>
       </div>
 	  
@@ -169,7 +169,8 @@ DashboardAsset::register($this);
     </nav>
  <div class="page-body">   	
    	  <div class="sidebar">
-      <!-- <div class="user-profile">
+      
+	  <div class="user-profile">
           <div class="display-avatar animated-avatar">
             <img class="profile-img img-lg rounded-circle" src="<?php echo Yii::$app->homeUrl;?>admin/images/profile/male/image_1.png" alt="profile image">
           </div>
@@ -177,9 +178,15 @@ DashboardAsset::register($this);
             <p class="user-name">Allen Clerk</p>
             <h6 class="display-income">$3,400,00</h6>
           </div>
-        </div>-->
+        </div>
          <ul class="navigation-menu">
-          <li class="nav-category-divider">MAIN</li>
+         
+		   <li>
+            <a href="<?php echo Yii::$app->homeUrl;?>admin/profile">
+              <span class="link-title">My Profile</span>
+              <i class="mdi mdi-clipboard-outline link-icon"></i>
+            </a>
+          </li>
           <li>
             <a href="<?php echo Yii::$app->homeUrl;?>admin/dashboard">
               <span class="link-title">Dashboard</span>
@@ -204,6 +211,7 @@ DashboardAsset::register($this);
               <i class="mdi mdi-clipboard-outline link-icon"></i>
             </a>
           </li>
+		  
 		  <!----
           <li>
             <a href="#sample-pages" data-toggle="collapse" aria-expanded="false">

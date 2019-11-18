@@ -1,3 +1,10 @@
+<?php if(Yii::$app->session->hasFlash('success')):?>
+	<div class="alert alert-dismissible alert-success">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+     <?php echo Yii::$app->session->getFlash('success');?>
+    </div>
+	
+	<?php endif; ?>
  <div class="page-content-wrapper">
         <div class="page-content-wrapper-inner">
           <div class="content-viewport">

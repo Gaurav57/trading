@@ -5,20 +5,22 @@ namespace app\modules\admin\models;
 use Yii;
 
 /**
- * This is the model class for table "admin_login".
+ * This is the model class for table "acc_register".
  *
  * @property int $id
+ * @property string $email
  * @property string $mobile
+ * @property string $username
  * @property string $password
  */
-class AdminLogin extends \yii\db\ActiveRecord
+class AccRegister extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'admin_login';
+        return 'acc_register';
     }
 
     /**
@@ -27,8 +29,9 @@ class AdminLogin extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['mobile', 'password'], 'required'],
-            [['mobile', 'password'], 'string', 'max' => 255],
+            [['email', 'mobile', 'username', 'password'], 'required'],
+            [['email', 'username', 'password'], 'string', 'max' => 255],
+            [['mobile'], 'string', 'max' => 15],
         ];
     }
 
@@ -39,7 +42,9 @@ class AdminLogin extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'email' => 'Email',
             'mobile' => 'Mobile',
+            'username' => 'Username',
             'password' => 'Password',
         ];
     }
