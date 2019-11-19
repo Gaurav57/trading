@@ -120,7 +120,7 @@ class AddProduct extends \yii\db\ActiveRecord
             return  $pathvideo->baseName . '.' .  $pathvideo->extension;
        }
 
- */	public function savedata($data,$lastID)
+ */	public function savedata($data,$lastID,$path,$pathstudies,$pathsheet,$pathvideo)
 	{
 			
 					$formdata = array(
@@ -141,17 +141,19 @@ class AddProduct extends \yii\db\ActiveRecord
 					'price_user' => $data['AddProduct']['price_user'],
 					'sp_price' => $data['AddProduct']['sp_price'],
 					'moq_dealer' => $data['AddProduct']['moq_dealer'],
-					/* 'imageFile' => $path,
+					 'imageFile' => $path,
 					'casestudies' =>$pathstudies,
 					'specsheet' =>$pathsheet,
-					'video' =>$pathvideo,*/
+					'video' =>$pathvideo,
 					 'warranty' => $data['AddProduct']['warranty'],
 					'ref_client' => $data['AddProduct']['ref_client'],
 					'description' => $data['AddProduct']['description'],
 				
 					);
-				
+	
 				$data = Yii::$app->db->createCommand()->insert('product', $formdata)->execute();
+				
 				return "Success";
 				}
+	 
 }

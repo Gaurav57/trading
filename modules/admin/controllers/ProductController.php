@@ -39,26 +39,39 @@ return $this->redirect(['./login-form']);
 	  {
 		  $session = Yii::$app->session;
 		  $lastID = $session['user_id'];
-		/*   $model->imageFile = UploadedFile::getInstances($model, 'imageFile');
-		 
-		  $path = [];
-		  foreach($model->imageFile as $images){
-			$path[] = $model->upload($images);	
-			ob_start();
-			$images = '';
-		  }
 		  
+		  $model->imageFile = UploadedFile::getInstances($model, 'imageFile');
+		  $path = $model['imageFile'];
+		 
 		  $model->casestudies = UploadedFile::getInstances($model, 'casestudies');
-		  $pathstudies = $model->upload($model->casestudies);
+		  $pathstudies = $model['casestudies'];
 		  
 		  $model->specsheet = UploadedFile::getInstances($model, 'specsheet');
-		  $pathsheet= $model->upload($model->casesheet);
+		  $pathsheet= $model['specsheet'];
 		  
-		  $model->video = UploadedFile::getInstances($model, 'video');
-		  $pathvideo= $model->upload($model->video);
-		 */  
+		   $model->video = UploadedFile::getInstances($model, 'video');
+		  $pathvideo= $model['video'];
+		  //echo '<pre>';
+		 // print_r($path);die;
+		  if ($model->imageFile && $model->casestudies && $model->specsheet && $model->video && $model->validate()) {
+			   
+			    foreach ($model->imageFile as $file) {
+                    $file->saveAs('uploads/' . $file->baseName . '.' . $file->extension);
+                }
+				alert('ohk');
+				 foreach ($model->casestudies as $file) {
+                    $file->saveAs('uploads/' . $file->baseName . '.' . $file->extension);
+                }
+				 foreach ($model->specsheet as $file) {
+                    $file->saveAs('uploads/' . $file->baseName . '.' . $file->extension);
+                }
+				 foreach ($model->video as $file) {
+                    $file->saveAs('uploads/' . $file->baseName . '.' . $file->extension);
+                }
+			   
+		   }
 	
-$message=$model->savedata($formdata,$lastID);
+$message=$model->savedata($formdata,$lastID,$path,$pathstudies,$pathsheet,$pathvideo);
 		
 		  if($message == 'Success')
 		  {
@@ -67,7 +80,7 @@ $message=$model->savedata($formdata,$lastID);
 		  }
 		  else
 		  {
-			  Yii::getSession()->setFlash('message','product insertion failed'); 
+			  Yii::session()->setFlash('message','product insertion failed'); 
 		  }
 	  }
 		return $this->render('addproduct',['model'=>$model]);

@@ -14,6 +14,7 @@ DashboardAsset::register($this);
 <html lang="en">
 <head>
     <title>Online Trading </title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <?= Html::csrfMetaTags() ?>
 <title><?= Html::encode($this->title) ?></title>
  <?php $this->head() ?>
@@ -25,9 +26,16 @@ DashboardAsset::register($this);
       <div class="t-header-brand-wrapper">
         <a href="<?php echo Yii::$app->homeUrl;?>admin/dashboard">
           <img class="logo" src="<?php echo Yii::$app->homeUrl;?>images/fliege-registered-white.png" alt="">
-         
         </a>
       </div>
+	  <div class="log">
+	  
+	   <span><i class="fa fa-sign-out icon-4x" aria-hidden="true"></i></span>
+	  <a href="<?php echo Yii::$app->homeUrl;?>admin/dashboard">
+         logout
+        </a>
+	 
+	  </div>
 	  
       <!--- <div class="t-header-content-wrapper"> 
         <div class="t-header-content">

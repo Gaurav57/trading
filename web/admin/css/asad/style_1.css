@@ -30,7 +30,7 @@
 .t-header {
   display: flex;
   height: 65px;
-  background: #fbfcfd;
+  background: #FF9800;
   z-index: 100; }
   @media (max-width: 991.98px) {
     .t-header {
@@ -43,7 +43,7 @@
     width: 17rem;
     min-width: 17rem;
     max-width: 17rem;
-    background: #fff;
+    background: #FF9800;
     z-index: 100;
     padding-left: 18px; }
     .t-header .t-header-brand-wrapper a {

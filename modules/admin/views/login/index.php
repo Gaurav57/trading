@@ -100,7 +100,7 @@ use yii\helpers\ArrayHelper;
                            </div>
                            <div class="form-group">
                               <label for="exampleInputEmail1">Password</label>
-                               <?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Enter Your Mobile Number'])->label(false) ?>
+                               <?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Enter Your Password'])->label(false) ?>
                            </div>
                           
                            <div class="col-md-12 text-center ">

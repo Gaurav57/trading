@@ -9,12 +9,9 @@ use yii\widgets\ActiveForm;
 /* @var $model app\modules\admin\models\AddProduct */
 /* @var $form ActiveForm */
 ?>
-<div class="admin-dash-add_product col-md-11" style="margin-left: 15px;background-color:aliceblue;margin-top: -64px;">
+<div class="admin-dash-add_product col-md-11" style="margin-left: 15px;background-color:aliceblue;">
 <h1 class="text-center">Add Product</h1>
-    <?php $form = ActiveForm::begin(); ?>
-
-		
-	   
+   <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
 	 <?php 
      $brand =  app\modules\admin\models\Brand::find()->all();
 	$listData=ArrayHelper::map($brand,'id','brandName');
@@ -81,7 +78,7 @@ use yii\widgets\ActiveForm;
 		</div>
 	<?= $form->field($model, 'ref_client')->checkbox(array('label'=>''))->label('Reference Client'); ?>
        
-	 <?= $form->field($model, 'imageFile')->fileInput(['multiple' => true,'class'=>'form-control', 'placeholder' => 'Image']); ?>
+	 <?= $form->field($model, 'imageFile[]')->fileInput(['multiple' => true,'accept' => 'image/*','class'=>'form-control', 'placeholder' => 'Image']); ?>
 	 <?= $form->field($model, 'casestudies')->fileInput(['multiple' => true,'class'=>'form-control', 'placeholder' => 'PDf']); ?>
 	 <?= $form->field($model, 'specsheet')->fileInput(['multiple' => true,'class'=>'form-control']); ?>
 	  <?= $form->field($model, 'video')->fileInput(['class'=>'form-control']); ?>
