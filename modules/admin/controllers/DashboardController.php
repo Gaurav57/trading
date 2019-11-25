@@ -29,6 +29,10 @@ return $this->redirect(['./login-form']);
  */
     public function actionIndex()
     {
+		 if(!isset(Yii::$app->session["mobile"])){
+            $this->redirect(['../admin/login']);
+			
+        }
         return $this->render('index');
     }
 	public function getId()

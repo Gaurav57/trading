@@ -24,8 +24,10 @@ class DashboardAsset extends AssetBundle
        
 		'admin/css/css-log.css',
 		'admin/css/register.css',
-		 'admin/css/admin.css',
+		'admin/css/admin.css',
+		'admin/css/materialdesignicons.css',
 		'https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap',
+		'https://fonts.googleapis.com/icon?family=Material+Icons',
         'admin/css/asad/style_1.css',
         'admin/css/asad/style.css.map',
     ];

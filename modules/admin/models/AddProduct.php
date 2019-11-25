@@ -49,14 +49,14 @@ class AddProduct extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name_product', 'price_distributer', 'sp_distributer', 'loyality_pt_distributer', 'moq_distributer', 'price_dealer', 'sp_dealer', 'loyality_pt_dealer', 'moq_dealer', 'price_reseller', 'sp_reseller', 'loyality_pt_reseller', 'moq_reseller', 'price_user','sp_price','loyality_point', 'description','cat_id', 'latest_featured', 'new_arrival', 'best_seller', 'new', 'offers', 'trends'], 'required'],
-            [['price_distributer', 'sp_distributer', 'loyality_pt_distributer', 'moq_distributer', 'price_dealer', 'sp_dealer', 'loyality_pt_dealer', 'moq_dealer', 'price_reseller', 'sp_reseller', 'loyality_pt_reseller', 'moq_reseller', 'price_user', 'cat_id'], 'integer'],
+            [['name_product', 'price_distributer', 'sp_distributer', 'loyality_pt_distributer', 'moq_distributer', 'price_dealer', 'sp_dealer', 'loyality_pt_dealer', 'moq_dealer', 'price_reseller', 'sp_reseller', 'loyality_pt_reseller', 'moq_reseller', 'price_user','sp_price','loyality_point', 'description'], 'required'],
+            [['price_distributer', 'sp_distributer', 'loyality_pt_distributer', 'moq_distributer', 'price_dealer', 'sp_dealer', 'loyality_pt_dealer', 'moq_dealer', 'price_reseller', 'sp_reseller', 'loyality_pt_reseller', 'moq_reseller', 'price_user'], 'integer'],
             [['description'], 'string'],
-			[['imageFile'], 'file','extensions' => 'jpg, jpeg','maxFiles' => 5,'skipOnEmpty' => true],
+			//[['imageFile'], 'file','extensions' => 'jpg, jpeg','skipOnEmpty' => false],
 			[['casestudies'], 'file','extensions' => 'pdf','maxFiles' => 5,'skipOnEmpty' => true],
 			[['specsheet'], 'file','extensions' => 'pdf','maxFiles' => 5,'skipOnEmpty' => true],
 			[['video'], 'file','extensions' => 'mp4','skipOnEmpty' => true],
-            [['name_product',  'latest_featured', 'new_arrival', 'best_seller', 'new', 'offers', 'trends'], 'string', 'max' => 50],
+            [['name_product'], 'string', 'max' => 50],
         ];
     }
 
@@ -98,6 +98,18 @@ class AddProduct extends \yii\db\ActiveRecord
             'trends' => 'Trends',
         ];
     }
+	public function upload($md,$path){
+		
+		if ($this->validate()) {
+			
+            $md->saveAs('uploads/' .$path);
+            return $row;
+        } else {
+			
+            return 'problem';
+        }
+	}
+	
 /* 	public function upload($images){
         $images->saveAs('images/products/' . $images->baseName . '.' . $images->extension);
         return $images->baseName . '.' . $images->extension;
@@ -120,10 +132,11 @@ class AddProduct extends \yii\db\ActiveRecord
             return  $pathvideo->baseName . '.' .  $pathvideo->extension;
        }
 
- */	public function savedata($data,$lastID,$path,$pathstudies,$pathsheet,$pathvideo)
+ */
+ //print_r($data);die;
+ public function savedata($data,$path,$lastID)
 	{
-			
-					$formdata = array(
+	     			$formdata = array(
 					'product_id' => $lastID,
 					'name_product' => $data['AddProduct']['name_product'],
 					'price_distributer' => $data['AddProduct']['price_distributer'],
@@ -140,11 +153,11 @@ class AddProduct extends \yii\db\ActiveRecord
 					'moq_reseller' => $data['AddProduct']['moq_reseller'],
 					'price_user' => $data['AddProduct']['price_user'],
 					'sp_price' => $data['AddProduct']['sp_price'],
-					'moq_dealer' => $data['AddProduct']['moq_dealer'],
+					'loyality_point' => $data['AddProduct']['moq_dealer'],
 					 'imageFile' => $path,
-					'casestudies' =>$pathstudies,
+					/*'casestudies' =>$pathstudies,
 					'specsheet' =>$pathsheet,
-					'video' =>$pathvideo,
+					'video' =>$pathvideo,*/
 					 'warranty' => $data['AddProduct']['warranty'],
 					'ref_client' => $data['AddProduct']['ref_client'],
 					'description' => $data['AddProduct']['description'],
@@ -155,5 +168,7 @@ class AddProduct extends \yii\db\ActiveRecord
 				
 				return "Success";
 				}
+				
+	
 	 
 }

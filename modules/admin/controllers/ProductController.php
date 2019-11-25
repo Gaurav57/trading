@@ -3,7 +3,9 @@
 namespace app\modules\admin\controllers;
 
 use yii;
+use yii\db\Query;
 use yii\web\Session; 
+use yii\data\Pagination;
 use app\modules\admin\models\AddProduct;
 use app\modules\admin\models\Importexcel;
 use app\modules\admin\models\brand;
@@ -23,55 +25,67 @@ return $this->redirect(['./login-form']);
  */  
  public function actionIndex()
     {
-		$model=AddProduct::find()->all();
-		//print_r($model);die;
-        return $this->render('index',['model'=>$model]);
+		
+		
+		 if(!isset(Yii::$app->session["mobile"])){
+            $this->redirect(['../admin/login']);
+			
+        }
+
+		$query = AddProduct::find();
+    $countQuery = clone $query;
+    $pages = new Pagination(['totalCount' => $countQuery->count(),'pageSize'=>10]);
+    $models = $query->offset($pages->offset)
+        ->limit($pages->limit)
+        ->all();
+		
+       
+    return $this->render('index', [
+         'models' => $models,
+         'pages' => $pages,
+    ]);
     }
+   
 	
 	//insert data
-	public function actionProduct()
+		public function actionProduct()
 	{
 		$model=new AddProduct();
-	
-		$formdata=Yii::$app->request->post();
+	    
+		$data=Yii::$app->request->post();
 		
-      if(isset($formdata) && $model->load($formdata))	
+      if(isset($data) && $model->load($data))	
 	  {
 		  $session = Yii::$app->session;
 		  $lastID = $session['user_id'];
-		  
-		  $model->imageFile = UploadedFile::getInstances($model, 'imageFile');
-		  $path = $model['imageFile'];
+		   $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+          //print_r($model->imageFile->name);die;		  
+		  $path = $model->imageFile->name;
+		  $md=$model->imageFile;
 		 
+		 // die;
+		  $model->upload($model->imageFile,$path);
+		   
+		//  echo '<pre>';
+		  //print_r($path);die;
+		 /*   $path = [];
+		  foreach($model->imageFile as $images){
+			$path[] = $model->upload($images);	
+			ob_start();
+			$images = '';
+		  }
+		  
 		  $model->casestudies = UploadedFile::getInstances($model, 'casestudies');
-		  $pathstudies = $model['casestudies'];
+		  $pathstudies = $model->upload($model->casestudies);
 		  
 		  $model->specsheet = UploadedFile::getInstances($model, 'specsheet');
-		  $pathsheet= $model['specsheet'];
+		  $pathsheet= $model->upload($model->casesheet);
 		  
-		   $model->video = UploadedFile::getInstances($model, 'video');
-		  $pathvideo= $model['video'];
-		  //echo '<pre>';
-		 // print_r($path);die;
-		  if ($model->imageFile && $model->casestudies && $model->specsheet && $model->video && $model->validate()) {
-			   
-			    foreach ($model->imageFile as $file) {
-                    $file->saveAs('uploads/' . $file->baseName . '.' . $file->extension);
-                }
-				alert('ohk');
-				 foreach ($model->casestudies as $file) {
-                    $file->saveAs('uploads/' . $file->baseName . '.' . $file->extension);
-                }
-				 foreach ($model->specsheet as $file) {
-                    $file->saveAs('uploads/' . $file->baseName . '.' . $file->extension);
-                }
-				 foreach ($model->video as $file) {
-                    $file->saveAs('uploads/' . $file->baseName . '.' . $file->extension);
-                }
-			   
-		   }
+		  $model->video = UploadedFile::getInstances($model, 'video');
+		  $pathvideo= $model->upload($model->video);
+		 */  
 	
-$message=$model->savedata($formdata,$lastID,$path,$pathstudies,$pathsheet,$pathvideo);
+$message=$model->savedata($data,$path,$lastID);
 		
 		  if($message == 'Success')
 		  {
@@ -80,7 +94,7 @@ $message=$model->savedata($formdata,$lastID,$path,$pathstudies,$pathsheet,$pathv
 		  }
 		  else
 		  {
-			  Yii::session()->setFlash('message','product insertion failed'); 
+			  Yii::getSession()->setFlash('message','product insertion failed'); 
 		  }
 	  }
 		return $this->render('addproduct',['model'=>$model]);
@@ -139,21 +153,43 @@ $message=$model->savedata($formdata,$lastID,$path,$pathstudies,$pathsheet,$pathv
 		  }
 		  
 		  $sheet=$objPHPExcel->getSheet(0);
+		  //print_r($objPHPExcel->getSheet(0));
 		  $highestRow=$sheet->getHighestRow();
           $highestColumn=$sheet->getHighestColumn();
+		  
+		  
 		  for($row=1;$row<=$highestRow;$row++)
 		  {
-			  $rowData=$sheet->rangeToarray('A'.$row.':'.$highestColumn.$row,NULL,TRUE,FALSE);
+			  $rowData=$sheet->rangeToarray('G'.$row.':'.$highestColumn.$row,NULL,TRUE,FALSE);
            if($row==1) {
 	        continue;		   
-		   }	
-		   //print_r($rowData);die;
-				$pr = new AddProduct();
-				
-          			 //print_r($pr);die;
-					$mod = $pr->imexcel($rowData); 
-				//print_r($mod);die;
-			  
+		 		 }	
+				 echo '<pre>';
+		  print_r($rowData[0]);die;
+				$product = new AddProduct();
+
+			
+		$product->name_product=$rowData[0][1];
+		$product->price_distributer=$rowData[0][10];
+		$product->sp_distributer = (int)$rowData[0][11];
+        $product->loyality_pt_distributer=(int)$rowData[0][13];		
+        $product->moq_distributer=$rowData[0][12];
+		$product->price_dealer=(int)$rowData[0][14];
+		$product->sp_dealer=(int)$rowData[0][15];
+		$product->loyality_pt_dealer=(int)$rowData[0][17];
+		$product->moq_dealer=(int)$rowData[0][16];
+		$product->price_reseller=(int)$rowData[0][18];
+		$product->sp_reseller=(int)$rowData[0][19];
+	    $product->moq_reseller=(int)$rowData[0][20];	
+		$product->loyality_pt_reseller=(int)$rowData[0][21];
+		$product->price_user=(int)$rowData[0][22];
+		$product->sp_price=$rowData[0][23];
+	    $product->loyality_point=$rowData[0][24];
+		$product->description=$rowData[0][7];
+		$product->save();
+		
+		    //echo '<pre>';
+			//  print_r($product->getErrors());die;
 			}
 		  die('yes');
             }

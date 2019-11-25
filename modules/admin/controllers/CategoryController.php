@@ -9,6 +9,10 @@ class CategoryController extends \yii\web\Controller
 {
     public function actionIndex()
     {
+	 if(!isset(Yii::$app->session["mobile"])){
+            $this->redirect(['../admin/login']);
+			
+        }
        $model=AddCategory::find()->all();
 		//print_r($model);die;
         return $this->render('index',['model'=>$model]);
