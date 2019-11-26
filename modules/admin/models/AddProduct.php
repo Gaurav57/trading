@@ -52,10 +52,10 @@ class AddProduct extends \yii\db\ActiveRecord
             [['name_product', 'price_distributer', 'sp_distributer', 'loyality_pt_distributer', 'moq_distributer', 'price_dealer', 'sp_dealer', 'loyality_pt_dealer', 'moq_dealer', 'price_reseller', 'sp_reseller', 'loyality_pt_reseller', 'moq_reseller', 'price_user','sp_price','loyality_point', 'description'], 'required'],
             [['price_distributer', 'sp_distributer', 'loyality_pt_distributer', 'moq_distributer', 'price_dealer', 'sp_dealer', 'loyality_pt_dealer', 'moq_dealer', 'price_reseller', 'sp_reseller', 'loyality_pt_reseller', 'moq_reseller', 'price_user'], 'integer'],
             [['description'], 'string'],
-			//[['imageFile'], 'file','extensions' => 'jpg, jpeg','skipOnEmpty' => false],
-			[['casestudies'], 'file','extensions' => 'pdf','maxFiles' => 5,'skipOnEmpty' => true],
-			[['specsheet'], 'file','extensions' => 'pdf','maxFiles' => 5,'skipOnEmpty' => true],
-			[['video'], 'file','extensions' => 'mp4','skipOnEmpty' => true],
+			[['imageFile'], 'file','extensions' => 'jpg, png, jpeg','skipOnEmpty' => false],
+			[['casestudies'], 'file','extensions' => 'pdf','skipOnEmpty' => true],
+			[['specsheet'], 'file','extensions' => 'pdf','skipOnEmpty' => true],
+			[['video'], 'file','skipOnEmpty' => true],
             [['name_product'], 'string', 'max' => 50],
         ];
     }
@@ -98,77 +98,31 @@ class AddProduct extends \yii\db\ActiveRecord
             'trends' => 'Trends',
         ];
     }
-	public function upload($md,$path){
-		
-		if ($this->validate()) {
-			
-            $md->saveAs('uploads/' .$path);
-            return $row;
-        } else {
-			
-            return 'problem';
-        }
-	}
+	 public function upload() {
+         if ($this->validate()) {
+			 
+			   //for image file
+               $this->imageFile->saveAs('uploads/' . $this->imageFile->baseName . '.' .
+               $this->imageFile->extension);
+			   
+              //for specsheet file
+			   $this->specsheet->saveAs('uploads/' . $this->specsheet->baseName . '.' .
+               $this->specsheet->extension);
+			   
+			   //for casestudies file
+			   $this->casestudies->saveAs('uploads/' . $this->casestudies->baseName . '.' .
+               $this->casestudies->extension);
+			   
+			   //for video file
+			   $this->video->saveAs('uploads/' . $this->video->baseName . '.' .
+               $this->video->extension);
+			   
+            return true;
+         } else {
+            return false;
+         }
+      }
 	
-/* 	public function upload($images){
-        $images->saveAs('images/products/' . $images->baseName . '.' . $images->extension);
-        return $images->baseName . '.' . $images->extension;
-       
-	}
-		public function uploadcasestudies($casestudies){
-			
-        $casestudies->saveAs('casestudies' . $casestudies->baseName . '.' . $casestudies->extension);
-        return $casestudies->baseName . '.' . $casestudies->extension;
-		}
-		
-		public function uploadspecsheet($pathsheet){
-          $pathsheet->saveAs('specsheet/' . $pathsheet->baseName . '.' . $pathsheet->extension);
-            return  $pathsheet->baseName . '.'.$pathsheet->extension;
-		}
-		
-		public function uploadvideo($pathvideo){
-		
-         $pathvideo->saveAs('video/' .$pathvideo->baseName . '.' . $pathvideo->extension);
-            return  $pathvideo->baseName . '.' .  $pathvideo->extension;
-       }
-
- */
- //print_r($data);die;
- public function savedata($data,$path,$lastID)
-	{
-	     			$formdata = array(
-					'product_id' => $lastID,
-					'name_product' => $data['AddProduct']['name_product'],
-					'price_distributer' => $data['AddProduct']['price_distributer'],
-					'sp_distributer' => $data['AddProduct']['sp_distributer'],
-					'loyality_pt_distributer' => $data['AddProduct']['loyality_pt_distributer'],
-					'moq_distributer' => $data['AddProduct']['moq_distributer'],
-					'price_dealer' => $data['AddProduct']['price_dealer'],
-					'sp_dealer' => $data['AddProduct']['sp_dealer'],
-					'loyality_pt_dealer' => $data['AddProduct']['loyality_pt_dealer'],
-	                'moq_dealer' => $data['AddProduct']['moq_dealer'],				
-					'price_reseller' => $data['AddProduct']['price_reseller'],
-					'sp_reseller' => $data['AddProduct']['sp_reseller'],
-					'loyality_pt_reseller' => $data['AddProduct']['loyality_pt_reseller'],
-					'moq_reseller' => $data['AddProduct']['moq_reseller'],
-					'price_user' => $data['AddProduct']['price_user'],
-					'sp_price' => $data['AddProduct']['sp_price'],
-					'loyality_point' => $data['AddProduct']['moq_dealer'],
-					 'imageFile' => $path,
-					/*'casestudies' =>$pathstudies,
-					'specsheet' =>$pathsheet,
-					'video' =>$pathvideo,*/
-					 'warranty' => $data['AddProduct']['warranty'],
-					'ref_client' => $data['AddProduct']['ref_client'],
-					'description' => $data['AddProduct']['description'],
-				
-					);
 	
-				$data = Yii::$app->db->createCommand()->insert('product', $formdata)->execute();
-				
-				return "Success";
-				}
-				
-	
-	 
+	  
 }

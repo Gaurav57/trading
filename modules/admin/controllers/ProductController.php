@@ -47,7 +47,7 @@ return $this->redirect(['./login-form']);
     }
    
 	
-	//insert data
+	//insert new product
 		public function actionProduct()
 	{
 		$model=new AddProduct();
@@ -58,44 +58,21 @@ return $this->redirect(['./login-form']);
 	  {
 		  $session = Yii::$app->session;
 		  $lastID = $session['user_id'];
+		    //for image File file
 		   $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
-          //print_r($model->imageFile->name);die;		  
-		  $path = $model->imageFile->name;
-		  $md=$model->imageFile;
-		 
-		 // die;
-		  $model->upload($model->imageFile,$path);
-		   
-		//  echo '<pre>';
-		  //print_r($path);die;
-		 /*   $path = [];
-		  foreach($model->imageFile as $images){
-			$path[] = $model->upload($images);	
-			ob_start();
-			$images = '';
-		  }
 		  
-		  $model->casestudies = UploadedFile::getInstances($model, 'casestudies');
-		  $pathstudies = $model->upload($model->casestudies);
-		  
-		  $model->specsheet = UploadedFile::getInstances($model, 'specsheet');
-		  $pathsheet= $model->upload($model->casesheet);
-		  
-		  $model->video = UploadedFile::getInstances($model, 'video');
-		  $pathvideo= $model->upload($model->video);
-		 */  
-	
-$message=$model->savedata($data,$path,$lastID);
-		
-		  if($message == 'Success')
-		  {
-				Yii::$app->session->setFlash('message','<div class="alert alert-dismissible alert-success">category inserted</div>'); 
-          return $this->redirect(['./product']);			
-		  }
-		  else
-		  {
-			  Yii::getSession()->setFlash('message','product insertion failed'); 
-		  }
+		    //for specsheet file
+		      $model->specsheet = UploadedFile::getInstance($model, 'specsheet');
+			 
+			 //for casestudies file
+		     $model->casestudies = UploadedFile::getInstance($model, 'casestudies');
+			 
+			  //for video file
+		     $model->video = UploadedFile::getInstance($model, 'video');
+			 
+      if ($model->upload() && $model->save(false)) {
+     	return $this->redirect(['./product']);	
+      }	
 	  }
 		return $this->render('addproduct',['model'=>$model]);
 	}
@@ -140,36 +117,47 @@ $message=$model->savedata($data,$path,$lastID);
             $model->importFile = UploadedFile::getInstance($model, 'importFile');
 				
             if ($model->upload()) {
-			$objPHPExcel = new \PHPExcel();
-           $inputFile='uploads/'.$model ->importFile->name;
+				$objPHPExcel = new \PHPExcel();
+				$inputFile='uploads/'.$model ->importFile->name;
           try{
 			   $inputFileType=\PHPExcel_IOFactory::identify($inputFile);
 			   $objReader=\PHPExcel_IOFactory::createReader($inputFileType);
 			   $objPHPExcel=$objReader->load($inputFile);
-		  }		
+			}		
 		  catch(Exception $e)
 		  {
 			  die('	Error');
 		  }
 		  
-		  $sheet=$objPHPExcel->getSheet(0);
-		  //print_r($objPHPExcel->getSheet(0));
-		  $highestRow=$sheet->getHighestRow();
-          $highestColumn=$sheet->getHighestColumn();
+			$sheet=$objPHPExcel->getSheet(0);
+			//print_r($objPHPExcel->getSheet(0));
+			$highestRow=$sheet->getHighestRow();
+			$highestColumn=$sheet->getHighestColumn();
 		  
 		  
 		  for($row=1;$row<=$highestRow;$row++)
 		  {
-			  $rowData=$sheet->rangeToarray('G'.$row.':'.$highestColumn.$row,NULL,TRUE,FALSE);
+			  $rowData=$sheet->rangeToarray('G'.$row.':'.$highestColumn.$row,NULL,TRUE,False);echo '<pre>';
+			   print_r(count($rowData)."&nbsp&nbsp $row");
            if($row==1) {
 	        continue;		   
 		 		 }	
-				 echo '<pre>';
-		  print_r($rowData[0]);die;
+				 //echo '<pre>';
+		       // print_r($rowData);die; */
+			   
+			   
+			   
+			   
+			   
+			   
+			   
+			   
+			   
+			   
 				$product = new AddProduct();
 
 			
-		$product->name_product=$rowData[0][1];
+		$product->name_product=$rowData[0][0];
 		$product->price_distributer=$rowData[0][10];
 		$product->sp_distributer = (int)$rowData[0][11];
         $product->loyality_pt_distributer=(int)$rowData[0][13];		
